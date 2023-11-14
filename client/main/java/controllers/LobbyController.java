@@ -30,10 +30,8 @@ public class LobbyController  {
         try {
 
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("gametable.fxml"));
-            Parent root = fxmlLoader.load();
-
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gametable.fxml"));
+            Parent root =  fxmlLoader.load();
             PlayTableController playroomController = fxmlLoader.getController();
             playroomController.setUserName(userName);
 
@@ -42,6 +40,7 @@ public class LobbyController  {
             stage.setTitle("Spieltisch");
             stage.setScene(new Scene(root));
             stage.show();
+            ((Stage) nameField.getScene().getWindow()).close();
         } catch (Exception e) {
             e.printStackTrace();
         }

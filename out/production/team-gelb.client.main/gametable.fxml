@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PlayTableController">
+<AnchorPane prefHeight="476.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PlayTableController">
     <children>
-        <Label fx:id="nameLabel" layoutX="275.0" layoutY="342.0" prefHeight="31.0" prefWidth="99.0" AnchorPane.bottomAnchor="26.80000000000001" />
+        <BorderPane layoutX="2.0" layoutY="-2.0" prefHeight="476.0" prefWidth="600.0">
+            <center>
+                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #e5d1f0;" BorderPane.alignment="CENTER" />
+            </center>
+            <top>
+                <Pane prefHeight="58.0" prefWidth="600.0" style="-fx-background-color: #d60902;" BorderPane.alignment="CENTER" />
+            </top>
+            <left>
+                <Pane prefHeight="365.0" prefWidth="98.0" style="-fx-background-color: #fcf919;" BorderPane.alignment="CENTER" />
+            </left>
+            <bottom>
+                <Pane prefHeight="49.0" prefWidth="600.0" style="-fx-background-color: #115423;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label fx:id="nameLabel" layoutX="251.0" layoutY="7.0" prefHeight="31.0" prefWidth="99.0" textFill="#f7f6f6">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            </bottom>
+            <right>
+                <Pane prefHeight="365.0" prefWidth="92.0" style="-fx-background-color: #1f1154;" BorderPane.alignment="CENTER" />
+            </right>
+        </BorderPane>
     </children>
 </AnchorPane>

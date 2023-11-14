@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'Team-Gelb'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+    if (JavaVersion.current() < JavaVersion.VERSION_20) {
+        throw new RuntimeException("The build must be run with Java 20 or newer; best use Java 20!")
+    }
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(20))
+        }
+    }
+}
+dependencies {
+    compile 'junit:junit:4.12'
+}

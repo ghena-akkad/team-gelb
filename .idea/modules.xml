@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/team-gelb.iml" filepath="$PROJECT_DIR$/.idea/team-gelb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/team-gelb.client.iml" filepath="$PROJECT_DIR$/client/team-gelb.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/main/team-gelb.client.main.iml" filepath="$PROJECT_DIR$/client/main/team-gelb.client.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/team-gelb.server.iml" filepath="$PROJECT_DIR$/server/team-gelb.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/main/team-gelb.server.main.iml" filepath="$PROJECT_DIR$/server/main/team-gelb.server.main.iml" />
     </modules>
   </component>
 </project>

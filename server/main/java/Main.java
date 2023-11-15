@@ -1,21 +1,27 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-public class Main {
-    public static void main(String[] args) {
+public class Main implements Communication {
+    public Main() {
         try {
-
+            Communication stub = (Communication) UnicastRemoteObject.exportObject(this, 0);
             Registry registry = LocateRegistry.createRegistry(1099);
-            System.out.println("Server - main: Registry created");
-
-
-        } catch (Exception e) {
-            System.err.println("RMI Server exception");
+            registry.rebind("server", stub);
+            System.out.println("Server Main gestartet.");
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
-        System.out.println("RMI Server - main Terminierung");
     }
 
-
+    @Override
+    public void sendMessage(String message) throws RemoteException {
+        System.out.println("Nachricht vom Client: " + message);
     }
+
+    public static void main(String[] args) {
+        new Main();
+    }
+}

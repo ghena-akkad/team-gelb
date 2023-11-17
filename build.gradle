@@ -14,13 +14,13 @@ sourceSets {
             srcDirs = ['src']
         }
     }
-    if (JavaVersion.current() < JavaVersion.VERSION_20) {
-        throw new RuntimeException("The build must be run with Java 20 or newer; best use Java 20!")
+    if (JavaVersion.current() < JavaVersion.VERSION_18) {
+        throw new RuntimeException("The build must be run with Java 18 or newer; best use Java 18!")
     }
 
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(20))
+            languageVersion.set(JavaLanguageVersion.of(18))
         }
     }
 }

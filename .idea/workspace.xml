@@ -5,6 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/ShowImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/gameRoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/HelloApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/HelloApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/HelloController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
+    </list>
+    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/team-gelb.iml" afterDir="false" />
@@ -50,6 +68,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -57,7 +76,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Branch_M" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -176,7 +195,11 @@
       <workItem from="1700157147400" duration="5606000" />
       <workItem from="1700163356357" duration="2900000" />
       <workItem from="1700217588542" duration="2276000" />
-      <workItem from="1700235390687" duration="2749000" />
+      <workItem from="1700235390687" duration="3636000" />
+      <workItem from="1700306367814" duration="2124000" />
+      <workItem from="1700836441515" duration="473000" />
+      <workItem from="1700836965925" duration="2923000" />
+      <workItem from="1700843779269" duration="6995000" />
     </task>
     <task id="LOCAL-00001" summary="HellofX">
       <option name="closed" value="true" />
@@ -186,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700236663300</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fertig Konfiguriert mit JavaFX, JDK und Maven">
+      <option name="closed" value="true" />
+      <created>1700300989092</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700300989092</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,6 +249,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="HellofX" />
+    <MESSAGE value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
+    <option name="LAST_COMMIT_MESSAGE" value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
     <option name="LAST_COMMIT_MESSAGE" value="HellofX" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

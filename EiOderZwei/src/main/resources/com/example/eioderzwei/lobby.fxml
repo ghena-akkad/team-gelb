@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.eioderzwei.LobbyController"
-      alignment="CENTER">
-
-    <Label text="Willkommen in der Lobby!" />
-
-    <TextField fx:id="playerNameField" promptText="Spielername eingeben" />
-
-    <Button text="Starten" onAction="#onStartGameButtonClicked" />
-
-
-
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.LobbyController">
+   <children>
+      <Button fx:id="goToGameRoom" layoutX="312.0" layoutY="324.0" mnemonicParsing="false" onAction="#switchToGameRoom" text="Button" />
+      <Label layoutX="207.0" layoutY="96.0" prefHeight="64.0" prefWidth="263.0" text="Willkommen in der Lobby">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="playerNameField" layoutX="260.0" layoutY="219.0" prefHeight="26.0" prefWidth="158.0" promptText="Benutzer Name eingeben" />
+   </children>
+</AnchorPane>

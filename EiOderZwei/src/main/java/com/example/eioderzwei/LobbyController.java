@@ -1,26 +1,19 @@
 package com.example.eioderzwei;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
-
-
-
-
-
+import java.io.IOException;
 public class LobbyController {
-
     @FXML
     private TextField playerNameField;
-
     @FXML
-    private Button startGameButton;
-
-
+    private Button goToGameRoom;
     @FXML
     private void initialize() {
         // Diese Methode wird beim Laden der FXML aufgerufen
@@ -28,11 +21,19 @@ public class LobbyController {
     }
 
     @FXML
-    private void onStartGameButtonClicked() {
-        // aufrufen, wenn der "Start Game"-Button geklickt wird
-        String playerName = playerNameField.getText();
-        System.out.println("Starte Spiel für Spieler: " + playerName);
+    private void switchToGameRoom(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("gameRoom.fxml"));
+            Parent secondRoot = loader.load();
+            gameRoomController gameRoomController = loader.getController();
+            gameRoomController.setPlayerName(playerNameField.getText());
+            Scene secondScene = new Scene(secondRoot);
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(secondScene);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         openPlayTableWindow(playerName);
 
 

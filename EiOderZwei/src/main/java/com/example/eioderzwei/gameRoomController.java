@@ -62,6 +62,7 @@ public class gameRoomController {
         } catch (FileNotFoundException e) {
             e.printStackTrace(); // Handle the exception according to your needs
             e.printStackTrace();
+            e.printStackTrace();
         }
     }
 

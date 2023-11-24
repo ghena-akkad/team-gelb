@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/ShowImage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/gameRoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/HelloApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/HelloApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/HelloController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/Lobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/hello.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/LobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/LobbyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/gameRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/gameRoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/HelloApplication.class" beforeDir="false" />
     </list>
     <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -286,6 +277,8 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+    <MESSAGE value="Interaktives Spielbrett 1.Draft" />
+    <option name="LAST_COMMIT_MESSAGE" value="Interaktives Spielbrett 1.Draft" />
     <MESSAGE value="Interaktives Spielbrett 1.Draft" />
     <option name="LAST_COMMIT_MESSAGE" value="Interaktives Spielbrett 1.Draft" />
   </component>

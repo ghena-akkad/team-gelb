@@ -22,7 +22,7 @@ public class gameRoomController {
     @FXML
     public Button ab1;
     @FXML
-    private Label welcomeText;
+    private Label playerNameInGameRoom;
     @FXML
     private ImageView Karte1, Karte2, Karte3, Karte4, Karte5, Karte6, Karte7, Karte8, Karte9, Karte10, Karte11, Karte12;
     @FXML
@@ -59,7 +59,7 @@ public class gameRoomController {
             Image img = new Image(input);
             addCardToHand(img);
         } catch (FileNotFoundException e) {
-            e.printStackTrace(); // Handle the exception according to your needs
+            e.printStackTrace();
         }
     }
 
@@ -111,5 +111,8 @@ public class gameRoomController {
             selectedCard.setImage(null);
             selectedCard = null; // Reset the selectedCard for the next move
         }
+    }
+    public void setPlayerName(String playerName) {
+        playerNameInGameRoom.setText("Player Name: " + playerName);
     }
 }

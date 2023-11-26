@@ -35,7 +35,7 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        /**  Hier wird das Lobby Fenster eröffnet */
+        /** @Ghena  Hier wird das Lobby Fenster eröffnet */
 
     }
 }

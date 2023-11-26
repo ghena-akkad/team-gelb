@@ -47,5 +47,7 @@ public class Client extends Application {
 
         primaryStage.show();
     }
+        /**  Hier wird das Lobby Fenster eröffnet */
 
+    }
 }

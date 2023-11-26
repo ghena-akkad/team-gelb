@@ -16,10 +16,7 @@ public class LobbyController {
     private Button goToGameRoom;
     @FXML
     private void initialize() {
-        // Diese Methode wird beim Laden der FXML aufgerufen
-        // Hier die Initialisierungen vornehmen
     }
-
     @FXML
     private void switchToGameRoom(ActionEvent event) {
         try {
@@ -34,9 +31,6 @@ public class LobbyController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        openPlayTableWindow(playerName);
-
-
     }
 
     protected void openPlayTableWindow(String playerName) {

@@ -2,6 +2,8 @@ package com.example.eioderzwei;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
+
 
 import java.io.IOException;
 import java.rmi.registry.LocateRegistry;
@@ -33,9 +35,17 @@ public class Client extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage primaryStage) throws Exception {
 
-        /** @Ghena  Hier wird das Lobby Fenster eröffnet */
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/eioderzwei/lobby.fxml"));
 
+        Scene scene = new Scene(root, 800, 600);
+
+        primaryStage.setScene(scene);
+
+        primaryStage.setTitle("Lobby");
+
+        primaryStage.show();
     }
+
 }

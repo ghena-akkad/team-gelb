@@ -4,7 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="" />
+    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/team-gelb.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/1BioKorn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/2BioKörner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/2Körner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/3BioKorn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/3Korn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/4Korn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/Fuchs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/Kuckuck.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/egg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/Deck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/ei.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,26 +94,30 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "Branch__M",
     "jdk.selected.JAVA_MODULE": "18",
-    "last_opened_file_path": "/Users/akkad/IdeaProjects/team-gelb",
+    "last_opened_file_path": "C:/Users/MaxiF/AppData/Local/SceneBuilder/SceneBuilder.exe",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.52988505",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
+    "settings.editor.selected.configurable": "preferences.externalResources",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\MaxiF\Downloads\team13\team-gelb\EiOderZwei\src\main\java\image" />
     </key>
   </component>
   <component name="RunManager" selected="Application.com.example.eioderzwei.HelloApplication">
@@ -169,7 +197,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Branch_Max" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -179,5 +219,9 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="HellofX" />
     <option name="LAST_COMMIT_MESSAGE" value="HellofX" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

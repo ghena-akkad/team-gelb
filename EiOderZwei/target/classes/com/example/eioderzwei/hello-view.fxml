@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.eioderzwei.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="797.0" prefWidth="948.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.HelloController">
+<children>
+   <ImageView fx:id="Karte1" fitHeight="100.0" fitWidth="75.0" layoutX="14.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte2" fitHeight="100.0" fitWidth="75.0" layoutX="89.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte3" fitHeight="100.0" fitWidth="75.0" layoutX="164.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte4" fitHeight="100.0" fitWidth="75.0" layoutX="239.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte5" fitHeight="100.0" fitWidth="75.0" layoutX="314.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte6" fitHeight="100.0" fitWidth="75.0" layoutX="389.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte7" fitHeight="100.0" fitWidth="75.0" layoutX="464.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte8" fitHeight="100.0" fitWidth="75.0" layoutX="539.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte9" fitHeight="100.0" fitWidth="75.0" layoutX="614.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte10" fitHeight="100.0" fitWidth="75.0" layoutX="689.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte11" fitHeight="100.0" fitWidth="75.0" layoutX="764.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="Karte12" fitHeight="100.0" fitWidth="75.0" layoutX="839.0" layoutY="683.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="deck" fitHeight="100.0" fitWidth="75.0" layoutX="399.0" layoutY="349.0" onMouseClicked="#hallo" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../../../src/image/egg.png" />
+      </image></ImageView>
+   <ImageView fx:id="ablage" fitHeight="100.0" fitWidth="75.0" layoutX="474.0" layoutY="349.0" onMouseClicked="#abwerfen" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../../../src/image/egg.png" />
+      </image></ImageView>
+   <Label layoutX="409.0" layoutY="332.0" text="Ziehstapel" />
+   <Label layoutX="493.0" layoutY="332.0" text="Ablage" />
+   <Label fx:id="playerNameInGameRoom" layoutX="38.0" layoutY="656.0" text="Player" />
+   <Label fx:id="eier" layoutX="38.0" layoutY="632.0" text="Eier:0/9" />
+   <Button fx:id="add1" layoutX="32.0" layoutY="607.0" mnemonicParsing="false" onAction="#addEi" text="Add1" />
+</children>
+</AnchorPane>

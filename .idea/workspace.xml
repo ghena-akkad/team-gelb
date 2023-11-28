@@ -44,6 +44,12 @@
       <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
     </list>
+    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gametable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gametable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,6 +131,32 @@
     "project.structure.side.proportion": "0.52988505",
     "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
     "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path&quot;: &quot;/Users/akkad/IdeaProjects/javafx-sdk-22&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Branch__M&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/akkad/IdeaProjects/team-gelb&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.52988505&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -188,7 +220,6 @@
         <item itemvalue="Application.hello" />
         <item itemvalue="Application.com.example.eioderzwei.HelloApplication" />
         <item itemvalue="Application.HelloApplication" />
-        <item itemvalue="Application.irgendwas" />
         <item itemvalue="Application.irgendwas" />
       </list>
     </recent_temporary>
@@ -275,6 +306,10 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="HellofX" />
+    <MESSAGE value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
+    <MESSAGE value="Interaktives Spielbrett 1.Draft" />
+    <MESSAGE value="GameRoom zeigt Name von Lobby" />
+    <option name="LAST_COMMIT_MESSAGE" value="GameRoom zeigt Name von Lobby" />
     <MESSAGE value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
     <option name="LAST_COMMIT_MESSAGE" value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
     <option name="LAST_COMMIT_MESSAGE" value="HellofX" />

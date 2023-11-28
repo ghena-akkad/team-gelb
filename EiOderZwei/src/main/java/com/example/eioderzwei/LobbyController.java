@@ -32,7 +32,19 @@ public class LobbyController {
             e.printStackTrace();
         }
         openPlayTableWindow(playerName);
+    private void switchToGameRoom(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("gameRoom.fxml"));
+            Parent secondRoot = loader.load();
+            gameRoomController gameRoomController = loader.getController();
+            gameRoomController.setPlayerName(playerNameField.getText());
+            Scene secondScene = new Scene(secondRoot);
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(secondScene);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     private void switchToGameRoom(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("gameRoom.fxml"));

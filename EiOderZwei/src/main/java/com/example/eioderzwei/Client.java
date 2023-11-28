@@ -50,4 +50,4 @@ public class Client extends Application {
         /**  Hier wird das Lobby Fenster eröffnet */
 
     }
-}
+

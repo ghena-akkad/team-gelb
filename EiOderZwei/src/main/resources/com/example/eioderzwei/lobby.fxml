@@ -6,14 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.LobbyController">
+<AnchorPane  prefHeight="463.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/18.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.LobbyController">
    <children>
-      <Button fx:id="goToGameRoom" layoutX="279.0" layoutY="280.0" mnemonicParsing="false" onAction="#switchToGameRoom" text="Go To Game Room" />
-      <Label layoutX="208.0" layoutY="119.0" prefHeight="64.0" prefWidth="263.0" text="Willkommen in der Lobby">
+      <Button fx:id="goToGameRoom" layoutX="309.0" layoutY="280.0" mnemonicParsing="false" onAction="#onStartGameButtonClicked" text="Go To Game Room" />
+      <Label layoutX="238.0" layoutY="119.0" prefHeight="94.0" prefWidth="293.0" text="Willkommen in der Lobby">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="playerNameField" layoutX="254.0" layoutY="218.0" prefHeight="26.0" prefWidth="170.0" promptText="Benutzer Name eingeben" />
+      <TextField fx:id="playerNameField" layoutX="284.0" layoutY="218.0" prefHeight="26.0" prefWidth="170.0" promptText="Benutzer Name eingeben" />
    </children>
 </AnchorPane>
+

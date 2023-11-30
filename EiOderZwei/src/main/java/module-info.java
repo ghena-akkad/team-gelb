@@ -2,6 +2,7 @@ module com.example.eioderzwei {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires java.rmi;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;

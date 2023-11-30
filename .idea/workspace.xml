@@ -6,12 +6,49 @@
   <component name="ChangeListManager">
     <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gametable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gametable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" afterDir="false" />
+    </list>
+    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/Lobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/hello.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/LobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/LobbyController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/gameRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/gameRoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/HelloApplication.class" beforeDir="false" />
+    </list>
+    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/team-gelb.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/1BioKorn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/2BioKörner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/2Körner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/3BioKorn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/3Korn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/4Korn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/Fuchs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/Kuckuck.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/egg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/Deck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/ei.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
+    </list>
+    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gametable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gametable.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,11 +131,40 @@
     "project.structure.side.proportion": "0.52988505",
     "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
     "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path&quot;: &quot;/Users/akkad/IdeaProjects/javafx-sdk-22&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Branch__M&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/akkad/IdeaProjects/team-gelb&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.52988505&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\MaxiF\Downloads\team13\team-gelb\EiOderZwei\src\main\java\image" />
     </key>
   </component>
   <component name="RunManager" selected="Application.hello">
@@ -155,7 +221,6 @@
         <item itemvalue="Application.com.example.eioderzwei.HelloApplication" />
         <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.irgendwas" />
-        <item itemvalue="Application.irgendwas" />
       </list>
     </recent_temporary>
   </component>
@@ -174,7 +239,8 @@
       <workItem from="1700306367814" duration="2124000" />
       <workItem from="1700836441515" duration="473000" />
       <workItem from="1700836965925" duration="2923000" />
-      <workItem from="1700843779269" duration="10531000" />
+      <workItem from="1700843779269" duration="10910000" />
+      <workItem from="1700989422062" duration="3337000" />
     </task>
     <task id="LOCAL-00001" summary="HellofX">
       <option name="closed" value="true" />
@@ -200,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700851238064</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="GameRoom zeigt Name von Lobby">
+      <option name="closed" value="true" />
+      <created>1700858030790</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700858030790</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +285,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Branch_Max" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -222,6 +308,19 @@
     <MESSAGE value="HellofX" />
     <MESSAGE value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
     <MESSAGE value="Interaktives Spielbrett 1.Draft" />
+    <MESSAGE value="GameRoom zeigt Name von Lobby" />
+    <option name="LAST_COMMIT_MESSAGE" value="GameRoom zeigt Name von Lobby" />
+    <MESSAGE value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
+    <option name="LAST_COMMIT_MESSAGE" value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
+    <option name="LAST_COMMIT_MESSAGE" value="HellofX" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+    <MESSAGE value="Interaktives Spielbrett 1.Draft" />
     <option name="LAST_COMMIT_MESSAGE" value="Interaktives Spielbrett 1.Draft" />
+    <MESSAGE value="Interaktives Spielbrett 1.Draft" />
+    <MESSAGE value="GameRoom zeigt Name von Lobby" />
+    <option name="LAST_COMMIT_MESSAGE" value="GameRoom zeigt Name von Lobby" />
   </component>
 </project>

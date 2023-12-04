@@ -4,50 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
+    <list default="true" id="4818d21b-eddf-49e9-a6be-8bb810b134d3" name="Changes" comment="Interaktives Spielbrett 1.Draft">
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/2Korn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/Fucks.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/Hahnkarte.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gametable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gametable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" afterDir="false" />
-    </list>
-    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/Lobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/hello.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/LobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/LobbyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/gameRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/gameRoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/HelloApplication.class" beforeDir="false" />
-    </list>
-    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/team-gelb.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/1BioKorn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/2BioKörner.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/2Körner.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/3BioKorn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/3Korn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/4Korn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/Fuchs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/Kuckuck.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/image/egg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/Deck.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/ei.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/target/classes/src/main/resources/com/example/eioderzwei/hello-view.fxml" beforeDir="false" />
-    </list>
-    <list default="true" id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gametable.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gametable.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/lobby.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/1BioKorn.png" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/1BioKorn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/2BioKörner.png" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/2BioKörner.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/2Körner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/3BioKorn.png" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/3BioKorn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/3Korn.png" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/3Korn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/4Korn.png" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/4Korn.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/Fuchs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/Kuckuck.png" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/Kuckuck.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/egg.png" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image/egg.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,134 +25,26 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <projects_view>
-          <tree_state>
-            <expand />
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-        <option value="FxmlFile" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="Branch_M" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
-  <component name="ProjectId" id="2YGg4t6DoC4lpSJfjG3uwtevto6" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Downloaded.Files.Path": "/Users/akkad/IdeaProjects/javafx-sdk-22",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "android.gradle.sync.needed": "true",
-    "git-widget-placeholder": "Branch__M",
-    "jdk.selected.JAVA_MODULE": "18",
-    "last_opened_file_path": "/Users/akkad/IdeaProjects/team-gelb",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.52988505",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
-    "vue.rearranger.settings.migration": "true"
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path&quot;: &quot;/Users/akkad/IdeaProjects/javafx-sdk-22&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Branch__M&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/akkad/IdeaProjects/team-gelb&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.52988505&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+    "git-widget-placeholder": "Branch__Ghena",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\MaxiF\Downloads\team13\team-gelb\EiOderZwei\src\main\java\image" />
+      <recent name="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/image" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.hello">
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.main.java.com.example.eioderzwei.HelloApplication" />
-      <module name="EiOderZwei" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.main.java.com.example.eioderzwei.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="com.example.eioderzwei.HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.eioderzwei.HelloApplication" />
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.eioderzwei.Client" />
       <module name="EiOderZwei" />
       <extension name="coverage">
         <pattern>
@@ -194,8 +56,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="hello" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.eioderzwei.hello" />
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.eioderzwei.Server" />
       <module name="EiOderZwei" />
       <extension name="coverage">
         <pattern>
@@ -207,120 +69,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="irgendwas" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="irgendwas" />
-      <module name="team-gelb" />
-      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-17.0.9/lib --add-modules javafx.controls,javafx.fxml " />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.hello" />
-        <item itemvalue="Application.com.example.eioderzwei.HelloApplication" />
-        <item itemvalue="Application.HelloApplication" />
-        <item itemvalue="Application.irgendwas" />
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="74c9b8bb-e775-49e7-ace9-0211cc564c1b" name="Changes" comment="" />
-      <created>1700157144077</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1700157144077</updated>
-      <workItem from="1700157147400" duration="5606000" />
-      <workItem from="1700163356357" duration="2900000" />
-      <workItem from="1700217588542" duration="2276000" />
-      <workItem from="1700235390687" duration="3636000" />
-      <workItem from="1700306367814" duration="2124000" />
-      <workItem from="1700836441515" duration="473000" />
-      <workItem from="1700836965925" duration="2923000" />
-      <workItem from="1700843779269" duration="10910000" />
-      <workItem from="1700989422062" duration="3337000" />
-    </task>
-    <task id="LOCAL-00001" summary="HellofX">
-      <option name="closed" value="true" />
-      <created>1700236663300</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1700236663300</updated>
-    </task>
-    <task id="LOCAL-00002" summary="fertig Konfiguriert mit JavaFX, JDK und Maven">
-      <option name="closed" value="true" />
-      <created>1700300989092</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1700300989092</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Interaktives Spielbrett 1.Draft">
-      <option name="closed" value="true" />
-      <created>1700851238064</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1700851238064</updated>
-    </task>
-    <task id="LOCAL-00004" summary="GameRoom zeigt Name von Lobby">
-      <option name="closed" value="true" />
-      <created>1700858030790</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1700858030790</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="Branch_Max" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="HellofX" />
-    <MESSAGE value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
-    <MESSAGE value="Interaktives Spielbrett 1.Draft" />
-    <MESSAGE value="GameRoom zeigt Name von Lobby" />
-    <option name="LAST_COMMIT_MESSAGE" value="GameRoom zeigt Name von Lobby" />
-    <MESSAGE value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="fertig Konfiguriert mit JavaFX, JDK und Maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="HellofX" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
     <MESSAGE value="Interaktives Spielbrett 1.Draft" />
     <option name="LAST_COMMIT_MESSAGE" value="Interaktives Spielbrett 1.Draft" />
-    <MESSAGE value="Interaktives Spielbrett 1.Draft" />
-    <MESSAGE value="GameRoom zeigt Name von Lobby" />
-    <option name="LAST_COMMIT_MESSAGE" value="GameRoom zeigt Name von Lobby" />
   </component>
 </project>

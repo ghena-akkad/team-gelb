@@ -1,4 +1,4 @@
-package com.example.eioderzwei;
+package com.example.eioderzwei.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

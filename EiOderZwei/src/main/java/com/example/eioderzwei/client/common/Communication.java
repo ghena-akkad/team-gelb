@@ -1,4 +1,4 @@
-package com.example.eioderzwei;
+package com.example.eioderzwei.client.common;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

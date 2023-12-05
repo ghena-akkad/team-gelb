@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  prefHeight="463.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/18.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.LobbyController">
+<AnchorPane  prefHeight="463.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/18.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.client.LobbyController">
    <children>
       <Button fx:id="goToGameRoom" layoutX="309.0" layoutY="280.0" mnemonicParsing="false" onAction="#onStartGameButtonClicked" text="Go To Game Room" />
       <Label layoutX="238.0" layoutY="119.0" prefHeight="94.0" prefWidth="293.0" text="Willkommen in der Lobby">

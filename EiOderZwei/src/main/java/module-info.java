@@ -14,5 +14,7 @@ module com.example.eioderzwei {
     requires annotations;
 
     opens com.example.eioderzwei to javafx.fxml;
-    exports com.example.eioderzwei;
+    exports com.example.eioderzwei.server;
+    exports com.example.eioderzwei.client;
+    opens com.example.eioderzwei.client to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package com.example.eioderzwei;
+package com.example.eioderzwei.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

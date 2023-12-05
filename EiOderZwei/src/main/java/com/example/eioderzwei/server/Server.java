@@ -1,8 +1,9 @@
-package com.example.eioderzwei;
+package com.example.eioderzwei.server;
+import com.example.eioderzwei.server.common.Communication;
+
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 

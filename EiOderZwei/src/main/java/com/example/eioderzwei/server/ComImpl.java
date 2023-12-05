@@ -1,8 +1,6 @@
-package com.example.eioderzwei;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
-import java.rmi.Remote;
+package com.example.eioderzwei.server;
+import com.example.eioderzwei.server.common.Communication;
+
 import java.rmi.RemoteException;
 
 /** Beispiel Klasse, um zu zeigen, dass die Kommunikation zwischen Client und Server funktioniert*/

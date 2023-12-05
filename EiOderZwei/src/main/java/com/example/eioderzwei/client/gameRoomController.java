@@ -1,4 +1,4 @@
-package com.example.eioderzwei;
+package com.example.eioderzwei.client;
 import javafx.animation.TranslateTransition;
 import javafx.animation.Interpolator;
 
@@ -224,13 +224,13 @@ public class gameRoomController implements Initializable {
         borderGlow.setHeight(depth);
         image.setEffect(borderGlow);
     }
-
+/*
     public void selectedCardInHand(@NotNull MouseEvent event) {
         ImageView image = (ImageView) event.getSource();
         cardNameSelected = ShowImage.readCardName(image.getImage());
         setEffect(event, Color.RED);
     }
-
+*/
     public void moveCard(MouseEvent event) {
         ImageView clickedImageView = (ImageView) event.getSource();
 

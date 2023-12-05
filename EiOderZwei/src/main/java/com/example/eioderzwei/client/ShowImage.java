@@ -1,10 +1,10 @@
-package com.example.eioderzwei;
+package com.example.eioderzwei.client;
 
 import javafx.scene.image.Image;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
+//TODO Diese Klasse muss noch überprüft werden
 /**
  * Dies ist die Klasse, die jeden Kartennamen mit seinem Bild verknüpft.
  */
@@ -21,6 +21,7 @@ public enum ShowImage {
             e.printStackTrace(); // Handle the exception according to game logic later on
         }
     }
+
     public String getCardName() {
         return cardName;
     }

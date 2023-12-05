@@ -1,4 +1,4 @@
-package com.example.eioderzwei;
+package com.example.eioderzwei.client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -11,7 +11,7 @@ import java.rmi.registry.Registry;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import com.example.eioderzwei.client.common.*;
 
 
 public class Client extends Application {

@@ -21,6 +21,8 @@ public class Client extends Application {
             Registry registry = LocateRegistry.getRegistry(1099);
             System.out.println("Registry located");
             Communication server = (Communication) registry.lookup("server");
+            LoginManagerInterface logman = (LoginManagerInterface) registry.lookup("logman");
+            RoomsManagerInterface roomman = (RoomsManagerInterface) registry.lookup("roomman");
             server.sendMessage("hello, Server!");
 
         }

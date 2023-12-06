@@ -6,7 +6,6 @@ import java.util.ArrayList;
 /**
  * Klasse für Spieler
  */
-// TODO: Speichern wie viele Eier Karten der Spieler gesammelt hat
 
 public class Player {
     private  final String userName;
@@ -18,9 +17,14 @@ public class Player {
     private int playedCards;
     private int eiNum;
 
-    public Player(String username, String password){
+
+    // ID von User im Spiel
+
+    public int playerId;
+
+
+    public Player(String username){
         userName = username;
-        //passWord = password;
         wonGame = false;
         playersTurn = false;
         ready = false;
@@ -28,6 +32,16 @@ public class Player {
         hand = new ArrayList<>();
         eiNum = 0;
     }
+
+
+
+    public int getPlayerId(){
+        return playerId ;
+    }
+    public void setPlayerId(int id){
+         playerId = id;
+    }
+
 
     public boolean hasHahnCard(){
         for(Card card: hand){

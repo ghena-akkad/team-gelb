@@ -6,7 +6,6 @@ import java.util.ArrayList;
 /**
  * Klasse für Spieler
  */
-// TODO: Speichern wie viele Eier Karten der Spieler gesammelt hat
 
 public class Player {
     private  final String userName;

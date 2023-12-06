@@ -1,14 +1,5 @@
 package com.example.eioderzwei.server;
 
-
-// TODO: Folgende Methoden zu implementieren:
-//  get_number_of_players, set_number_of_players,
-//  get_number_of_bots, set_number_of_bots,
-//  has_game_started(returns boolean), get_gamename, get_players,
-//  add_player, remove_player
-//  Konstruktor erzeugt DrawPile Instanz
-//
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -19,6 +10,7 @@ public class GameRoom {
     private ArrayList<String> playerSet;
     //falls verlassen wiederbeitrittsmöglichkeit nach der Runde ?
     private DrawPile drawPile;
+    private DiscardPile discardPile;
     private boolean round;
     private boolean game;
     private int botCounter;
@@ -31,12 +23,16 @@ public class GameRoom {
         game = false;
         playerSet = new ArrayList<>();
         drawPile = new DrawPile();
+        discardPile = new DiscardPile();
     }
     public void setBotCounter(int botCounter) {
         this.botCounter = botCounter;
     }
     public void increaseBotCounter(){
         botCounter++;
+    }
+    public int getBotCount(){
+        return botCounter;
     }
     public boolean hasGameStarted() {
         return game;

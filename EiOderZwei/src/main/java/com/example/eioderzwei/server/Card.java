@@ -34,15 +34,15 @@ public class Card {
 // TODO Paths zu Images anpassen
 
     static {
-        cardImageMap.put(CardType.TWONORMAL, "path/to/two_normal_image.png");
-        cardImageMap.put(CardType.THREENORMAL, "path/to/three_normal_image.png");
-        cardImageMap.put(CardType.FOURNORMAL, "path/to/four_normal_image.png");
-        cardImageMap.put(CardType.ONEBIO, "path/to/one_bio_image.png");
-        cardImageMap.put(CardType.TWOBIO, "path/to/two_bio_image.png");
-        cardImageMap.put(CardType.THREEBIO, "path/to/three_bio_image.png");
-        cardImageMap.put(CardType.FOX, "path/to/fox_image.png");
-        cardImageMap.put(CardType.CUCKOO, "path/to/cuckoo_image.png");
-        cardImageMap.put(CardType.ROOSTER, "path/to/rooster_image.png");
+        cardImageMap.put(CardType.TWONORMAL, "com/example/eioderzwei/image/2Korn.png");
+        cardImageMap.put(CardType.THREENORMAL, "com/example/eioderzwei/image/3Korn.png");
+        cardImageMap.put(CardType.FOURNORMAL, "com/example/eioderzwei/image/4Korn.png");
+        cardImageMap.put(CardType.ONEBIO, "com/example/eioderzwei/image/1BioKorn.png");
+        cardImageMap.put(CardType.TWOBIO, "com/example/eioderzwei/image/2BioKörner.png");
+        cardImageMap.put(CardType.THREEBIO, "com/example/eioderzwei/image/3BioKorn.png");
+        cardImageMap.put(CardType.FOX, "com/example/eioderzwei/image/Fucks.png");
+        cardImageMap.put(CardType.CUCKOO, "com/example/eioderzwei/image/Kuckuck.png");
+        cardImageMap.put(CardType.ROOSTER, "com/example/eioderzwei/image/Hahnkarte.png");
     }
     public String getImagePath() {
         return cardImageMap.get(type);

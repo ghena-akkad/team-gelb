@@ -1,60 +1,59 @@
 package com.example.eioderzwei.server;
 
+
+
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class GameRoom {
     private final String gameName;
-    private final String gamePassword;
-    private final int maxPlayers;
-    private ArrayList<String> playerSet;
-    //falls verlassen wiederbeitrittsmöglichkeit nach der Runde ?
+    private final int maxPlayers = 5 ;
+    private final int minPlayers = 2 ;
+
+    private  int numberPlayers ;
+
+    private ArrayList<String> players;
     private DrawPile drawPile;
     private DiscardPile discardPile;
-    private boolean round;
-    private boolean game;
-    private int botCounter;
-    public GameRoom(String pGameName, String pGamePassword, int pMaxPlayers) {
-        gameName = pGameName;
-        gamePassword = pGamePassword;
-        maxPlayers = pMaxPlayers;
-        botCounter = 0;
-        round = false;
-        game = false;
-        playerSet = new ArrayList<>();
+
+    private boolean gamestarted;
+    private int botNumber;
+
+    public GameRoom(String GameName, int botNumber) {
+        this.gameName = GameName;
+        this.botNumber = botNumber;
+        gamestarted = false;
+        players = new ArrayList<>();
+        numberPlayers = 0;
         drawPile = new DrawPile();
         discardPile = new DiscardPile();
     }
-    public void setBotCounter(int botCounter) {
-        this.botCounter = botCounter;
+    public void setBotCounter(int botNumber) {
+        this.botNumber = botNumber;
     }
     public void increaseBotCounter(){
-        botCounter++;
+        botNumber++;
     }
-    public int getBotCount(){
-        return botCounter;
-    }
-    public boolean hasGameStarted() {
-        return game;
-    }
-    public boolean hasRoundStarted() {
-        return round;
-    }
-    public void startGame() {
-        game = true;
-    }
-    public void startRound() {
-        round = true;
-    }
-    public void finishGame() {
-        game = false;
-    }
-    public void finishRound() {
-        round = false;
+    public int getPlayersNumber() {
+       return numberPlayers;
     }
 
-    public int getBotCounter() {
-        return botCounter;
+    public boolean hasGameStarted() {
+        return gamestarted;
+    }
+
+    public void startGame() {
+        gamestarted = true;
+    }
+
+    public void finishGame() {
+        gamestarted = false;
+    }
+
+
+    public int getBotNumber() {
+        return botNumber;
     }
 
     public DrawPile getDrawPile() {
@@ -64,23 +63,22 @@ public class GameRoom {
         return gameName;
     }
 
-    public String getGamePassword(){
-        return gamePassword;
-    }
 
     public int getMaxPlayers(){
         return maxPlayers;
     }
 
     public ArrayList<String> getPlayerSet(){
-        return playerSet;
+        return players;
     }
 
     public void addPlayer(String userIdent){
-        playerSet.add(userIdent);
+        players.add(userIdent);
+        numberPlayers++;
     }
     public void removePlayer(String userIdent) {
-        playerSet.remove(userIdent);
+        players.remove(userIdent);
+        numberPlayers--;
     }
     @Override
     public boolean equals(Object o) {
@@ -90,10 +88,8 @@ public class GameRoom {
         return Objects.equals(gameName, gameRoom.gameName);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(gameName);
-    }
+
+
 
 
 }

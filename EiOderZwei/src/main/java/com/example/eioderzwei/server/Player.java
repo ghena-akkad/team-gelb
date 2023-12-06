@@ -17,6 +17,12 @@ public class Player {
     private DrawPile drawPile;
     private DiscardPile discardPile;
 
+
+    // ID von User im Spiel
+
+    public int playerId;
+
+
     public Player(String username, DrawPile drawPile1, DiscardPile discardPile1){
         userName = username;
         wonGame = false;
@@ -28,6 +34,16 @@ public class Player {
         this.drawPile = drawPile1;
         this.discardPile = discardPile1;
     }
+
+
+
+    public int getPlayerId(){
+        return playerId ;
+    }
+    public void setPlayerId(int id){
+         playerId = id;
+    }
+
 
     public boolean hasHahnCard(){
         for(Card card: hand){

@@ -10,21 +10,23 @@ import java.util.ArrayList;
 
 public class Player {
     private  final String userName;
-    private final String passWord;
+    //private final String passWord;
     private ArrayList<Card> hand;
     private boolean playersTurn;
     private boolean ready;
     private boolean wonGame;
     private int playedCards;
+    private int eiNum;
 
     public Player(String username, String password){
         userName = username;
-        passWord = password;
+        //passWord = password;
         wonGame = false;
         playersTurn = false;
         ready = false;
         playedCards = 0;
         hand = new ArrayList<>();
+        eiNum = 0;
     }
 
     public boolean hasHahnCard(){
@@ -40,9 +42,9 @@ public class Player {
         return userName;
     }
 
-    public String getPassword() {
+    /*public String getPassword() {
         return passWord;
-    }
+    }*/
     public ArrayList<Card> getHand() {
         return hand;
     }
@@ -78,11 +80,18 @@ public class Player {
     public void resetPlayedCards() {
         playedCards = 0;
     }
+    public int getEiNum(){
+        return eiNum;
+    }
+    public void setEiNum(int eiNum1){
+        eiNum = eiNum1;
+    }
     //TODO IllegalMoveException und NotThePlayersTurnException implementieren und einbetten
     public void eiLegen(Card card)  {
         if (isPlayersTurn()){
             getHand().remove(card);
             playedCards++;
+            eiNum++;
         }
     }
     public void hahnBeanspruchen(){

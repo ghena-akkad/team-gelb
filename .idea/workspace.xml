@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ee09e25-1c51-49a3-bbd7-a0d282165c98" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Bot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Deck.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/RegisteredPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Gameroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Deck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameRoom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/RegisteredPlayer.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +94,17 @@
       <workItem from="1701358451737" duration="31000" />
       <workItem from="1701790246896" duration="2207000" />
       <workItem from="1701799032862" duration="10703000" />
+      <workItem from="1701873908377" duration="1900000" />
     </task>
+    <task id="LOCAL-00001" summary="player, RegisteredPlayer, Bot, GameRoom">
+      <option name="closed" value="true" />
+      <created>1701873988267</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701873988267</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,6 +120,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="player, RegisteredPlayer, Bot, GameRoom" />
+    <option name="LAST_COMMIT_MESSAGE" value="player, RegisteredPlayer, Bot, GameRoom" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

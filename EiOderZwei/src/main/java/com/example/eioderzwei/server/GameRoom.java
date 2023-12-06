@@ -18,8 +18,7 @@ public class GameRoom {
     private final int maxPlayers;
     private ArrayList<String> playerSet;
     //falls verlassen wiederbeitrittsmöglichkeit nach der Runde ?
-    private ArrayList<String> waitingList;
-    private Deck deck;
+    private DrawPile drawPile;
     private boolean round;
     private boolean game;
     private int botCounter;
@@ -31,8 +30,7 @@ public class GameRoom {
         round = false;
         game = false;
         playerSet = new ArrayList<>();
-        waitingList = new ArrayList<>();
-        deck = new Deck();
+        drawPile = new DrawPile();
     }
     public void setBotCounter(int botCounter) {
         this.botCounter = botCounter;
@@ -63,8 +61,8 @@ public class GameRoom {
         return botCounter;
     }
 
-    public Deck getDeck() {
-        return deck;
+    public DrawPile getDrawPile() {
+        return drawPile;
     }
     public String getGameName() {
         return gameName;
@@ -82,20 +80,11 @@ public class GameRoom {
         return playerSet;
     }
 
-    public ArrayList<String> getWaitingList(){
-        return waitingList;
-    }
     public void addPlayer(String userIdent){
         playerSet.add(userIdent);
     }
-    public void addPlayerToWaitingList(String userIdent){
-        waitingList.add(userIdent);
-    }
     public void removePlayer(String userIdent) {
         playerSet.remove(userIdent);
-    }
-    public void removePlayerFromWaitingList(String userIdent){
-        waitingList.remove(userIdent);
     }
     @Override
     public boolean equals(Object o) {

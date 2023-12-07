@@ -27,7 +27,6 @@ public class GameRoom {
         players = new ArrayList<>();
         numberPlayers = 0;
         drawPile = new DrawPile();
-        discardPile = new DiscardPile();
     }
     public void setBotCounter(int botNumber) {
         this.botNumber = botNumber;

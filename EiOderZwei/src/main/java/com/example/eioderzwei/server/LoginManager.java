@@ -1,4 +1,5 @@
 package com.example.eioderzwei.server;
+import com.example.eioderzwei.client.PlayerNameAlreadyExists;
 import com.example.eioderzwei.server.common.LoginManagerInterface;
 
 import java.util.HashMap;
@@ -18,13 +19,13 @@ public class LoginManager implements LoginManagerInterface {
         players = new HashMap<>();
 
     }
-    public void loginPlayer(String playerName) {
+    public void loginPlayer(String playerName) throws PlayerNameAlreadyExists {
         if (!isNameTaken(playerName)) {
             Player newPlayer = new Player(playerName);
             players.put(playerName, newPlayer);
 
         } else {
-            System.out.println("Der Name ist bereits besetzt. Bitte wähle einen anderen Namen.");
+            throw new PlayerNameAlreadyExists("Der Name ist bereits besetzt. Bitte wähle einen anderen Namen.");
         }
     }
     public boolean isNameTaken(String playerName) {

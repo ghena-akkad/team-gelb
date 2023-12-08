@@ -1,5 +1,8 @@
 package com.example.eioderzwei.server;
 
+import com.example.eioderzwei.client.PlayerNameAlreadyExists;
+import com.example.eioderzwei.client.RoomDoesNotExist;
+import com.example.eioderzwei.client.RoomNameAlreadyExists;
 import com.example.eioderzwei.server.common.RoomsManagerInterface;
 
 import java.util.HashMap;
@@ -18,12 +21,12 @@ public class RoomsManager implements RoomsManagerInterface {
      *
      * @param roomName Der Name des neuen Spielzimmers.
      */
-    public void createRoom(String roomName, int botNumber) {
+    public void createRoom(String roomName, int botNumber)  {
         if (!gameRooms.containsKey(roomName)) {
             GameRoom newRoom = new GameRoom(roomName, botNumber);
             gameRooms.put(roomName, newRoom);
         } else {
-            System.out.println("Der Raum mit dem Namen " + roomName + " existiert bereits. Bitte wähle einen anderen Namen.");
+            System.out.println("Der Raum mit diesem Namen existiert bereits. Bitte wähle einen anderen Namen.");
         }
     }
 
@@ -33,13 +36,21 @@ public class RoomsManager implements RoomsManagerInterface {
      * @param roomName Der Name des Spielzimmers, dem beigetreten werden soll.
      * @return Das Spielzimmer, dem beigetreten wurde, oder null, wenn das Spielzimmer nicht existiert.
      */
-    public void joinRoom(String roomName, String username) {
+    public void joinRoom(String roomName, String username) throws RoomDoesNotExist {
         if (gameRooms.containsKey(roomName)) {
              GameRoom gameroom = gameRooms.get(roomName);
              gameroom.addPlayer(username);
         } else {
-            System.out.println("Der Raum mit dem Namen " + roomName + " existiert nicht.");
+            throw new RoomDoesNotExist("Der Raum mit diesem Namen existiert nicht.");
+
         }
+    }
+    public void ifRoomExists(String roomName) throws RoomNameAlreadyExists{
+        if (!gameRooms.containsKey(roomName)) {
+    } else {
+            throw new RoomNameAlreadyExists("Der Raum mit diesem Namen existiert bereits. Bitte wähle einen anderen Namen.");
+    }
+
     }
 
     /**

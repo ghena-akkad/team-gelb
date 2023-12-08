@@ -11,18 +11,20 @@ import java.rmi.registry.Registry;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import com.example.eioderzwei.client.common.*;
-
+import com.example.eioderzwei.server.common.*;
 
 public class Client extends Application {
 
     public static void main(String[] args) {
         try {
             Registry registry = LocateRegistry.getRegistry(1099);
+
             System.out.println("Registry located");
             Communication server = (Communication) registry.lookup("server");
-            LoginManagerInterface logman = (LoginManagerInterface) registry.lookup("logman");
+
+
             RoomsManagerInterface roomman = (RoomsManagerInterface) registry.lookup("roomman");
+
             server.sendMessage("hello, Server!");
 
         }
@@ -49,7 +51,27 @@ public class Client extends Application {
 
         primaryStage.show();
     }
-        /**  Hier wird das Lobby Fenster eröffnet */
+    public static LoginManagerInterface getLoginManager(){
+        try {
+            Registry registry = LocateRegistry.getRegistry(1099);
+            LoginManagerInterface logman = (LoginManagerInterface) registry.lookup("logman");
+            return logman;
+        } catch (Exception e) {
 
+            throw new RuntimeException(e);
+
+        }
+    }
+    public static RoomsManagerInterface getRoomsManager(){
+        try {
+            Registry registry = LocateRegistry.getRegistry(1099);
+            RoomsManagerInterface roomman = (RoomsManagerInterface) registry.lookup("roomman");
+            return roomman;
+        } catch (Exception e) {
+
+            throw new RuntimeException(e);
+
+        }
+    }
     }
 

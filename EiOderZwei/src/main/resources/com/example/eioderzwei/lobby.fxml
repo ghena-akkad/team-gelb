@@ -6,15 +6,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  prefHeight="463.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/18.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.client.LobbyController">
-   <children>
-      <Button fx:id="goToGameRoom" layoutX="309.0" layoutY="280.0" mnemonicParsing="false" onAction="#onStartGameButtonClicked" text="Go To Game Room" />
-      <Label layoutX="238.0" layoutY="119.0" prefHeight="94.0" prefWidth="293.0" text="Willkommen in der Lobby">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <TextField fx:id="playerNameField" layoutX="284.0" layoutY="218.0" prefHeight="26.0" prefWidth="170.0" promptText="Benutzer Name eingeben" />
-   </children>
-</AnchorPane>
+<AnchorPane prefHeight="673.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/18.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.client.LobbyController">
+      <children>
+            <Button fx:id="goToGameRoom" layoutX="311.0" layoutY="337.0" mnemonicParsing="false" onAction="#onStartGameButtonClicked" text="Go To Game Room" />
+            <Label layoutX="219.0" prefHeight="94.0" prefWidth="293.0" text="Willkommen in der Lobby">
+                  <font>
+                        <Font size="24.0" />
+                  </font>
+            </Label>
+            <TextField fx:id="playerNameField" layoutX="281.0" layoutY="94.0" prefHeight="26.0" prefWidth="170.0" promptText="Benutzer Name eingeben" />
+            <TextField fx:id="roomNameField" layoutX="281.0" layoutY="265.0" prefHeight="26.0" prefWidth="170.0" promptText="Spiel Name eingeben" />
+            <Button fx:id="enterButton" layoutX="344.0" layoutY="140.0" mnemonicParsing="false" onAction="#onEnterButtonClicked" text="Enter" />
+            <Label fx:id="l2" layoutX="319.0" layoutY="420.0" prefHeight="34.0" prefWidth="163.0" text="Raum erstellen">
+                  <font>
+                        <Font size="15.0" />
+                  </font>
+            </Label>
+            <TextField fx:id="playerNumberField" layoutX="293.0" layoutY="479.0" prefHeight="26.0" prefWidth="170.0" promptText="Anzahl der Spieler eingeben" />
+            <Label fx:id="l3" alignment="CENTER" layoutX="288.0" layoutY="218.0" prefHeight="22.0" prefWidth="155.0" text="Raum betreten">
+                  <font>
+                        <Font size="15.0" />
+                  </font>
+            </Label>
+            <TextField fx:id="newRoomNameField" layoutX="48.0" layoutY="479.0" prefHeight="26.0" prefWidth="170.0" promptText="Spiel Name eingeben" />
+            <TextField fx:id="botNumberField" layoutX="565.0" layoutY="479.0" prefHeight="26.0" prefWidth="170.0" promptText="Anzahl der Bots eingeben" />
+            <Button fx:id="createGameButton" layoutX="322.0" layoutY="550.0" mnemonicParsing="false" onAction="#onCreateGameButtonClicked" text="Raum erstellen" />
+            <Button fx:id="next1" layoutX="346.0" layoutY="563.0" mnemonicParsing="false" onAction="#onNextButtonClicked1" text="Weiter" />
+            <Button fx:id="next2" layoutX="346.0" layoutY="563.0" mnemonicParsing="false" onAction="#onNextButtonClicked2" text="Weiter" />
 
+      </children>
+</AnchorPane>

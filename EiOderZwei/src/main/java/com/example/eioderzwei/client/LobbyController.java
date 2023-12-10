@@ -1,5 +1,6 @@
 package com.example.eioderzwei.client;
 
+import com.example.eioderzwei.server.exceptions.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -92,7 +93,7 @@ public class LobbyController {
 
             } catch (RemoteException e ) {
                 throw new RuntimeException(e);
-            } catch (PlayerNameAlreadyExists e) {
+            } catch (PlayerNameAlreadyExistsException e) {
                 showErrorPopup("Dieser Name ist schon belegt");
 
             }
@@ -106,9 +107,13 @@ public class LobbyController {
     private void onStartGameButtonClicked() {
             String room_name = roomNameField.getText();
             RoomsManagerInterface roomman = Client.getRoomsManager();
+            LoginManagerInterface logman = Client.getLoginManager();
+
             if (!room_name.isEmpty()) {
                 try {
+                    roomman.ifRoomIsFull(room_name);
                     roomman.joinRoom(room_name, UserInfo.getUsername());
+                    logman.setPlayerId( UserInfo.getUsername(), roomman.getPlayersNumber(room_name));
                     UserInfo.setRoomname(room_name);
                     openPlayTableWindow(UserInfo.getUsername());
 
@@ -118,7 +123,10 @@ public class LobbyController {
                 catch (RemoteException e ) {
                     throw new RuntimeException(e);
                 }
-                catch (RoomDoesNotExist e) {
+                catch (RoomIsFullException e ) {
+                    showErrorPopup("Der Raum ist schon voll!");
+                }
+                catch (RoomDoesNotExistException e) {
                     showErrorPopup("Der Raum mit diesem Namen existiert nicht");
 
 
@@ -138,6 +146,8 @@ public class LobbyController {
     public void onNextButtonClicked1() {
         String room_name = newRoomNameField.getText();
         RoomsManagerInterface roomman = Client.getRoomsManager();
+        LoginManagerInterface logman = Client.getLoginManager();
+
         if (!room_name.isEmpty()) {
             try {
 
@@ -145,7 +155,7 @@ public class LobbyController {
                 UserInfo.setRoomname(room_name);
                 next1.setVisible(false);
                 next2.setVisible(true);
-            } catch (RoomNameAlreadyExists e) {
+            } catch (RoomNameAlreadyExistsException e) {
                 showErrorPopup("Der Raum mit diesem Namen existiert bereits. Bitte wähle einen anderen Namen.");
 
             } catch (RemoteException e) {
@@ -186,17 +196,22 @@ public class LobbyController {
         private void onCreateGameButtonClicked() {
             String bn = botNumberField.getText();
             RoomsManagerInterface roomman = Client.getRoomsManager();
+            LoginManagerInterface logman = Client.getLoginManager();
+
 
             if (!bn.isEmpty()) {
                 try {
                     int botNumber = Integer.parseInt(botNumberField.getText());
                     if (botNumber < UserInfo.getPlayNumber()) {
                         try {
-                            roomman.createRoom(UserInfo.getRoomname(), botNumber);
+                            roomman.createRoom(UserInfo.getRoomname(), botNumber, UserInfo.getPlayNumber());
                             roomman.joinRoom(UserInfo.getRoomname(), UserInfo.getUsername());
+                            logman.setPlayerId( UserInfo.getUsername(), roomman.getPlayersNumber(UserInfo.getRoomname()));
+
+
                         } catch (RemoteException e) {
                             throw new RuntimeException(e);
-                        } catch (RoomDoesNotExist e) {
+                        } catch (RoomDoesNotExistException e) {
                             // Handle the case where the room does not exist
                         }
                     } else {

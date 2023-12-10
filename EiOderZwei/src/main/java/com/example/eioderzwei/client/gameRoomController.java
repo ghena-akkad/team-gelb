@@ -28,8 +28,6 @@ import java.util.ResourceBundle;
 import java.util.List;
 public class gameRoomController implements Initializable {
     @FXML
-    public Button ab1;
-    @FXML
     private Label nameLabel;
     @FXML
     private ImageView deck;
@@ -208,42 +206,10 @@ public class gameRoomController implements Initializable {
 
     }
 
-    public void removeEffect() {
-        hand().forEach(imageView -> imageView.setEffect(null));
-    }
 
-    public void setEffect(MouseEvent event, Color color) {
-        ImageView image = (ImageView) event.getSource();
-        removeEffect();
-        int depth = 70;
-        DropShadow borderGlow = new DropShadow();
-        borderGlow.setOffsetY(0f);
-        borderGlow.setOffsetX(0f);
-        borderGlow.setColor(color);
-        borderGlow.setWidth(depth);
-        borderGlow.setHeight(depth);
-        image.setEffect(borderGlow);
-    }
-/*
-    public void selectedCardInHand(@NotNull MouseEvent event) {
-        ImageView image = (ImageView) event.getSource();
-        cardNameSelected = ShowImage.readCardName(image.getImage());
-        setEffect(event, Color.RED);
-    }
-*/
-    public void moveCard(MouseEvent event) {
-        ImageView clickedImageView = (ImageView) event.getSource();
 
-        if (selectedCard == null) {
-            selectedCard = clickedImageView;
-            setEffect(event, Color.RED);
-        } else {
-            selectedCard.setEffect(null);
-            clickedImageView.setImage(selectedCard.getImage());
-            selectedCard.setImage(null);
-            selectedCard = null;
-        }
-    }
+
+
 
     public void setUserName(String userName) {
         nameLabel.setText(userName);

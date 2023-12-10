@@ -1,7 +1,5 @@
 package com.example.eioderzwei.server.common;
-import com.example.eioderzwei.client.PlayerNameAlreadyExists;
-import com.example.eioderzwei.client.RoomDoesNotExist;
-import com.example.eioderzwei.client.RoomNameAlreadyExists;
+import com.example.eioderzwei.server.exceptions.*;
 
 
 import java.io.Serializable;
@@ -13,14 +11,20 @@ import java.rmi.RemoteException;
 public interface RoomsManagerInterface extends Remote, Serializable {
 
 
-    void createRoom(String roomName,  int botNumber) throws RemoteException;
+    void createRoom(String roomName,  int botNumber, int playerNumber) throws RemoteException;
 
 
-    void joinRoom(String roomName, String userIdent) throws RemoteException, RoomDoesNotExist;
+    void joinRoom(String roomName, String userIdent) throws RemoteException, RoomDoesNotExistException;
 
 
     void deleteRoom(String roomName) throws RemoteException;
 
-     void ifRoomExists(String roomName) throws RemoteException, RoomNameAlreadyExists;
+
+
+     void ifRoomIsFull(String roomName) throws RemoteException, RoomIsFullException;
+
+     void ifRoomExists(String roomName) throws RemoteException, RoomNameAlreadyExistsException;
+
+     int getPlayersNumber (String roomName);
 
     }

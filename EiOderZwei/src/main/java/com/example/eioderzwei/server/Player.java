@@ -11,10 +11,8 @@ public class Player {
     private  final String userName;
     //private final String passWord;
     private ArrayList<Card> hand;
-    private boolean playersTurn;
-    private boolean ready;
-    private boolean wonGame;
-    private int playedCards;
+    private boolean turn;
+    private boolean won;
     private int eiNum;
 
 
@@ -25,10 +23,8 @@ public class Player {
 
     public Player(String username){
         userName = username;
-        wonGame = false;
-        playersTurn = false;
-        ready = false;
-        playedCards = 0;
+        won = false;
+        turn = false;
         hand = new ArrayList<>();
         eiNum = 0;
     }
@@ -67,44 +63,34 @@ public class Player {
         hand.add(card);
     }
 
-    public void setWonGame(boolean state){
-        wonGame = state;
+    public boolean won() {
+        return won;
     }
-    public boolean isPlayersTurn() {
-        return playersTurn;
+
+    public void setWon(boolean state){
+        won = state;
+    }
+    public boolean ifPlayersTurn() {
+        return turn;
     }
     public synchronized void setPlayersTurn(Boolean state) {
-        playersTurn = state;
+        turn = state;
     }
-    public boolean hasWonGame() {
-        return wonGame;
-    }
-    public boolean isReady() {
-        return ready;
-    }
-    public void setReady() {
-        ready = true;
-    }
-    public void setUnReady() {
-        ready = false;
-    }
-    public int getPlayedCards() {
-        return playedCards;
-    }
-    public void resetPlayedCards() {
-        playedCards = 0;
-    }
+
+
+
     public int getEiNum(){
         return eiNum;
     }
     public void setEiNum(int eiNum1){
         eiNum = eiNum1;
     }
+
     //TODO IllegalMoveException und NotThePlayersTurnException implementieren und einbetten
+
     public void eiLegen(Card card)  {
-        if (isPlayersTurn()){
+        if (ifPlayersTurn()){
             getHand().remove(card);
-            playedCards++;
             eiNum++;
         }
     }

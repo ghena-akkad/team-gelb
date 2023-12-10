@@ -1,6 +1,7 @@
 package com.example.eioderzwei.server.common;
 import java.io.Serializable;
-import com.example.eioderzwei.client.PlayerNameAlreadyExists;
+
+import com.example.eioderzwei.server.exceptions.PlayerNameAlreadyExistsException;
 
 
 import java.rmi.Remote;
@@ -9,11 +10,13 @@ import java.rmi.RemoteException;
 public interface LoginManagerInterface extends Remote, Serializable {
 
 
-    void loginPlayer(String playerName) throws RemoteException, PlayerNameAlreadyExists;
+    void loginPlayer(String playerName) throws RemoteException, PlayerNameAlreadyExistsException;
 
 
     boolean isNameTaken(String playerName) throws RemoteException;
 
 
     void logoutPlayer(String playerName) throws RemoteException;
+
+     void setPlayerId(String playerName, int id) throws RemoteException;
 }

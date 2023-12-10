@@ -1,6 +1,6 @@
 package com.example.eioderzwei.server;
-import com.example.eioderzwei.client.PlayerNameAlreadyExists;
 import com.example.eioderzwei.server.common.LoginManagerInterface;
+import com.example.eioderzwei.server.exceptions.PlayerNameAlreadyExistsException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,13 +19,13 @@ public class LoginManager implements LoginManagerInterface {
         players = new HashMap<>();
 
     }
-    public void loginPlayer(String playerName) throws PlayerNameAlreadyExists {
+    public void loginPlayer(String playerName) throws PlayerNameAlreadyExistsException {
         if (!isNameTaken(playerName)) {
             Player newPlayer = new Player(playerName);
             players.put(playerName, newPlayer);
 
         } else {
-            throw new PlayerNameAlreadyExists("Der Name ist bereits besetzt. Bitte wähle einen anderen Namen.");
+            throw new PlayerNameAlreadyExistsException("Der Name ist bereits besetzt. Bitte wähle einen anderen Namen.");
         }
     }
     public boolean isNameTaken(String playerName) {
@@ -38,4 +38,11 @@ public class LoginManager implements LoginManagerInterface {
             System.out.println("Der Spieler mit dem Namen " + playerName + " existiert nicht.");
         }
     }
+    public void setPlayerId(String playerName, int id) {
+         players.get(playerName).setPlayerId(id);
+    }
+
+
+
+
 }

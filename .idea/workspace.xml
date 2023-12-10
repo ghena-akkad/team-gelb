@@ -5,16 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ee09e25-1c51-49a3-bbd7-a0d282165c98" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Deck.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/RegisteredPlayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/client/gameRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/client/gameRoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -25,6 +28,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5

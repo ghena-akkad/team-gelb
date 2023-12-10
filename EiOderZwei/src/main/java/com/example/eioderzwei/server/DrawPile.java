@@ -3,14 +3,22 @@ package com.example.eioderzwei.server;
 import java.util.Collections;
 import java.util.Stack;
 
+/**
+ * Die Klasse DrawPile repräsentiert den Ziehstapel im Kartenspiel.
+ * Der Ziehstapel enthält Karten, von denen die Spieler in ihrem Zug Karten ziehen können.
+ */
 public class DrawPile {
+
+    // Stack zur Speicherung der Karten im Ziehstapel
     private Stack<Card> drawPile = new Stack<>();
 
     public DrawPile() {
         create();
     }
 
-    // Erstellt einen neuen Ziehstapel
+    /**
+     * Methode zum Erstellen eines neuen Ziehstapels und Hinzufügen von Karten gemäß den Spielregeln.
+     */
     public void create() {
         addCards(CardType.TWONORMAL, 10);
         addCards(CardType.THREENORMAL, 10);
@@ -24,23 +32,32 @@ public class DrawPile {
 
         addCards(CardType.ROOSTER, 4);
 
+        // Mischen des Ziehstapels
         Collections.shuffle(drawPile);
     }
 
-    // Zieht eine oberste Karte vom Ziehstapel.
+    /**
+     * Methode zum Ziehen einer obersten Karte vom Ziehstapel.
+     */
     public Card drawCard() {
         return drawPile.isEmpty() ? null : drawPile.pop();
     }
 
-    // Überprüft, ob der Ziehstapel leer ist
+    /**
+     * Methode zur Überprüfung, ob der Ziehstapel leer ist.
+
+     */
     public boolean drawPileIsEmpty() {
         return drawPile.isEmpty();
     }
 
-    // Helper method to add a specified number of cards of a given type to the drawPile
+    /**
+     * Hilfsmethode zum Hinzufügen einer bestimmten Anzahl von Karten eines bestimmten Typs zum Ziehstapel.
+     */
     private void addCards(CardType type, int count) {
         for (int i = 0; i < count; i++) {
             drawPile.push(new Card(type));
         }
     }
 }
+

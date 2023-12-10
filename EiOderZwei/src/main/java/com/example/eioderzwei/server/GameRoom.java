@@ -8,8 +8,7 @@ import java.util.Objects;
 
 public class GameRoom {
     private final String gameName;
-    private final int maxPlayers = 5 ;
-    private final int minPlayers = 2 ;
+    private final int requiredNumberOfPlayers ;
 
     private  int numberPlayers ;
 
@@ -20,18 +19,19 @@ public class GameRoom {
     private boolean gamestarted;
     private int botNumber;
 
-    public GameRoom(String GameName, int botNumber) {
+    public GameRoom(String GameName, int botNumber, int number) {
         this.gameName = GameName;
         this.botNumber = botNumber;
         gamestarted = false;
         players = new ArrayList<>();
         numberPlayers = 0;
+        this.requiredNumberOfPlayers = number;
         drawPile = new DrawPile();
     }
-    public void setBotCounter(int botNumber) {
+    public void setBotNumber(int botNumber) {
         this.botNumber = botNumber;
     }
-    public void increaseBotCounter(){
+    public void increaseBotNumber(){
         botNumber++;
     }
     public int getPlayersNumber() {
@@ -63,20 +63,20 @@ public class GameRoom {
     }
 
 
-    public int getMaxPlayers(){
-        return maxPlayers;
+    public int getRequiredNumberOfPlayers(){
+        return requiredNumberOfPlayers;
     }
 
     public ArrayList<String> getPlayerSet(){
         return players;
     }
 
-    public void addPlayer(String userIdent){
-        players.add(userIdent);
+    public void addPlayer(String user){
+        players.add(user);
         numberPlayers++;
     }
-    public void removePlayer(String userIdent) {
-        players.remove(userIdent);
+    public void removePlayer(String user) {
+        players.remove(user);
         numberPlayers--;
     }
     @Override

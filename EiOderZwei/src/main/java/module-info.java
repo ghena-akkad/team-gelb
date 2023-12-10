@@ -15,6 +15,10 @@ module com.example.eioderzwei {
 
     opens com.example.eioderzwei to javafx.fxml;
     exports com.example.eioderzwei.server;
+    exports com.example.eioderzwei.server.common;
+    exports com.example.eioderzwei.client.common;
+
+
     exports com.example.eioderzwei.client;
     opens com.example.eioderzwei.client to javafx.fxml;
 }

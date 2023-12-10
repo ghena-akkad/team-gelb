@@ -11,20 +11,17 @@ import java.rmi.registry.Registry;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import com.example.eioderzwei.client.common.*;
-
+import com.example.eioderzwei.server.common.*;
 
 public class Client extends Application {
 
     public static void main(String[] args) {
         try {
             Registry registry = LocateRegistry.getRegistry(1099);
+
             System.out.println("Registry located");
             Communication server = (Communication) registry.lookup("server");
-            LoginManagerInterface logman = (LoginManagerInterface) registry.lookup("logman");
-            RoomsManagerInterface roomman = (RoomsManagerInterface) registry.lookup("roomman");
             server.sendMessage("hello, Server!");
-
         }
         catch(Exception e){
             System.out.println(e.getMessage());
@@ -49,7 +46,46 @@ public class Client extends Application {
 
         primaryStage.show();
     }
-        /**  Hier wird das Lobby Fenster eröffnet */
+    /**
+     *  Methode, um eine Instanz der LoginManager-Schnittstelle vom RMI-Registry zu erhalten.
+
+     * @throws RuntimeException Falls ein Fehler beim Zugriff auf den RMI-Registry oder beim Suchen des LoginManagers auftritt.
+     */
+
+    public static LoginManagerInterface getLoginManager(){
+        try {
+            // Zugriff auf den RMI-Registry
+            Registry registry = LocateRegistry.getRegistry(1099);
+
+            // Suchen der LoginManager-Instanz im Registry
+            LoginManagerInterface logman = (LoginManagerInterface) registry.lookup("logman");
+
+            return logman;
+        } catch (Exception e) {
+            // Fehlerbehandlung und Weitergabe als RuntimeException
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     *  Methode, um eine Instanz der RoomsManager-Schnittstelle vom RMI-Registry zu erhalten.
+     * @throws RuntimeException Falls ein Fehler beim Zugriff auf den RMI-Registry oder beim Suchen des RoomsManagers auftritt.
+     */
+
+    public static RoomsManagerInterface getRoomsManager(){
+        try {
+            // Zugriff auf den RMI-Registry
+            Registry registry = LocateRegistry.getRegistry(1099);
+
+            // Suchen der RoomsManager-Instanz im Registry
+            RoomsManagerInterface roomman = (RoomsManagerInterface) registry.lookup("roomman");
+
+            return roomman;
+        } catch (Exception e) {
+            // Fehlerbehandlung und Weitergabe als RuntimeException
+            throw new RuntimeException(e);
+        }
+    }
 
     }
 

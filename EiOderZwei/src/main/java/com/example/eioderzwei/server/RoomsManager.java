@@ -29,14 +29,28 @@ public class RoomsManager implements RoomsManagerInterface {
         }
     }
 
+    public  GameRoom getGameroom(String roomname) throws RoomDoesNotExistException {
+        if (gameRooms.containsKey(roomname)) {
+            GameRoom gameroom = gameRooms.get(roomname);
+            return gameroom;
+        } else {
+            throw new RoomDoesNotExistException("Der Raum mit diesem Namen existiert nicht.");
+
+        }
+    }
+
     /**
      * Tritt einem bestehenden Spielzimmer bei.
 
      */
-    public void joinRoom(String roomName, String username) throws RoomDoesNotExistException {
+    public void joinRoom(String roomName, String username) throws RoomDoesNotExistException, RoomIsFullException {
         if (gameRooms.containsKey(roomName)) {
              GameRoom gameroom = gameRooms.get(roomName);
-             gameroom.addPlayer(username);
+             if(!ifRoomIsFull(roomName)) {
+                 gameroom.addPlayer(username);
+             }else {
+                 throw new RoomIsFullException("Raum ist schon voll");
+             }
         } else {
             throw new RoomDoesNotExistException("Der Raum mit diesem Namen existiert nicht.");
 
@@ -56,10 +70,11 @@ public class RoomsManager implements RoomsManagerInterface {
      * Überprüft, ob ein Spielraum bereits die maximale Anzahl von Spielern erreicht hat.
 
      */
-    public void ifRoomIsFull(String roomName) throws RoomIsFullException {
+    public boolean ifRoomIsFull(String roomName)   {
         if (!(getPlayersNumber(roomName) == gameRooms.get(roomName).getRequiredNumberOfPlayers())) {
+            return false;
         } else {
-            throw new RoomIsFullException("Raum ist schon voll");
+            return true;
         }
     }
 

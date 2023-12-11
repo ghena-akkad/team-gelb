@@ -47,6 +47,10 @@ public class Card {
     public String getImagePath() {
         return cardImageMap.get(type);
     }
+
+    public Map<CardType, String> getCardImageMap(){
+        return cardImageMap;
+    }
     public boolean isHahnCard(){
         return type == CardType.ROOSTER;
 

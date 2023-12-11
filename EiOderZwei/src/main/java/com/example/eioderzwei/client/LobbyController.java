@@ -111,7 +111,7 @@ public class LobbyController {
 
             if (!room_name.isEmpty()) {
                 try {
-                    roomman.ifRoomIsFull(room_name);
+
                     roomman.joinRoom(room_name, UserInfo.getUsername());
                     logman.setPlayerId( UserInfo.getUsername(), roomman.getPlayersNumber(room_name));
                     UserInfo.setRoomname(room_name);
@@ -212,8 +212,10 @@ public class LobbyController {
                         } catch (RemoteException e) {
                             throw new RuntimeException(e);
                         } catch (RoomDoesNotExistException e) {
-                            // Handle the case where the room does not exist
                         }
+                        catch (RoomIsFullException e) {
+                        }
+
                     } else {
                         showErrorPopup("Die Anzahl von Bots muss weniger als " + UserInfo.getPlayNumber() + " sein!");
                     }

@@ -14,17 +14,16 @@ public interface RoomsManagerInterface extends Remote, Serializable {
     void createRoom(String roomName,  int botNumber, int playerNumber) throws RemoteException;
 
 
-    void joinRoom(String roomName, String userIdent) throws RemoteException, RoomDoesNotExistException;
+    void joinRoom(String roomName, String userIdent) throws RemoteException, RoomDoesNotExistException, RoomIsFullException;
 
 
     void deleteRoom(String roomName) throws RemoteException;
 
 
 
-     void ifRoomIsFull(String roomName) throws RemoteException, RoomIsFullException;
 
      void ifRoomExists(String roomName) throws RemoteException, RoomNameAlreadyExistsException;
 
-     int getPlayersNumber (String roomName);
+     int getPlayersNumber (String roomName) throws RemoteException;
 
     }

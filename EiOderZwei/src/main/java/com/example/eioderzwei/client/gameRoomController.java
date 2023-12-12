@@ -1,5 +1,9 @@
 package com.example.eioderzwei.client;
+import com.example.eioderzwei.server.Card;
+import com.example.eioderzwei.server.CardType;
+import com.example.eioderzwei.server.DrawPile;
 import javafx.animation.TranslateTransition;
+import com.example.eioderzwei.server.Player;
 import javafx.animation.Interpolator;
 
 import javafx.scene.image.Image;
@@ -33,6 +37,8 @@ public class gameRoomController implements Initializable {
     private ImageView deck;
     @FXML
     private ImageView ablage;
+    @FXML
+    private Label eier;
 
 
     @FXML
@@ -40,13 +46,14 @@ public class gameRoomController implements Initializable {
     @FXML
 
 
-    public int i = 0, deck_number_of_cards = 12, ablage_number_of_cards = 0, x=100;
+    public int i = 0, deck_number_of_cards = 12, ablage_number_of_cards = 0, x = 100;
     private String cardNameSelected;
     private ImageView selectedCard;
-    private ArrayList<Card> handwerte = new ArrayList<>() ;//Karten des Spielers
+    private ArrayList<Card> handwerte = new ArrayList<>();//Karten des Spielers
     //selected Cards merkt sich nach dem auswählen den Index der ausgewählten Karte dann kann man mit diesem index Hand und Handwerte nach dem richtigen ELement durchsuchen
-    private ArrayList<Integer> selectedCards= new ArrayList<>();
-    private DrawPile
+    private ArrayList<Integer> selectedCards = new ArrayList<>();
+    private DrawPile drawPile;
+    private int y = 0;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try (FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/com/example/eioderzwei/image/egg.png");) {
@@ -71,7 +78,6 @@ public class gameRoomController implements Initializable {
         return hand().get(i - 1);
 
 
-
     }
 
 
@@ -93,7 +99,6 @@ public class gameRoomController implements Initializable {
         movingCard.setFitHeight(100);
         movingCard.setFitWidth(75);
         movingCard.setPreserveRatio(true);
-
 
 
         movingCard.setLayoutX(source.getLayoutX());
@@ -151,8 +156,7 @@ public class gameRoomController implements Initializable {
             source.setImage(null);
 
 
-
-            if(b) {
+            if (b) {
                 for (int k = i; k < 12; k++) {
                     hand().get(k).setImage(null);
 
@@ -181,8 +185,6 @@ public class gameRoomController implements Initializable {
             moveCardAnimationHandToAblage(im, ablage, img, true);
 
 
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
 
@@ -190,19 +192,18 @@ public class gameRoomController implements Initializable {
     }
 
     public void draw(MouseEvent actionEvent) throws FileNotFoundException {
-        Card crnt = Deck1.drawCard();
-        ArrayList<ImageView> crnthand = hand();
-        if(i<11){
-            if (crnt.getType()==CardType.FOX){
+        Card crnt = drawPile.drawCard();
+        ArrayList<ImageView> crnthand = (ArrayList<ImageView>) hand();
+        if (i < 11) {
+            if (crnt.getType() == CardType.FOX) {
                 System.out.println("steal");
-            } else if (crnt.getType()==CardType.CUCKOO) {
+            } else if (crnt.getType() == CardType.CUCKOO) {
                 y++;
                 eier.setText("Eier:" + y + "/9");
-            }
-            else{
+            } else {
                 FileInputStream input = new FileInputStream(crnt.getImagePath());
                 Image img = new Image(input);
-                ImageView view=crnthand.get(i);
+                ImageView view = crnthand.get(i);
                 view.setImage(img);
                 crnthand.set(i, view);
                 i++;
@@ -211,15 +212,19 @@ public class gameRoomController implements Initializable {
             }
         }
     }
+
+    public void removeEffect() {
+        hand().forEach(imageView -> imageView.setEffect(null));
+    }
+
     public void abwerfen(MouseEvent actionEvent) throws IOException {
         ArrayList<ImageView> B = new ArrayList<>(hand());
         removeEffect();
-        int eierW =eierAusgabe();
-        if (eierW == 0){
+        int eierW = eierAusgabe();
+        if (eierW == 0) {
             System.out.println("stopp");
             selectedCards.clear();
-        }
-        else {
+        } else {
             for (int k = 0; k < selectedCards.size(); k++) {
                 int a = selectedCards.get(k);
                 System.out.println(a);
@@ -234,10 +239,10 @@ public class gameRoomController implements Initializable {
                         view1.setImage(null);
                     }
                     //Handwerte korrigieren alle werte nach a eins nach links(iwas is falsch)
-                    for(int j= a-1;j+1<handwerte.size();j++) {
+                    for (int j = a - 1; j + 1 < handwerte.size(); j++) {
                         Card tmp2 = handwerte.get(j + 1);
                         handwerte.set(j, tmp2);
-                        handwerte.set(j+1, null);
+                        handwerte.set(j + 1, null);
                     }
                     i--;
                 }
@@ -245,32 +250,34 @@ public class gameRoomController implements Initializable {
             }
             selectedCards.clear();
             //Eier eingeben y ist die Anzahl der Eier
-            y=y+eierW;
+            y = y + eierW;
             if (y >= 9) {
                 System.out.println("You won");
-                y=9;
+                y = 9;
             }
             eier.setText("Eier:" + y + "/9");
         }
     }
 
-    public int eierAusgabe(){
-        int sum=0;
+    public int eierAusgabe() {
+        int sum = 0;
         boolean bio = true;
-        for (int i=0; i<selectedCards.size(); i++){
-            int b = selectedCards.get(i)-1;
+        for (int i = 0; i < selectedCards.size(); i++) {
+            int b = selectedCards.get(i) - 1;
             Card wert1 = handwerte.get(b);
             sum = sum + wert1.getWert();
-            if (!(wert1.getBio())) {bio=false;}
+            if (!(wert1.getBio())) {
+                bio = false;
+            }
         }
-        int a=1;
-        if (sum <5){
+        int a = 1;
+        if (sum < 5) {
             //throw Exception;
         }
-        for(int j=10;j<=100;j=j+5){
-            if((sum>=0)&&(sum<j)&&(bio)){
-                return a*2;
-            } else if ((sum>=0)&&(sum<j)) {
+        for (int j = 10; j <= 100; j = j + 5) {
+            if ((sum >= 0) && (sum < j) && (bio)) {
+                return a * 2;
+            } else if ((sum >= 0) && (sum < j)) {
                 return a;
             }
             a++;
@@ -278,9 +285,9 @@ public class gameRoomController implements Initializable {
         return a;
     }
 
-    public void reduce(int a){
-        for (int i=0; i<selectedCards.size(); i++){
-            if (a<selectedCards.get(i)) {
+    public void reduce(int a) {
+        for (int i = 0; i < selectedCards.size(); i++) {
+            if (a < selectedCards.get(i)) {
                 selectedCards.set(i, selectedCards.get(i) - 1);
             }
         }
@@ -290,9 +297,9 @@ public class gameRoomController implements Initializable {
         ImageView image = (ImageView) event.getSource();
         addEffect(image);
         ArrayList<ImageView> B = new ArrayList<>(hand());
-        for(int j=0; j<12;j++){
-            if ((image==B.get(j))&& !(selectedCards.contains(j+1))){
-                x=j+1;
+        for (int j = 0; j < 12; j++) {
+            if ((image == B.get(j)) && !(selectedCards.contains(j + 1))) {
+                x = j + 1;
                 selectedCards.add(x);
                 break;
             }
@@ -301,8 +308,8 @@ public class gameRoomController implements Initializable {
         System.out.println(selectedCards);
     }
 
-    public void addEi (ActionEvent event) {
-        if(y<=8) {
+    public void addEi(ActionEvent event) {
+        if (y <= 8) {
             y++;
             eier.setText("Eier:" + y + "/9");
         }
@@ -311,7 +318,6 @@ public class gameRoomController implements Initializable {
 
         }
     }
-
 
 
     public void setEffect(MouseEvent event, Color color) {
@@ -327,7 +333,7 @@ public class gameRoomController implements Initializable {
         image.setEffect(borderGlow);
     }
 
-    public void addEffect(ImageView image){
+    public void addEffect(ImageView image) {
         int depth = 70;
         DropShadow borderGlow = new DropShadow();
         borderGlow.setOffsetY(0f);
@@ -337,19 +343,22 @@ public class gameRoomController implements Initializable {
         borderGlow.setHeight(depth);
         image.setEffect(borderGlow);
     }
-/*
-    public void selectedCardInHand(@NotNull MouseEvent event) {
-        ImageView image = (ImageView) event.getSource();
-        cardNameSelected = ShowImage.readCardName(image.getImage());
-        setEffect(event, Color.RED);
-    }
-*/
+
+    /*
+        public void selectedCardInHand(@NotNull MouseEvent event) {
+            ImageView image = (ImageView) event.getSource();
+            cardNameSelected = ShowImage.readCardName(image.getImage());
+            setEffect(event, Color.RED);
+        }
+    */
     public void moveCard(MouseEvent event) {
         ImageView clickedImageView = (ImageView) event.getSource();
 
 
-
+/*
     public void setUserName(String userName) {
         nameLabel.setText(userName);
+    } */
+
     }
 }

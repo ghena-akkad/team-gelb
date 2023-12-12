@@ -1,9 +1,7 @@
 package com.example.eioderzwei.server;
 
 import com.example.eioderzwei.server.exceptions.*;
-
 import com.example.eioderzwei.server.common.RoomsManagerInterface;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +27,7 @@ public class RoomsManager implements RoomsManagerInterface {
         }
     }
 
+    //TODO RoomDoesNotExistException still needs to be implemented
     public  GameRoom getGameroom(String roomname) throws RoomDoesNotExistException {
         if (gameRooms.containsKey(roomname)) {
             GameRoom gameroom = gameRooms.get(roomname);
@@ -45,15 +44,20 @@ public class RoomsManager implements RoomsManagerInterface {
      */
     public void joinRoom(String roomName, String username) throws RoomDoesNotExistException, RoomIsFullException {
         if (gameRooms.containsKey(roomName)) {
-             GameRoom gameroom = gameRooms.get(roomName);
-             if(!ifRoomIsFull(roomName)) {
-                 gameroom.addPlayer(username);
-             }else {
-                 throw new RoomIsFullException("Raum ist schon voll");
-             }
+            GameRoom gameroom = gameRooms.get(roomName);
+
+            // Check if the room is full before adding a new player
+            if (!gameroom.isRoomFull()) {
+                // Create a new Player object. Adjust this based on your Player class constructor.
+                Player newPlayer = new Player(username);
+
+                // Add the player to the GameRoom
+                gameroom.addPlayer(username, newPlayer);
+            } else {
+                throw new RoomIsFullException("Raum ist schon voll");
+            }
         } else {
             throw new RoomDoesNotExistException("Der Raum mit diesem Namen existiert nicht.");
-
         }
     }
     /**
@@ -77,6 +81,7 @@ public class RoomsManager implements RoomsManagerInterface {
             return true;
         }
     }
+
 
     /**
      * Gibt die Anzahl der Spieler in einem bestimmten Spielraum zurück.

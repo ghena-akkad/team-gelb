@@ -1,6 +1,7 @@
 package com.example.eioderzwei.client;
 
 import com.example.eioderzwei.server.exceptions.*;
+import com.example.eioderzwei.server.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,9 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 
-
-
-
+import static com.example.eioderzwei.client.UserInfo.getUsername;
 
 
 public class LobbyController {
@@ -112,10 +111,10 @@ public class LobbyController {
             if (!room_name.isEmpty()) {
                 try {
 
-                    roomman.joinRoom(room_name, UserInfo.getUsername());
-                    logman.setPlayerId( UserInfo.getUsername(), roomman.getPlayersNumber(room_name));
+                    roomman.joinRoom(room_name, getUsername());
+                    logman.setPlayerId( getUsername(), roomman.getPlayersNumber(room_name));
                     UserInfo.setRoomname(room_name);
-                    openPlayTableWindow(UserInfo.getUsername());
+                    openPlayTableWindow(getUsername());
 
 
 
@@ -205,8 +204,8 @@ public class LobbyController {
                     if (botNumber < UserInfo.getPlayNumber()) {
                         try {
                             roomman.createRoom(UserInfo.getRoomname(), botNumber, UserInfo.getPlayNumber());
-                            roomman.joinRoom(UserInfo.getRoomname(), UserInfo.getUsername());
-                            logman.setPlayerId( UserInfo.getUsername(), roomman.getPlayersNumber(UserInfo.getRoomname()));
+                            roomman.joinRoom(UserInfo.getRoomname(), getUsername());
+                            logman.setPlayerId( getUsername(), roomman.getPlayersNumber(UserInfo.getRoomname()));
 
 
                         } catch (RemoteException e) {
@@ -265,7 +264,7 @@ public class LobbyController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gameRoom.fxml"));
             Parent root =  fxmlLoader.load();
             gameRoomController playroomController = fxmlLoader.getController();
-            playroomController.setUserName(playerName);
+            getUsername();
 
             Stage stage = new Stage();
 

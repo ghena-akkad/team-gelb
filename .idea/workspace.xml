@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ee09e25-1c51-49a3-bbd7-a0d282165c98" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/CardType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/client/LobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/client/LobbyController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/client/gameRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/client/gameRoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/RoomsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/RoomsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/com/example/eioderzwei/HelloController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +64,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.com.example.eioderzwei.client.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.eioderzwei.Client" />
       <module name="EiOderZwei" />
@@ -85,8 +91,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="com.example.eioderzwei.client.Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.eioderzwei.client.Client" />
+      <module name="EiOderZwei" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.eioderzwei.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.example.eioderzwei.server.Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.eioderzwei.server.Server" />
+      <module name="EiOderZwei" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.eioderzwei.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.com.example.eioderzwei.client.Client" />
+        <item itemvalue="Application.com.example.eioderzwei.server.Server" />
         <item itemvalue="Application.Client" />
         <item itemvalue="Application.Server" />
       </list>
@@ -104,6 +138,7 @@
       <workItem from="1701790246896" duration="2207000" />
       <workItem from="1701799032862" duration="10703000" />
       <workItem from="1701873908377" duration="1900000" />
+      <workItem from="1702328958521" duration="12883000" />
     </task>
     <task id="LOCAL-00001" summary="player, RegisteredPlayer, Bot, GameRoom">
       <option name="closed" value="true" />

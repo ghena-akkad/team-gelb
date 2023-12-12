@@ -4,17 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-enum CardType {
-    TWONORMAL,
-    THREENORMAL,
-    FOURNORMAL,
-    ONEBIO,
-    TWOBIO,
-    THREEBIO,
-    FOX,
-    CUCKOO,
-    ROOSTER
-}
 /**
  * Repräsentation einer Spielkarte
  */
@@ -31,7 +20,7 @@ public class Card {
         return type;
     }
     private static final Map<CardType, String> cardImageMap = new HashMap<>();
-// TODO Paths zu Images anpassen
+// TODO Ei noch hinzufügen ?
 
     static {
         cardImageMap.put(CardType.TWONORMAL, "com/example/eioderzwei/image/TwoKorn.png");
@@ -68,14 +57,10 @@ public class Card {
     }
 
 
-    public boolean getBio () {
-        String nam = getImagePath();
-        boolean b = false;
-        String zeig = "Bio";
-        if (nam.contains(zeig)){
-            b = true;
-        }
-        return b;
+    public boolean getBio() {
+        return type == CardType.ONEBIO ||
+               type == CardType.TWOBIO ||
+               type == CardType.THREEBIO;
     }
 
     public boolean is_same(Object obj) {
@@ -83,5 +68,13 @@ public class Card {
         if (obj == null || getClass() != obj.getClass()) return false;
         Card card = (Card) obj;
         return type == card.type;
+    }
+    public boolean isGrainCard() {
+        return type == CardType.TWONORMAL ||
+                type == CardType.THREENORMAL ||
+                type == CardType.FOURNORMAL ||
+                type == CardType.ONEBIO ||
+                type == CardType.TWOBIO ||
+                type == CardType.THREEBIO;
     }
 }

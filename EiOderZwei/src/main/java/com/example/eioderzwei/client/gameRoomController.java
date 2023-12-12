@@ -1,6 +1,7 @@
 package com.example.eioderzwei.client;
 import javafx.animation.TranslateTransition;
 import javafx.animation.Interpolator;
+import javafx.scene.layout.GridPane;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,6 +34,11 @@ public class gameRoomController implements Initializable {
     private ImageView deck;
     @FXML
     private ImageView ablage;
+    @FXML
+    private Label roomnamelabel;
+
+
+
 
 
     @FXML
@@ -214,4 +220,9 @@ public class gameRoomController implements Initializable {
     public void setUserName(String userName) {
         nameLabel.setText(userName);
     }
+
+    public void setRoomName(String roomname) {
+        roomnamelabel.setText(roomname);
+    }
+
 }

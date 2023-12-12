@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -7,58 +8,45 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="814.0" prefWidth="1557.0" xmlns="http://javafx.com/javafx/18.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.client.gameRoomController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/18.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.client.gameRoomController">
   <children>
-    <BorderPane layoutY="92.0" prefHeight="714.0" prefWidth="1555.0">
+    <BorderPane layoutX="-305.0" layoutY="-69.0" prefHeight="874.0" prefWidth="1860.0">
       <center>
-        <Pane prefHeight="601.0" prefWidth="1406.0" style="-fx-background-color: #F5F5DC;" BorderPane.alignment="CENTER">
-               <children>
-            
-                  <Label layoutX="750.0" layoutY="177.0" text="Ablagestapel" />
-               </children></Pane>
+        <Pane prefHeight="698.0" prefWidth="1092.0" style="-fx-background-color: #fff18d;" BorderPane.alignment="CENTER" />
       </center>
       <top>
-        <Pane prefHeight="50.0" prefWidth="1555.0" style="-fx-background-color: #A6D99C;" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="113.0" prefWidth="1860.0" style="-fx-background-color: #1a237e;" BorderPane.alignment="CENTER" />
       </top>
       <left>
-        <Pane prefHeight="614.0" prefWidth="50.0" style="-fx-background-color: #B19CD9;" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="698.0" prefWidth="378.0" style="-fx-background-color: #880e4f;" BorderPane.alignment="CENTER" />
       </left>
       <bottom>
-        <Pane prefHeight="50.0" prefWidth="1555.0" style="-fx-background-color: #A6D99C;" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="49.0" prefWidth="600.0" style="-fx-background-color: #1a237e;" BorderPane.alignment="CENTER" />
       </bottom>
       <right>
-        <Pane prefHeight="614.0" prefWidth="50.0" style="-fx-background-color: #B19CD9;" BorderPane.alignment="CENTER" />
+        <Pane prefHeight="365.0" prefWidth="92.0" style="-fx-background-color: #880e4f;" BorderPane.alignment="CENTER" />
       </right>
     </BorderPane>
-      <ImageView fx:id="deck" fitHeight="100.0" fitWidth="75.0" layoutX="650.0" layoutY="350.0" onMouseClicked="#hallo" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="ablage" fitHeight="100.0" fitWidth="75.0" layoutX="785.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte1" fitHeight="100.0" fitWidth="75.0" layoutX="300.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte2" fitHeight="100.0" fitWidth="75.0" layoutX="375.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte3" fitHeight="100.0" fitWidth="75.0" layoutX="450.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte4" fitHeight="100.0" fitWidth="75.0" layoutX="525.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte5" fitHeight="100.0" fitWidth="75.0" layoutX="600.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte6" fitHeight="100.0" fitWidth="75.0" layoutX="675.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte7" fitHeight="100.0" fitWidth="75.0" layoutX="750.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte8" fitHeight="100.0" fitWidth="75.0" layoutX="825.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte9" fitHeight="100.0" fitWidth="75.0" layoutX="900.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte10" fitHeight="100.0" fitWidth="75.0" layoutX="975.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte11" fitHeight="100.0" fitWidth="75.0" layoutX="1050.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="Karte12" fitHeight="100.0" fitWidth="75.0" layoutX="1125.0" layoutY="633.0" onMouseClicked="#tschuss" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="deck" fitHeight="100.0" fitWidth="75.0" layoutX="650.0" layoutY="350.0" onMouseClicked="#hallo" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="ablage" fitHeight="100.0" fitWidth="75.0" layoutX="785.0" layoutY="350.0" onMouseClicked="#abwerfen" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte1" fitHeight="100.0" fitWidth="75.0" layoutX="300.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte2" fitHeight="100.0" fitWidth="75.0" layoutX="375.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte3" fitHeight="100.0" fitWidth="75.0" layoutX="450.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte4" fitHeight="100.0" fitWidth="75.0" layoutX="525.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte5" fitHeight="100.0" fitWidth="75.0" layoutX="600.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte6" fitHeight="100.0" fitWidth="75.0" layoutX="675.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte7" fitHeight="100.0" fitWidth="75.0" layoutX="750.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte8" fitHeight="100.0" fitWidth="75.0" layoutX="825.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte9" fitHeight="100.0" fitWidth="75.0" layoutX="900.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte10" fitHeight="100.0" fitWidth="75.0" layoutX="975.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte11" fitHeight="100.0" fitWidth="75.0" layoutX="1050.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte12" fitHeight="100.0" fitWidth="75.0" layoutX="1125.0" layoutY="633.0" onMouseClicked="#selectCard" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="650.0" layoutY="320.0" text="Nachziehstapel " />
+      <Label layoutX="785.0" layoutY="320.0" text="Ablagestapel" />
 <Label fx:id="nameLabel" layoutX="734.0" layoutY="755.0" prefHeight="35.0" prefWidth="126.0" textFill="#e7e1e1">
   <font>
     <Font size="24.0" />
   </font>
 </Label>
-      <Label layoutX="69.0" layoutY="17.0" prefHeight="35.0" prefWidth="126.0" text="Spielraum: " textFill="#9413b4">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Label fx:id="roomnamelabel" layoutX="195.0" layoutY="19.0" prefHeight="32.0" prefWidth="114.0" textFill="#9413b4">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
   </children>
 </AnchorPane>

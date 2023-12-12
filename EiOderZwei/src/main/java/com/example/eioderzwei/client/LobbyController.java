@@ -111,10 +111,9 @@ public class LobbyController {
             if (!room_name.isEmpty()) {
                 try {
 
-                    roomman.joinRoom(room_name, getUsername());
-                    logman.setPlayerId( getUsername(), roomman.getPlayersNumber(room_name));
+                    roomman.joinRoom(room_name, UserInfo.getUsername());
+                    logman.setPlayerId( UserInfo.getUsername(), roomman.getPlayersNumber(room_name));
                     UserInfo.setRoomname(room_name);
-                    openPlayTableWindow(getUsername());
 
 
 
@@ -204,8 +203,9 @@ public class LobbyController {
                     if (botNumber < UserInfo.getPlayNumber()) {
                         try {
                             roomman.createRoom(UserInfo.getRoomname(), botNumber, UserInfo.getPlayNumber());
-                            roomman.joinRoom(UserInfo.getRoomname(), getUsername());
-                            logman.setPlayerId( getUsername(), roomman.getPlayersNumber(UserInfo.getRoomname()));
+                            roomman.joinRoom(UserInfo.getRoomname(), UserInfo.getUsername());
+                            logman.setPlayerId( UserInfo.getUsername(), roomman.getPlayersNumber(UserInfo.getRoomname()));
+                            openPlayTableWindow(UserInfo.getUsername(), UserInfo.getRoomname(),UserInfo.getPlayNumber() );
 
 
                         } catch (RemoteException e) {
@@ -256,23 +256,57 @@ public class LobbyController {
 
 
 
-    protected void openPlayTableWindow(String playerName) {
+    protected void openPlayTableWindow(String playerName, String roomName, int desiredPlayerNumber) {
 
         try {
 
+            switch (desiredPlayerNumber) {
+                case 2:
+                    FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("/com/example/eioderzwei/gameRoom2.fxml"));
+                    Parent root2 =  fxmlLoader2.load();
+                    gameRoomController c2 = fxmlLoader2.getController();
+                    c2.setUserName(playerName);
+                    c2.setRoomName(roomName);
+                    Stage stage2 = new Stage();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gameRoom.fxml"));
-            Parent root =  fxmlLoader.load();
-            gameRoomController playroomController = fxmlLoader.getController();
-            getUsername();
+                    stage2.setTitle("Spieltisch");
+                    stage2.setScene(new Scene(root2));
+                    stage2.show();
+                    ((Stage) playerNameField.getScene().getWindow()).close();
 
-            Stage stage = new Stage();
+                    break;
 
-            stage.setTitle("Spieltisch");
-            stage.setScene(new Scene(root));
-            stage.show();
-            ((Stage) playerNameField.getScene().getWindow()).close();
-        } catch (Exception e) {
+                case 3:
+                    FXMLLoader fxmlLoader3 = new FXMLLoader(getClass().getResource("/com/example/eioderzwei/gameRoom3.fxml"));
+                    Parent root3 =  fxmlLoader3.load();
+                    gameRoomController c3 = fxmlLoader3.getController();
+                    c3.setUserName(playerName);
+                    c3.setRoomName(roomName);
+
+                    Stage stage3 = new Stage();
+
+                    stage3.setTitle("Spieltisch");
+                    stage3.setScene(new Scene(root3));
+                    stage3.show();
+                    ((Stage) playerNameField.getScene().getWindow()).close();
+
+                    break;
+                case 4:
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/eioderzwei/gameRoom.fxml"));
+                    Parent root =  fxmlLoader.load();
+                    gameRoomController playroomController = fxmlLoader.getController();
+                    playroomController.setUserName(playerName);
+                    playroomController.setRoomName(roomName);
+                    Stage stage = new Stage();
+
+                    stage.setTitle("Spieltisch");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                    ((Stage) playerNameField.getScene().getWindow()).close();
+
+                    break;
+
+        } }catch (Exception e) {
             e.printStackTrace();
         }
         ;

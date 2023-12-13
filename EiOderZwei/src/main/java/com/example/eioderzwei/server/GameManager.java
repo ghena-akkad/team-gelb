@@ -153,37 +153,23 @@ public class GameManager implements GameManagerInterface {
         GameRoom room = roomsManager.getGameroom(currentRoomName);
         Player player = room.getPlayerMap().get(playerId);
 
-        int grainCount = 0;
-        int bioGrainCount = 0;
+        int totalGrainCount = 0;
         List<Card> cardsToRemove = new ArrayList<>();
 
-        // Count the grains and bio grains
         for (Card card : player.getHand()) {
             if (card.isGrainCard()) {
                 cardsToRemove.add(card);
-                if (card.getBio()) { // Assuming getBio method in Card class checks for bio grain
-                    bioGrainCount += 2; // Bio grains count double
-                } else {
-                    grainCount += 1;
-                }
+                totalGrainCount += card.getWert() * (card.getBio() ? 2 : 1); // Bio grains count double
             }
         }
-
-        int totalGrainCount = grainCount + bioGrainCount;
         int eggsLaid = totalGrainCount / 5; // 5 grains needed per egg
-
         if (eggsLaid > 0) {
             // Remove used grain cards from the player's hand
-            for (Card card : cardsToRemove) {
-                player.getHand().remove(card);
-            }
-
+            player.getHand().removeAll(cardsToRemove);
             // Increment the player's egg count
             player.incrementEggCountBy(eggsLaid);
-
             return true; // Egg laying was successful
         }
-
         return false; // Not enough grains to lay any eggs
     }
 
@@ -208,38 +194,32 @@ public class GameManager implements GameManagerInterface {
         return false;
     }
 
-    public void steal_card(String stealerId, String victimId, String currentRoomName) throws RoomDoesNotExistException {
+    public void steal_card(String stealerId, String victimId, Card cardToSteal, String currentRoomName) throws RoomDoesNotExistException {
         GameRoom room = roomsManager.getGameroom(currentRoomName);
         Player stealer = room.getPlayerMap().get(stealerId);
         Player victim = room.getPlayerMap().get(victimId);
 
-        // Example logic to steal a random grain card from the victim
-        Card stolenCard = victim.getRandomGrainCard(); // Assuming this method exists in Player class
-        if (stolenCard != null) {
-            victim.removeCard(stolenCard); // Remove the card from the victim's hand
-            stealer.addCardToHand(stolenCard);   // Add the card to the stealer's hand
+        // Steal the specified card from the victim
+        if (victim.getHand().contains(cardToSteal)) {
+            victim.removeCard(cardToSteal); // Remove the card from the victim's hand
+            stealer.addCardToHand(cardToSteal); // Add the card to the stealer's hand
         }
+        // Optionally, handle the case where the card is no longer in the victim's hand
     }
-
-    public String choosePlayerToSteal(String chooserId, String currentRoomName) throws RoomDoesNotExistException {
+    public List<String> getAvailablePlayersToSteal(String chooserId, String currentRoomName) throws RoomDoesNotExistException {
         GameRoom room = roomsManager.getGameroom(currentRoomName);
-        List<String> playerIds = room.getPlayerIds();
-
-        playerIds.remove(chooserId);
-        if (!playerIds.isEmpty()) {
-            Collections.shuffle(playerIds);
-            return playerIds.get(0);
-        }
-        return null;
+        List<String> availablePlayerIds = new ArrayList<>(room.getPlayerIds());
+        // Remove the chooser from the list
+        availablePlayerIds.remove(chooserId);
+        return availablePlayerIds; // Return the list of available players
     }
-
-    public String choose_cards_to_steal(String stealerId, String victimId, String currentRoomName) throws RoomDoesNotExistException {
+    public List<Card> getAvailableCardsToSteal(String stealerId, String victimId, String currentRoomName) throws RoomDoesNotExistException {
         GameRoom room = roomsManager.getGameroom(currentRoomName);
         Player victim = room.getPlayerMap().get(victimId);
 
-        Card chosenCard = victim.chooseCardToSteal();
-        String imagePath = chosenCard.getImagePath();
-        return imagePath;
+        return new ArrayList<>(victim.getHand()); // Return a list of cards from the victim's hand
     }
+
+
 }
 

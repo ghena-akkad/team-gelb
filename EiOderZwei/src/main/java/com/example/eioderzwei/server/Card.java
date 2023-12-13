@@ -44,18 +44,48 @@ public class Card {
         return type == CardType.ROOSTER;
 
     }
-
-    public int getWert(){
-        String nam = getImagePath();
-        int a = 0;
-        String zeig1 = "One";
-        String zeig2 = "Two";
-        String zeig3 = "Three";
-        String zeig4 = "Four";
-        if (nam.contains(zeig1)){a=1;} else if (nam.contains(zeig2)){a=2;} else if (nam.contains(zeig3)){a=3;} else if (nam.contains(zeig4)){a=4;}
-        return a;
+    public String getDescription() {
+        switch (type) {
+            case TWONORMAL:
+                return "2 Grain";
+            case THREENORMAL:
+                return "3 Grain";
+            case FOURNORMAL:
+                return "4 Grain";
+            case ONEBIO:
+                return "1 Bio Grain";
+            case TWOBIO:
+                return "2 Bio Grain";
+            case THREEBIO:
+                return "3 Bio Grain";
+            case FOX:
+                return "Fox";
+            case CUCKOO:
+                return "Cuckoo";
+            case ROOSTER:
+                return "Rooster";
+            default:
+                return "Unknown Card";
+        }
     }
-
+    public int getWert() {
+        switch (type) {
+            case TWONORMAL:
+                return 2;
+            case THREENORMAL:
+                return 3;
+            case FOURNORMAL:
+                return 4;
+            case ONEBIO:
+                return 1; // Assuming bio grains have the same base value as normal grains
+            case TWOBIO:
+                return 2;
+            case THREEBIO:
+                return 3;
+            default:
+                return 0; // Default value for cards without a specific grain value
+        }
+    }
 
     public boolean getBio() {
         return type == CardType.ONEBIO ||

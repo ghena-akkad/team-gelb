@@ -3,6 +3,8 @@ package com.example.eioderzwei.server.common;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
+
+import com.example.eioderzwei.server.Card;
 import com.example.eioderzwei.server.exceptions.*;
 
 
@@ -50,9 +52,9 @@ public interface GameManagerInterface extends Remote {
 
     boolean want_rooster_card(String playerId, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
 
-    void steal_card(String stealerId, String victimId, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
+    void steal_card(String stealerId, String victimId, Card cardToSteal, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
 
-    String choosePlayerToSteal(String chooserId, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
+    List<String> getAvailablePlayersToSteal(String chooserId, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
 
-    String choose_cards_to_steal(String stealerId, String victimId, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
+    List<Card> getAvailableCardsToSteal(String stealerId, String victimId, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
 }

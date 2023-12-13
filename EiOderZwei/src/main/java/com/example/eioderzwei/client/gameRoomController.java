@@ -1,4 +1,5 @@
 package com.example.eioderzwei.client;
+import com.example.eioderzwei.server.Card;
 import com.example.eioderzwei.server.common.GameManagerInterface;
 import com.example.eioderzwei.server.common.RoomsManagerInterface;
 import com.example.eioderzwei.server.exceptions.RoomDoesNotExistException;
@@ -6,6 +7,7 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 
 
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -22,9 +24,12 @@ import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 public class gameRoomController implements Initializable {
     @FXML
     private Label nameLabel;
@@ -594,23 +599,6 @@ public class gameRoomController implements Initializable {
         });
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @FXML
     public List<ImageView> hand() {
         return List.of(Karte1, Karte2, Karte3, Karte4, Karte5, Karte6, Karte7, Karte8, Karte9, Karte10, Karte11, Karte12);
@@ -761,21 +749,63 @@ public class gameRoomController implements Initializable {
         }
 
     }
-
-
-
-
-
-
     public void setUserName(String userName) {
         nameLabel.setText(userName);
     }
-
     public void setRoomName(String roomname) {
-
         roomnamelabel.setText(roomname);
         this.roomName = roomname;
     }
+    public void handleFoxCard() {
+        try {
+            List<String> availablePlayers = gameman.getAvailablePlayersToSteal(username, roomName);
+            String chosenVictimId = promptPlayerToChooseVictim(availablePlayers); // UI method to choose a victim
+
+            List<Card> availableCards = gameman.getAvailableCardsToSteal(username, chosenVictimId, roomName);
+            Card chosenCard = promptPlayerToChooseCard(availableCards); // UI method to choose a card
+
+            // Send the final choices back to the server
+            gameman.steal_card(username, chosenVictimId, chosenCard, roomName);
+        } catch (RemoteException | RoomDoesNotExistException e) {
+            e.printStackTrace();
+            // Handle exceptions
+        }
+    }
+    private String promptPlayerToChooseVictim(List<String> availablePlayers) {
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(availablePlayers.get(0), availablePlayers);
+        dialog.setTitle("Choose a Victim");
+        dialog.setHeaderText("Select a player to steal from:");
+        dialog.setContentText("Available Players:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            return result.get();
+        } else {
+            return null; // Handle the case where the player doesn't make a choice
+        }
+    }
+    private Card promptPlayerToChooseCard(List<Card> availableCards) {
+        List<String> cardDescriptions = availableCards.stream()
+                .map(card -> card.getDescription())
+                .collect(Collectors.toList());
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(cardDescriptions.get(0), cardDescriptions);
+        dialog.setTitle("Choose a Card");
+        dialog.setHeaderText("Select a card to steal:");
+        dialog.setContentText("Available Cards:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            String selectedDescription = result.get();
+            return availableCards.stream()
+                    .filter(card -> card.getDescription().equals(selectedDescription))
+                    .findFirst()
+                    .orElse(null);
+        } else {
+            return null; // Handle the case where the player doesn't make a choice
+        }
+    }
+
 
 
 }

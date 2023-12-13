@@ -15,7 +15,6 @@ public class Player {
     private boolean turn;
     private boolean won;
     private int eggCount;
-    public int playerId;
     public Player(String username){
         userName = username;
         won = false;
@@ -23,12 +22,7 @@ public class Player {
         hand = new ArrayList<>();
         eggCount = 0;
     }
-    public int getPlayerId(){
-        return playerId ;
-    }
-    public void setPlayerId(int id){
-         playerId = id;
-    }
+
     public boolean hasHahnCard(){
         for(Card card: hand){
             if( card.isHahnCard()){

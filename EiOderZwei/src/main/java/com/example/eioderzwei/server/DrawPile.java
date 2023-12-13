@@ -30,7 +30,7 @@ public class DrawPile {
 
         addCards(CardType.FOX, 13);
 
-        addCards(CardType.ROOSTER, 4);
+        addCards(CardType.ROOSTER, 3);
 
         // Mischen des Ziehstapels
         Collections.shuffle(drawPile);
@@ -43,6 +43,13 @@ public class DrawPile {
         return drawPile.isEmpty() ? null : drawPile.pop();
     }
 
+
+    public Card showTopCard() {
+        System.out.println("showTopCard in DrawPile ok");
+
+        return drawPile.isEmpty() ? null : drawPile.peek();
+
+    }
     /**
      * Methode zur Überprüfung, ob der Ziehstapel leer ist.
 

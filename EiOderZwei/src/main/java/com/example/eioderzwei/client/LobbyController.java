@@ -1,7 +1,6 @@
 package com.example.eioderzwei.client;
 
 import com.example.eioderzwei.server.exceptions.*;
-import com.example.eioderzwei.server.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,7 +17,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 
-import static com.example.eioderzwei.client.UserInfo.getUsername;
+
+
+
 
 
 public class LobbyController {
@@ -52,11 +53,14 @@ public class LobbyController {
     @FXML
     private Button createGameButton;
 
-
+    RoomsManagerInterface roomman;
+    LoginManagerInterface logman;
 
 
     @FXML
     private void initialize() {
+        this.roomman = Client.getRoomsManager();
+        this.logman = Client.getLoginManager();
         roomNameField.setVisible(false);
         newRoomNameField.setVisible(false);
         goToGameRoom.setVisible(false);
@@ -81,7 +85,6 @@ public class LobbyController {
     @FXML
     private void onEnterButtonClicked() {
         String playerName = playerNameField.getText();
-        LoginManagerInterface logman = Client.getLoginManager();
         if (!playerName.isEmpty()){
             try {
                 logman.loginPlayer(playerName);
@@ -105,15 +108,15 @@ public class LobbyController {
         @FXML
     private void onStartGameButtonClicked() {
             String room_name = roomNameField.getText();
-            RoomsManagerInterface roomman = Client.getRoomsManager();
-            LoginManagerInterface logman = Client.getLoginManager();
 
             if (!room_name.isEmpty()) {
                 try {
 
                     roomman.joinRoom(room_name, UserInfo.getUsername());
-                    logman.setPlayerId( UserInfo.getUsername(), roomman.getPlayersNumber(room_name));
                     UserInfo.setRoomname(room_name);
+                    int x =roomman.getRequiredPlayersNumber(room_name);
+                    openPlayTableWindow(UserInfo.getUsername(), room_name,x);
+
 
 
 
@@ -143,8 +146,6 @@ public class LobbyController {
     @FXML
     public void onNextButtonClicked1() {
         String room_name = newRoomNameField.getText();
-        RoomsManagerInterface roomman = Client.getRoomsManager();
-        LoginManagerInterface logman = Client.getLoginManager();
 
         if (!room_name.isEmpty()) {
             try {
@@ -193,8 +194,6 @@ public class LobbyController {
         @FXML
         private void onCreateGameButtonClicked() {
             String bn = botNumberField.getText();
-            RoomsManagerInterface roomman = Client.getRoomsManager();
-            LoginManagerInterface logman = Client.getLoginManager();
 
 
             if (!bn.isEmpty()) {
@@ -204,7 +203,6 @@ public class LobbyController {
                         try {
                             roomman.createRoom(UserInfo.getRoomname(), botNumber, UserInfo.getPlayNumber());
                             roomman.joinRoom(UserInfo.getRoomname(), UserInfo.getUsername());
-                            logman.setPlayerId( UserInfo.getUsername(), roomman.getPlayersNumber(UserInfo.getRoomname()));
                             openPlayTableWindow(UserInfo.getUsername(), UserInfo.getRoomname(),UserInfo.getPlayNumber() );
 
 

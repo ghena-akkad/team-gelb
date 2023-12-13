@@ -16,17 +16,7 @@ import com.example.eioderzwei.server.common.*;
 public class Client extends Application {
 
     public static void main(String[] args) {
-        try {
-            Registry registry = LocateRegistry.getRegistry(1099);
 
-            System.out.println("Registry located");
-            Communication server = (Communication) registry.lookup("server");
-            server.sendMessage("hello, Server!");
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
 
 
         launch(args);
@@ -61,6 +51,21 @@ public class Client extends Application {
             LoginManagerInterface logman = (LoginManagerInterface) registry.lookup("logman");
 
             return logman;
+        } catch (Exception e) {
+            // Fehlerbehandlung und Weitergabe als RuntimeException
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static GameManagerInterface getGameManager(){
+        try {
+            // Zugriff auf den RMI-Registry
+            Registry registry = LocateRegistry.getRegistry(1099);
+
+            // Suchen der LoginManager-Instanz im Registry
+            GameManagerInterface gameman = (GameManagerInterface) registry.lookup("gameman");
+
+            return gameman;
         } catch (Exception e) {
             // Fehlerbehandlung und Weitergabe als RuntimeException
             throw new RuntimeException(e);

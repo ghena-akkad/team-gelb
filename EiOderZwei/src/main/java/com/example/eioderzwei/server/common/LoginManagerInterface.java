@@ -6,11 +6,12 @@ import com.example.eioderzwei.server.exceptions.PlayerNameAlreadyExistsException
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.security.NoSuchAlgorithmException;
 
 public interface LoginManagerInterface extends Remote, Serializable {
 
 
-    void loginPlayer(String playerName) throws RemoteException, PlayerNameAlreadyExistsException;
+    void loginPlayer(String playerName, String hashedPassword) throws RemoteException, PlayerNameAlreadyExistsException, NoSuchAlgorithmException;
 
 
 

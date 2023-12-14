@@ -8,6 +8,7 @@ public class UserInfo {
 
     // Benutzername des Spielers
     private static String username;
+    private static String passwordHash; // Hashed password
 
     // Spielraumname, in dem der Spieler sich befindet
     private static String roomname;
@@ -60,5 +61,11 @@ public class UserInfo {
      */
     public static void setRoomname(String roomname) {
         UserInfo.roomname = roomname;
+    }
+    public static String getUserPasswordHash() {
+        return passwordHash;
+    }
+    public static void setUserPasswordHash(String hash) {
+        UserInfo.passwordHash = hash;
     }
 }

@@ -1,8 +1,5 @@
 package com.example.eioderzwei.server;
-import com.example.eioderzwei.server.common.Communication;
-import com.example.eioderzwei.server.common.GameManagerInterface;
-import com.example.eioderzwei.server.common.LoginManagerInterface;
-import com.example.eioderzwei.server.common.RoomsManagerInterface;
+import com.example.eioderzwei.server.common.*;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -17,6 +14,8 @@ public class Server {
             LoginManager lm = new LoginManager();
             RoomsManager rm = new RoomsManager();
             GameManager gm = new GameManager();
+            ChatManager chm = new ChatManager();
+            PasswordUtil ps = new PasswordUtil();
 
             Communication stub = (Communication) UnicastRemoteObject.exportObject(com, 0);
 
@@ -25,6 +24,10 @@ public class Server {
             RoomsManagerInterface stub2 = (RoomsManagerInterface) UnicastRemoteObject.exportObject(rm, 0);
 
             GameManagerInterface stub3 = (GameManagerInterface) UnicastRemoteObject.exportObject(gm, 0);
+
+            ChatManagerInterface stub4 = (ChatManagerInterface) UnicastRemoteObject.exportObject(chm, 0);
+
+            PasswordUtilInterface stub5 = (PasswordUtilInterface) UnicastRemoteObject.exportObject(ps, 0);
 
             Registry registry = LocateRegistry.createRegistry(1099);
 
@@ -35,6 +38,10 @@ public class Server {
             registry.rebind("roomman", stub2);
 
             registry.rebind("gameman", stub3);
+
+            registry.rebind("chatman", stub4);
+
+            registry.rebind("passwordman", stub5);
 
 
 

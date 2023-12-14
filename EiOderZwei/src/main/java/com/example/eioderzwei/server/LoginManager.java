@@ -2,7 +2,9 @@ package com.example.eioderzwei.server;
 import com.example.eioderzwei.server.common.LoginManagerInterface;
 import com.example.eioderzwei.server.exceptions.PlayerNameAlreadyExistsException;
 import com.example.eioderzwei.server.exceptions.RoomDoesNotExistException;
+import java.security.NoSuchAlgorithmException;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,9 +20,9 @@ public class LoginManager implements LoginManagerInterface {
         this.helper = new LoginManagerHelper();
 
     }
-    public void loginPlayer(String playerName) throws PlayerNameAlreadyExistsException {
+    public void loginPlayer(String playerName, String hashedPassword) throws PlayerNameAlreadyExistsException, NoSuchAlgorithmException {
        if(!helper.isNameTaken(playerName)) {
-           helper.loginPlayer(playerName);
+           helper.loginPlayer(playerName, hashedPassword);
 
 
         } else {

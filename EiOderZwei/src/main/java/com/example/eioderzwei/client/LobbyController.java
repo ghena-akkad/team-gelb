@@ -12,35 +12,28 @@ import javafx.scene.Parent;
 import com.example.eioderzwei.client.Client;
 import com.example.eioderzwei.server.common.*;
 import java.rmi.RemoteException;
+import java.security.NoSuchAlgorithmException;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
-
-
-
-
-
-
 public class LobbyController {
-
     @FXML
     private TextField playerNameField;
+    @FXML
+    private TextField passwordField; //TODO add to fxml accordingly
     @FXML
     private Label l2;
     @FXML
     private Label l3;
-
     @FXML
     private TextField roomNameField;
     @FXML
     private TextField newRoomNameField;
-
     @FXML
     private TextField playerNumberField;
     @FXML
     private TextField botNumberField;
-
     @FXML
     private Button goToGameRoom;
     @FXML
@@ -49,18 +42,16 @@ public class LobbyController {
     private Button next1;
     @FXML
     private Button next2;
-
     @FXML
     private Button createGameButton;
-
     RoomsManagerInterface roomman;
     LoginManagerInterface logman;
-
-
+    PasswordUtilInterface passwordman;
     @FXML
     private void initialize() {
         this.roomman = Client.getRoomsManager();
         this.logman = Client.getLoginManager();
+        this.passwordman = Client.getPasswordUtil();
         roomNameField.setVisible(false);
         newRoomNameField.setVisible(false);
         goToGameRoom.setVisible(false);
@@ -71,85 +62,66 @@ public class LobbyController {
         botNumberField.setVisible(false);
         l2.setVisible(false);
         l3.setVisible(false);
-
-
     }
     public static void showErrorPopup(String message) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(message);
-
         alert.showAndWait();
     }
-
     @FXML
-    private void onEnterButtonClicked() {
+    private void onEnterButtonClicked() throws RemoteException {
         String playerName = playerNameField.getText();
-        if (!playerName.isEmpty()){
+        String password = passwordField.getText();
+        if (!playerName.isEmpty() && !password.isEmpty()) {
+            String hashedPassword = null;
+            hashedPassword = passwordman.hashPassword(password);
             try {
-                logman.loginPlayer(playerName);
+                logman.loginPlayer(playerName, hashedPassword);
                 System.out.println("Spieler: " + playerName);
                 UserInfo.setUserName(playerName);
+                UserInfo.setUserPasswordHash(hashedPassword); // Store hashed password
                 roomNameFieldAction();
-
-
-            } catch (RemoteException e ) {
+            } catch (RemoteException e) {
                 throw new RuntimeException(e);
-            } catch (PlayerNameAlreadyExistsException e) {
+            } catch (PlayerNameAlreadyExistsException | NoSuchAlgorithmException e) {
                 showErrorPopup("Dieser Name ist schon belegt");
-
             }
         } else {
-            showErrorPopup("Bitte Benutzernamen eingeben");
-
+            showErrorPopup("Bitte Benutzernamen und Passwort eingeben");
         }
-        }
-
-        @FXML
+    }
+    @FXML
     private void onStartGameButtonClicked() {
-            String room_name = roomNameField.getText();
-
-            if (!room_name.isEmpty()) {
-                try {
-
-                    roomman.joinRoom(room_name, UserInfo.getUsername());
-                    UserInfo.setRoomname(room_name);
-                    int x =roomman.getRequiredPlayersNumber(room_name);
-                    openPlayTableWindow(UserInfo.getUsername(), room_name,x);
-
-
-
-
-                }
-                catch (RemoteException e ) {
-                    throw new RuntimeException(e);
-                }
-                catch (RoomIsFullException e ) {
-                    showErrorPopup("Der Raum ist schon voll!");
-                }
-                catch (RoomDoesNotExistException e) {
-                    showErrorPopup("Der Raum mit diesem Namen existiert nicht");
-
-
-
-
-                }
-
-
+        String roomName = roomNameField.getText();
+        if (!roomName.isEmpty()) {
+            try {
+                String username = UserInfo.getUsername();
+                String hashedPassword = UserInfo.getUserPasswordHash(); // Retrieve stored hashed password
+                roomman.joinRoom(roomName, username, hashedPassword);
+                UserInfo.setRoomname(roomName);
+                int requiredPlayers = roomman.getRequiredPlayersNumber(roomName);
+                openPlayTableWindow(username, roomName, requiredPlayers);
             }
-            else {
-                showErrorPopup("Bitte Spielraum Nummer eingeben");
-
-
+            catch (RemoteException e) {
+                throw new RuntimeException(e);
             }
+            catch (RoomIsFullException e) {
+                showErrorPopup("Der Raum ist schon voll!");
+            }
+            catch (RoomDoesNotExistException e) {
+                showErrorPopup("Der Raum mit diesem Namen existiert nicht");
+            }
+        } else {
+            showErrorPopup("Bitte Spielraum Nummer eingeben");
         }
+    }
     @FXML
     public void onNextButtonClicked1() {
         String room_name = newRoomNameField.getText();
 
         if (!room_name.isEmpty()) {
             try {
-
                 roomman.ifRoomExists(room_name);
                 UserInfo.setRoomname(room_name);
                 next1.setVisible(false);
@@ -160,11 +132,9 @@ public class LobbyController {
             } catch (RemoteException e) {
                 throw new RuntimeException(e);
             }
-
         }
         else {
             showErrorPopup("Bitte Spielraum Namen eingeben");
-
         }
     }
     @FXML
@@ -188,54 +158,33 @@ public class LobbyController {
             showErrorPopup("Bitte Anzahl von Spieler eingeben");
         }
     }
-
-
-
-        @FXML
-        private void onCreateGameButtonClicked() {
-            String bn = botNumberField.getText();
-
-
-            if (!bn.isEmpty()) {
-                try {
-                    int botNumber = Integer.parseInt(botNumberField.getText());
-                    if (botNumber < UserInfo.getPlayNumber()) {
-                        try {
-                            roomman.createRoom(UserInfo.getRoomname(), botNumber, UserInfo.getPlayNumber());
-                            roomman.joinRoom(UserInfo.getRoomname(), UserInfo.getUsername());
-                            openPlayTableWindow(UserInfo.getUsername(), UserInfo.getRoomname(),UserInfo.getPlayNumber() );
-
-
-                        } catch (RemoteException e) {
-                            throw new RuntimeException(e);
-                        } catch (RoomDoesNotExistException e) {
-                        }
-                        catch (RoomIsFullException e) {
-                        }
-
-                    } else {
-                        showErrorPopup("Die Anzahl von Bots muss weniger als " + UserInfo.getPlayNumber() + " sein!");
+    @FXML
+    private void onCreateGameButtonClicked() {
+        String botNumberText = botNumberField.getText();
+        if (!botNumberText.isEmpty()) {
+            try {
+                int botNumber = Integer.parseInt(botNumberText);
+                if (botNumber < UserInfo.getPlayNumber()) {
+                    try {
+                        roomman.createRoom(UserInfo.getRoomname(), botNumber, UserInfo.getPlayNumber());
+                        String hashedPassword = UserInfo.getUserPasswordHash(); // Retrieve the stored hashed password
+                        roomman.joinRoom(UserInfo.getRoomname(), UserInfo.getUsername(), hashedPassword); // Include the hashed password
+                        openPlayTableWindow(UserInfo.getUsername(), UserInfo.getRoomname(), UserInfo.getPlayNumber());
+                    } catch (RemoteException e) {
+                        throw new RuntimeException(e);
+                    } catch (RoomDoesNotExistException | RoomIsFullException e) {
+                        showErrorPopup("Problem beim Beitritt zum Raum: " + e.getMessage());
                     }
-                } catch (NumberFormatException e) {
-                    // Handle the case where the input is not a valid integer
-                    showErrorPopup("Ungültige Eingabe. Bitte nur Zahlen eingeben.");
+                } else {
+                    showErrorPopup("Die Anzahl von Bots muss weniger als " + UserInfo.getPlayNumber() + " sein!");
                 }
-            } else {
-                showErrorPopup("Bitte Anzahl von Bots eingeben");
+            } catch (NumberFormatException e) {
+                showErrorPopup("Ungültige Eingabe. Bitte nur Zahlen eingeben.");
             }
-
-
-
-
-
-
-
-
-
-}
-
-
-
+        } else {
+            showErrorPopup("Bitte Anzahl von Bots eingeben");
+        }
+    }
     protected void roomNameFieldAction() {
         roomNameField.setVisible(true);
         newRoomNameField.setVisible(true);
@@ -245,19 +194,9 @@ public class LobbyController {
         botNumberField.setVisible(true);
         l2.setVisible(true);
         l3.setVisible(true);
-
-
-
-
-
     }
-
-
-
     protected void openPlayTableWindow(String playerName, String roomName, int desiredPlayerNumber) {
-
         try {
-
             switch (desiredPlayerNumber) {
                 case 2:
                     FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("/com/example/eioderzwei/gameRoom2.fxml"));
@@ -266,28 +205,22 @@ public class LobbyController {
                     c2.setUserName(playerName);
                     c2.setRoomName(roomName);
                     Stage stage2 = new Stage();
-
                     stage2.setTitle("Spieltisch");
                     stage2.setScene(new Scene(root2));
                     stage2.show();
                     ((Stage) playerNameField.getScene().getWindow()).close();
-
                     break;
-
                 case 3:
                     FXMLLoader fxmlLoader3 = new FXMLLoader(getClass().getResource("/com/example/eioderzwei/gameRoom3.fxml"));
                     Parent root3 =  fxmlLoader3.load();
                     gameRoomController c3 = fxmlLoader3.getController();
                     c3.setUserName(playerName);
                     c3.setRoomName(roomName);
-
                     Stage stage3 = new Stage();
-
                     stage3.setTitle("Spieltisch");
                     stage3.setScene(new Scene(root3));
                     stage3.show();
                     ((Stage) playerNameField.getScene().getWindow()).close();
-
                     break;
                 case 4:
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/eioderzwei/gameRoom.fxml"));
@@ -296,22 +229,14 @@ public class LobbyController {
                     playroomController.setUserName(playerName);
                     playroomController.setRoomName(roomName);
                     Stage stage = new Stage();
-
                     stage.setTitle("Spieltisch");
                     stage.setScene(new Scene(root));
                     stage.show();
                     ((Stage) playerNameField.getScene().getWindow()).close();
-
                     break;
 
         } }catch (Exception e) {
             e.printStackTrace();
-        }
-        ;
-
-
-
+        };
     }
-
-
 }

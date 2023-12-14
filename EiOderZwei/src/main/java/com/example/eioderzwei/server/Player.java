@@ -11,18 +11,25 @@ import java.util.Random;
 
 public class Player {
     public  final String userName;
+    private String hashedPassword;
     private ArrayList<Card> hand;
     private boolean turn;
     private boolean won;
     private int eggCount;
-    public Player(String username){
+    public Player(String username, String hashedPassword){
         userName = username;
+        this.hashedPassword = hashedPassword;
         won = false;
         turn = false;
         hand = new ArrayList<>();
         eggCount = 0;
     }
-
+    public boolean validatePassword(String inputPasswordHash) {
+        return this.hashedPassword.equals(inputPasswordHash);
+    }
+    public void setHashedPassword(String newHashedPassword) {
+        this.hashedPassword = newHashedPassword;
+    }
     public boolean hasHahnCard(){
         for(Card card: hand){
             if( card.isHahnCard()){

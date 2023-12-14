@@ -144,22 +144,22 @@
                </children></Pane>
       </bottom>
         <right>
-            <VBox prefHeight="604.0" prefWidth="314.0">
+            <VBox prefHeight="604.0" prefWidth="379.0">
                 <!-- Chat VBox -->
                 <VBox fx:id="chatVBox" prefWidth="200.0">
                     <children>
-                        <ListView fx:id="messagesListView" prefHeight="292.0" prefWidth="314.0" VBox.vgrow="ALWAYS" />
+                        <ListView fx:id="messagesListView" prefHeight="252.0" prefWidth="379.0" VBox.vgrow="ALWAYS" />
                         <HBox spacing="5.0">
                             <children>
                                 <TextField fx:id="messageInputField" prefHeight="26.0" prefWidth="232.0" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="sendButton" onAction="#sendButtonOnAction" prefHeight="16.0" prefWidth="168.0" text="Send" />
+                                <Button fx:id="sendButton" onAction="#sendButtonOnAction" prefHeight="26.0" prefWidth="275.0" text="Send" />
                             </children>
                         </HBox>
                     </children>
                 </VBox>
 
                 <!-- Existing Pane -->
-                <Pane prefHeight="390.0" prefWidth="287.0" style="-fx-background-color: #B19CD9;">
+                <Pane prefHeight="390.0" prefWidth="371.0" style="-fx-background-color: #B19CD9;">
                     <children>
                         <Label fx:id="nameLabelEast" layoutX="-57.0" layoutY="264.0" prefHeight="32.0" prefWidth="165.0" rotate="270.0" textFill="#8624a9">
                             <font>

@@ -108,6 +108,7 @@ public class gameRoomController implements Initializable {
         initThread();
         labelThread();
         cardsThread();
+        startChatThread();
         try (FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/com/example/eioderzwei/image/egg.png")) {
             Image img = new Image(input);
             small0.setImage(img);
@@ -119,7 +120,6 @@ public class gameRoomController implements Initializable {
             e.printStackTrace();
         }
     }
-
     public void initThread() {
         synchronized (this) {
             Thread t1 = new Thread(new Runnable() {
@@ -187,74 +187,87 @@ public class gameRoomController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
-    public void labelThread() {
-        synchronized (this) {
-            Thread t1 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Runnable updater = new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                if (gameman.has_game_started(roomName)) {
-                                    zuglabel.setText(gameman.whose_turn(roomName));
-                                }
-                            } catch (RemoteException e) {
-                                throw new RuntimeException(e);
-                            } catch (RoomDoesNotExistException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                    };
-                    while (true) {
-                        try {
-                            Thread.sleep(210);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        Platform.runLater(updater);
-                    }
-                }
-            });
-            t1.start();
-        }
-    }
+    private List<String> lastKnownSouthCards = new ArrayList<>();
+    private List<String> lastKnownWestCards = new ArrayList<>();
+    private List<String> lastKnownNorthCards = new ArrayList<>();
+    private List<String> lastKnownEastCards = new ArrayList<>();
 
     public void cardsThread() {
-        synchronized (this) {
-            Thread t1 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Runnable updater = new Runnable() {
-                        @Override
-                        public void run() {
+        Thread t1 = new Thread(() -> {
+            while (true) {
+                try {
+                    List<String> currentSouthCards = gameman.get_players_card(username);
+                    List<String> currentWestCards = gameman.get_players_card(nameLabelWest.getText());
+                    List<String> currentNorthCards = gameman.get_players_card(nameLabelNorth.getText());
+                    List<String> currentEastCards = gameman.get_players_card(nameLabelEast.getText());
+
+                    // Check if there are any changes in the card lists
+                    if (!currentSouthCards.equals(lastKnownSouthCards)) {
+                        Platform.runLater(() -> {
                             try {
-                                updateCardsSouth(gameman.get_players_card(username));
-                                //updateCardsWest(gameman.get_players_card(nameLabelWest.getText()));
-                                //updateCardsEast(gameman.get_players_card(nameLabelEast.getText()));
-                                //updateCardsNorth(gameman.get_players_card(nameLabelNorth.getText()));
-                                updateDecks(gameman.showTopCard(roomName), gameman.showTopCardAblage(roomName));
-                            } catch (RemoteException e) {
-                                throw new RuntimeException(e);
-                            } catch (FileNotFoundException | RoomDoesNotExistException e) {
-                                throw new RuntimeException(e);
+                                updateCardsSouth(currentSouthCards);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
                             }
-                        }
-                    };
-                    while (true) {
-                        try {
-                            Thread.sleep(220);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        Platform.runLater(updater);
+                        });
+                        lastKnownSouthCards = currentSouthCards;
                     }
+
+                    if (!currentWestCards.equals(lastKnownWestCards)) {
+                        Platform.runLater(() -> {
+                            try {
+                                updateCardsWest(currentWestCards);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                        lastKnownWestCards = currentWestCards;
+                    }
+
+                    if (!currentNorthCards.equals(lastKnownNorthCards)) {
+                        Platform.runLater(() -> {
+                            try {
+                                updateCardsNorth(currentNorthCards);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                        lastKnownNorthCards = currentNorthCards;
+                    }
+
+                    if (!currentEastCards.equals(lastKnownEastCards)) {
+                        Platform.runLater(() -> {
+                            try {
+                                updateCardsEast(currentEastCards);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                        lastKnownEastCards = currentEastCards;
+                    }
+
+                    String topDeckCard = gameman.showTopCard(roomName);
+                    String topAblageCard = gameman.showTopCardAblage(roomName);
+                    Platform.runLater(() -> {
+                        try {
+                            updateDecks(topDeckCard, topAblageCard);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+                    Thread.sleep(220);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break; // Exit the loop if the thread is interrupted
+                } catch (RemoteException | RoomDoesNotExistException e) {
+                    e.printStackTrace();
                 }
-            });
-            t1.start();
-        }
+            }
+        });
+        t1.start();
     }
+
 
     private void updateDecks(String s, String string) throws FileNotFoundException {
         if (string.equals("")) {
@@ -346,7 +359,6 @@ public class gameRoomController implements Initializable {
             }
         }
     }
-
     private void updateCardsWest(List<String> playersCard) throws FileNotFoundException {
         Karte13.setImage(null);
         Karte14.setImage(null);
@@ -397,7 +409,6 @@ public class gameRoomController implements Initializable {
             }
         }
     }
-
     private void updateCardsSouth(List<String> playersCard) throws FileNotFoundException {
         Karte1.setImage(null);
         Karte2.setImage(null);
@@ -457,74 +468,90 @@ public class gameRoomController implements Initializable {
             }
         }
     }
-
-    private void updatePlayerLabels(List<String> playerNames) throws RoomDoesNotExistException, RemoteException {
-        Platform.runLater(() -> {
-            switch (playerNames.size()) {
-                case 1:
-                    nameLabelWest.setText("Waiting");
-                    nameLabelEast.setText("Waiting");
-                    nameLabelNorth.setText("Waiting");
-                    break;
-                case 2:
-                    if (playerNames.get(1).equals(username)) {
-                        nameLabelWest.setText(playerNames.get(0));
-                    } else {
-                        nameLabelWest.setText(playerNames.get(1));
+    private List<String> lastKnownPlayerNames = new ArrayList<>();
+    public void labelThread() {
+        Thread t1 = new Thread(() -> {
+            while (true) {
+                try {
+                    List<String> currentPlayerNames = roomman.getPlayers(roomName);
+                    // Check if there are any changes in the player names
+                    if (!currentPlayerNames.equals(lastKnownPlayerNames)) {
+                        Platform.runLater(() -> updatePlayerLabels(currentPlayerNames));
+                        lastKnownPlayerNames = currentPlayerNames;
                     }
-                    nameLabelEast.setText("Waiting");
+                    Thread.sleep(210);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break; // Exit if the thread is interrupted
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        t1.start();
+    }
+    private void updatePlayerLabels(List<String> playerNames) {
+        switch (playerNames.size()) {
+            case 1:
+                nameLabelWest.setText("Waiting");
+                nameLabelEast.setText("Waiting");
+                nameLabelNorth.setText("Waiting");
+                break;
+            case 2:
+                if (playerNames.get(1).equals(username)) {
+                    nameLabelWest.setText(playerNames.get(0));
+                } else {
+                    nameLabelWest.setText(playerNames.get(1));
+                }
+                nameLabelEast.setText("Waiting");
+                nameLabelNorth.setText("Waiting");
+                break;
+            case 3:
+                if (playerNames.get(1).equals(username)) {
                     nameLabelNorth.setText("Waiting");
-                    break;
-                case 3:
+                    nameLabelWest.setText(playerNames.get(2));
+                    nameLabelEast.setText(playerNames.get(0));
+                } else if (playerNames.get(0).equals(username)) {
+                    nameLabelNorth.setText(playerNames.get(2));
+                    nameLabelWest.setText(playerNames.get(1));
+                    nameLabelEast.setText("Waiting");
+                } else {
+                    nameLabelNorth.setText(playerNames.get(0));
+                    nameLabelEast.setText(playerNames.get(1));
+                    nameLabelWest.setText("Waiting");
+                }
+                break;
+            case 4:
+                for (String name : playerNames) {
                     if (playerNames.get(1).equals(username)) {
-                        nameLabelNorth.setText("Waiting");
+                        nameLabelNorth.setText(playerNames.get(3));
                         nameLabelWest.setText(playerNames.get(2));
                         nameLabelEast.setText(playerNames.get(0));
                     } else if (playerNames.get(0).equals(username)) {
                         nameLabelNorth.setText(playerNames.get(2));
                         nameLabelWest.setText(playerNames.get(1));
-                        nameLabelEast.setText("Waiting");
-                    } else {
+                        nameLabelEast.setText(playerNames.get(3));
+                    } else if (playerNames.get(2).equals(username)) {
                         nameLabelNorth.setText(playerNames.get(0));
+                        nameLabelWest.setText(playerNames.get(3));
                         nameLabelEast.setText(playerNames.get(1));
-                        nameLabelWest.setText("Waiting");
+                    } else {
+                        nameLabelNorth.setText(playerNames.get(1));
+                        nameLabelEast.setText(playerNames.get(2));
+                        nameLabelWest.setText(playerNames.get(0));
                     }
-                    break;
-                case 4:
-                    for (String name : playerNames) {
-                        if (playerNames.get(1).equals(username)) {
-                            nameLabelNorth.setText(playerNames.get(3));
-                            nameLabelWest.setText(playerNames.get(2));
-                            nameLabelEast.setText(playerNames.get(0));
-                        } else if (playerNames.get(0).equals(username)) {
-                            nameLabelNorth.setText(playerNames.get(2));
-                            nameLabelWest.setText(playerNames.get(1));
-                            nameLabelEast.setText(playerNames.get(3));
-                        } else if (playerNames.get(2).equals(username)) {
-                            nameLabelNorth.setText(playerNames.get(0));
-                            nameLabelWest.setText(playerNames.get(3));
-                            nameLabelEast.setText(playerNames.get(1));
-                        } else {
-                            nameLabelNorth.setText(playerNames.get(1));
-                            nameLabelEast.setText(playerNames.get(2));
-                            nameLabelWest.setText(playerNames.get(0));
-                        }
-                    }
-                    break;
-            }
-        });
+                }
+                break;
+        }
     }
-
     @FXML
     public List<ImageView> hand() {
         return List.of(Karte1, Karte2, Karte3, Karte4, Karte5, Karte6, Karte7, Karte8, Karte9, Karte10, Karte11, Karte12);
     }
-
     public ImageView addCardToHand(Image img) {
         i++;
         return hand().get(i - 1);
     }
-
     public void hallo(MouseEvent actionEvent) throws IOException {
         try (FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/com/example/eioderzwei/image/egg.png")) {
             Image img = new Image(input);
@@ -535,7 +562,6 @@ public class gameRoomController implements Initializable {
             e.printStackTrace();
         }
     }
-
     private void moveCardAnimationDeckToHand(ImageView source, ImageView destination, Image cardImage) {
         ImageView movingCard = new ImageView(cardImage);
         movingCard.setFitHeight(100);
@@ -557,11 +583,9 @@ public class gameRoomController implements Initializable {
         });
         transition.play();
     }
-
     public void removeCardFromHand() {
         ablage_number_of_cards++;
     }
-
     private void moveCardAnimationHandToAblage(ImageView source, ImageView destination, Image cardImage, Boolean b) {
         ImageView movingCard = new ImageView(cardImage);
         movingCard.setFitHeight(100);
@@ -714,14 +738,17 @@ public class gameRoomController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    private int lastMessageIndex = 0;
+
     public void startChatThread() {
         Thread t1 = new Thread(() -> {
-            Runnable updater = () -> {
+            while (true) {
                 try {
                     List<String> chatMessages = chatman.getMessages(roomName);
-                    messagesListView.getItems().clear();
-                    for (String messageString : chatMessages) {
-                        // Split the message string into senderId and messageText on the first occurence of :
+                    // Process and add only new messages
+                    for (int i = lastMessageIndex; i < chatMessages.size(); i++) {
+                        String messageString = chatMessages.get(i);
+                        // Split into senderId and messageText after the first :
                         String[] parts = messageString.split(":", 2);
                         if (parts.length == 2) {
                             String senderId = parts[0];
@@ -740,23 +767,20 @@ public class gameRoomController implements Initializable {
                             });
                         }
                     }
-                } catch (RemoteException e) {
-                    Platform.runLater(() -> showError("Error fetching messages: " + e.getMessage()));
-                }
-            };
-            while (true) {
-                try {
+                    lastMessageIndex = chatMessages.size();
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
                     Platform.runLater(() -> showError("Chat thread interrupted: " + e.getMessage()));
-                    break; // Exit the loop if the thread is interrupted
+                    break; // Exit if the thread is interrupted
+                } catch (RemoteException e) {
+                    Platform.runLater(() -> showError("Error fetching messages: " + e.getMessage()));
                 }
-                Platform.runLater(updater);
             }
         });
-        t1.setDaemon(true); // Ensure the thread doesn't prevent the application from exiting
+        t1.setDaemon(true);
         t1.start();
     }
+
     private List<String> extractMentionedUsers(String messageText) {
         List<String> mentionedUsers = new ArrayList<>();
         Matcher matcher = Pattern.compile("@(\\w+)").matcher(messageText);

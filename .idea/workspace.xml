@@ -7,6 +7,8 @@
     <list default="true" id="3ee09e25-1c51-49a3-bbd7-a0d282165c98" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/client/gameRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/client/gameRoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/java/com/example/eioderzwei/server/GameManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/EiOderZwei/src/main/resources/com/example/eioderzwei/gameRoom.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +134,7 @@
       <workItem from="1701799032862" duration="10703000" />
       <workItem from="1701873908377" duration="1900000" />
       <workItem from="1702328958521" duration="47191000" />
-      <workItem from="1702579338124" duration="12591000" />
+      <workItem from="1702579338124" duration="18625000" />
     </task>
     <task id="LOCAL-00001" summary="player, RegisteredPlayer, Bot, GameRoom">
       <option name="closed" value="true" />
@@ -166,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702588029363</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="cardsThread chatThread labelThread fixed">
+      <option name="closed" value="true" />
+      <created>1702596461109</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702596461109</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +198,8 @@
     <MESSAGE value="Spiel Logik" />
     <MESSAGE value="Steal Logic Srvr+clnt" />
     <MESSAGE value="psswrd + Chat implementiert" />
-    <option name="LAST_COMMIT_MESSAGE" value="psswrd + Chat implementiert" />
+    <MESSAGE value="cardsThread chatThread labelThread fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="cardsThread chatThread labelThread fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

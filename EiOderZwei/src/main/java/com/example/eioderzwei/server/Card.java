@@ -107,4 +107,10 @@ public class Card {
                 type == CardType.TWOBIO ||
                 type == CardType.THREEBIO;
     }
+    public boolean isBio() {
+        return type == CardType.ONEBIO ||
+                type == CardType.TWOBIO ||
+                type == CardType.THREEBIO;
+    }
+
 }

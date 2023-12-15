@@ -7,6 +7,7 @@ import com.example.eioderzwei.server.common.RoomsManagerInterface;
 import com.example.eioderzwei.server.exceptions.RoomDoesNotExistException;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,6 +54,8 @@ public class gameRoomController implements Initializable {
     private Label gameStatus;
     @FXML
     private Label zuglabel;
+    @FXML
+    private Button roosterCardButton;
     private String roomName;
     private String username;
     private String deck_card;
@@ -552,37 +555,6 @@ public class gameRoomController implements Initializable {
         i++;
         return hand().get(i - 1);
     }
-    public void hallo(MouseEvent actionEvent) throws IOException {
-        try (FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/com/example/eioderzwei/image/egg.png")) {
-            Image img = new Image(input);
-            ImageView im = addCardToHand(img);
-            moveCardAnimationDeckToHand(deck, im, img);
-            deck_number_of_cards--;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    private void moveCardAnimationDeckToHand(ImageView source, ImageView destination, Image cardImage) {
-        ImageView movingCard = new ImageView(cardImage);
-        movingCard.setFitHeight(100);
-        movingCard.setFitWidth(75);
-        movingCard.setPreserveRatio(true);
-        movingCard.setLayoutX(source.getLayoutX());
-        movingCard.setLayoutY(source.getLayoutY());
-        AnchorPane anchorPane = (AnchorPane) source.getParent();
-        anchorPane.getChildren().add(movingCard);
-        TranslateTransition transition = new TranslateTransition(Duration.millis(400), movingCard);
-        transition.setToX(destination.getLayoutX() - source.getLayoutX());
-        transition.setToY(destination.getLayoutY() - source.getLayoutY());
-        transition.setOnFinished(event -> {
-            anchorPane.getChildren().remove(movingCard);
-            destination.setImage(cardImage);
-            if (deck_number_of_cards == 0) {
-                source.setImage(null);
-            }
-        });
-        transition.play();
-    }
     public void removeCardFromHand() {
         ablage_number_of_cards++;
     }
@@ -613,33 +585,27 @@ public class gameRoomController implements Initializable {
         });
         transition.play();
     }
-
-    public void tschuss(MouseEvent actionEvent) throws IOException {
-        try (FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/com/example/eioderzwei/image/egg.png")) {
-            Image img = new Image(input);
-            removeCardFromHand();
-            ImageView im = (ImageView) actionEvent.getSource();
-            i--;
-            moveCardAnimationHandToAblage(im, ablage, img, true);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void abwerfen(MouseEvent actionEvent) throws IOException {
-        try (FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/com/example/eioderzwei/image/egg.png")) {
-            Image img = new Image(input);
-            while (i > 0) {
-                removeCardFromHand();
-                i--;
-                ImageView im = hand().get(i - 1);
-                moveCardAnimationHandToAblage(im, ablage, img, false);
+    private void moveCardAnimationDeckToHand(ImageView source, ImageView destination, Image cardImage) {
+        ImageView movingCard = new ImageView(cardImage);
+        movingCard.setFitHeight(100);
+        movingCard.setFitWidth(75);
+        movingCard.setPreserveRatio(true);
+        movingCard.setLayoutX(source.getLayoutX());
+        movingCard.setLayoutY(source.getLayoutY());
+        AnchorPane anchorPane = (AnchorPane) source.getParent();
+        anchorPane.getChildren().add(movingCard);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(400), movingCard);
+        transition.setToX(destination.getLayoutX() - source.getLayoutX());
+        transition.setToY(destination.getLayoutY() - source.getLayoutY());
+        transition.setOnFinished(event -> {
+            anchorPane.getChildren().remove(movingCard);
+            destination.setImage(cardImage);
+            if (deck_number_of_cards == 0) {
+                source.setImage(null);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        });
+        transition.play();
     }
-
     public void setUserName(String userName) {
         nameLabel.setText(userName);
     }
@@ -648,7 +614,140 @@ public class gameRoomController implements Initializable {
         roomnamelabel.setText(roomname);
         this.roomName = roomname;
     }
+    public void drawCard(MouseEvent actionEvent) throws RoomDoesNotExistException {
+        try {
+            String drawnCard = gameman.draw_card(roomName);
+            // Check if drawn
+            if (drawnCard != null && !drawnCard.isEmpty()) {
+                FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/" + drawnCard);
+                Image img = new Image(input);
+                ImageView im = addCardToHand(img);
+                moveCardAnimationDeckToHand(deck, im, img);
+                deck_number_of_cards--;
+                if(drawnCard.contains("Hahnkarte")) {
+                    if (gameman.get_rooster_holder(roomName).equals(username)) {
+                        String additionalCard = gameman.draw_card(roomName);
+                        // Load the image of the additional card
+                        FileInputStream additionalCardInput = new FileInputStream("EiOderZwei/src/main/java/" + additionalCard);
+                        Image additionalCardImage = new Image(additionalCardInput);
+                        // Add the additional card to the player's hand
+                        ImageView additionalCardImageView = addCardToHand(additionalCardImage);
+                        moveCardAnimationDeckToHand(deck, additionalCardImageView, additionalCardImage);
+                        deck_number_of_cards--;
+                    }
+                    //handleRoosterCard();
+                } else if(drawnCard.contains("Fucks")) {
+                    // Handle fox card logic
+                    handleFoxCard();
+                }
+            }
+        } catch (FileNotFoundException | RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+    private ImageView selectedCard1 = null;
+    private List<ImageView> selectedCards = new ArrayList<>();
+    public void discardCard(MouseEvent actionEvent) {
+        ImageView card = (ImageView) actionEvent.getSource();
+        if (selectedCards.contains(card)) {
+            selectedCards.remove(card);
+            card.setStyle(""); // Reset style for deselection
+        } else {
+            selectedCards.add(card);
+            card.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0)"); // Style for selection
+        }
+    }
+    @FXML
+    private void onDiscardPileClicked(MouseEvent event) {
+        // Check if selected cards meet exchange criteria
+        if (canExchangeForEgg(selectedCards)) {
+            exchangeCardsForEgg(selectedCards);
+            updateUIAfterExchange(); // Implement this method to update the UI
+            resetCardSelection();
+        } else {
+            // Show error or message if exchange criteria are not met
+            showError("Selected cards do not meet the criteria for exchanging for an egg.");
+        }
+    }
+    private boolean canExchangeForEgg(List<ImageView> selectedCards) {
+        int totalGrainCount = calculateGrainCount(selectedCards);
+        return totalGrainCount >= 5; // 5 grains needed per egg
+    }
+    private void exchangeCardsForEgg(List<ImageView> selectedCards) {
+        try {
+            if (gameman.lay_eggs(username, roomName)) {
+                // Successfully exchanged cards for an egg
+                // Remove cards from UI and update egg count
+            }
+        } catch (RemoteException | RoomDoesNotExistException e) {
+            e.printStackTrace();
+            showError("Error exchanging cards: " + e.getMessage());
+        }
+    }
+    private void updateUIAfterExchange() {
+        // Update UI to reflect new egg count and removed cards from the hand
+    }
+    private void resetCardSelection() {
+        for (ImageView card : selectedCards) {
+            card.setStyle(""); // Reset style
+        }
+        selectedCards.clear();
+    }
+    //TODO alle comments vom code entfernen und weitermachen mit getCardFromImageView
+    private int calculateGrainCount(List<ImageView> selectedCards) {
+        int totalGrainCount = 0;
+        for (ImageView cardImageView : selectedCards) {
+            //Card card = getCardFromImageView(cardImageView); //TODO Implement this method and implement isBio
+            //int cardValue = card.getWert();
+            //if (card.isBio()) {
+            //    cardValue *= 2;  // Bio grains count double
+            //}
+            //totalGrainCount += cardValue;
+        }
+        return totalGrainCount;
+    }
+    //diese methode wollte ich impl damit man wenn man auf
+    // imageviews clicken kann und sie werden zu cards umgeschrieben was man
+    // braucht um karten zu selektieren und dann ei zu legen
 
+    private void getCardFromImageView(ImageView imageView) { //anstelle von void muss Card hin
+        // Implementation depends on how you're associating ImageViews with Card objects
+        // For example, you might use imageView.getId() or a Map<ImageView, Card>
+
+    }
+    private void handleRoosterCard() {
+        try {
+            boolean canClaimRooster = gameman.want_rooster_card(username, roomName);
+            if (canClaimRooster) {
+                // Show dialog to ask player if they want to claim the rooster card
+                boolean claimDecision = showRoosterCardClaimDialog();
+                if (claimDecision) {
+                    // Player decided to claim the rooster card
+                    gameman.give_rooster_card(username, roomName);
+                    // Update UI to show the player now has the rooster card
+                }
+            }
+        } catch (RemoteException | RoomDoesNotExistException e) {
+            e.printStackTrace();
+            // Handle exceptions
+        }
+    }
+    @FXML
+    private void handleRoosterCardAction(ActionEvent event) {
+        handleRoosterCard();
+    }
+    private boolean showRoosterCardClaimDialog() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Claim Rooster Card");
+        alert.setHeaderText("Do you want to claim the Rooster Card?");
+        alert.setContentText("If you have fewer eggs than the current holder, you can claim the Rooster Card.");
+        // Add buttons
+        ButtonType buttonYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == buttonYes;
+    }
     public void handleFoxCard() {
         try {
             List<String> availablePlayers = gameman.getAvailablePlayersToSteal(username, roomName);

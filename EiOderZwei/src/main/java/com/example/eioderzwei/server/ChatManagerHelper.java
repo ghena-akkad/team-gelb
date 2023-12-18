@@ -12,17 +12,16 @@ public class ChatManagerHelper implements Serializable {
     public ChatManagerHelper(){
         messages = new HashMap<>();
     }
-    public void addGameRoom(String gameRoomName){
-        messages.put(gameRoomName, new ArrayList<String>());
+    public void addGameRoom(String roomname){
+        messages.put(roomname, new ArrayList<String>());
     }
-    public synchronized void sendTheMessage(String gameRoomName, String userID, String message) {
-        if (messages.containsKey(gameRoomName)) {
-            String userName = String.valueOf(loginManagerHelper.getPlayer(userID));
-            ArrayList<String> chatRoomMessages = messages.get(gameRoomName);
-            chatRoomMessages.add(userName + ": " + message);
-            messages.replace(gameRoomName, chatRoomMessages);
+    public synchronized void sendMessage(String roomname, String username, String message) {
+        if (messages.containsKey(roomname)) {
+            ArrayList<String> chatMessages = messages.get(roomname);
+            chatMessages.add(username + ": " + message);
+            messages.replace(roomname, chatMessages);
             List<String> mentionedUsers = parseMentions(message);
-            MessageObject newMessage = new MessageObject(userID, message, mentionedUsers);
+            MessageObject newMessage = new MessageObject(username, message, mentionedUsers);
         }
     }
     private List<String> parseMentions(String message) {
@@ -30,16 +29,16 @@ public class ChatManagerHelper implements Serializable {
         String[] words = message.split("\\s+");
         for (String word : words) {
             if (word.startsWith("@")) {
-                mentionedUsers.add(word.substring(1)); // Remove '@' and add to list
+                mentionedUsers.add(word.substring(1));
             }
         }
         return mentionedUsers;
     }
-    public synchronized ArrayList<String> getChatMessages(String gameRoomName) {
-        if (messages.containsKey(gameRoomName)) {
-            return messages.get(gameRoomName);
+    public synchronized ArrayList<String> getChatMessages(String roomname) {
+        if (messages.containsKey(roomname)) {
+            return messages.get(roomname);
         } else {
-            return new ArrayList<>(); // Return an empty list if the game room name is not found
+            return new ArrayList<>();
         }
     }
 }

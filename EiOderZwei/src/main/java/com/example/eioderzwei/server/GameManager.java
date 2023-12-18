@@ -5,6 +5,9 @@ import com.example.eioderzwei.client.UserInfo;
 import com.example.eioderzwei.server.common.GameManagerInterface;
 import com.example.eioderzwei.server.exceptions.PlayerNameAlreadyExistsException;
 import com.example.eioderzwei.server.exceptions.RoomDoesNotExistException;
+
+import static com.example.eioderzwei.server.CardType.ROOSTER;
+
 /**
  *
  * Spiellogik
@@ -28,7 +31,7 @@ public class GameManager implements GameManagerInterface {
         cardImageMap.put(CardType.THREEBIO, "com/example/eioderzwei/image/3BioKorn.png");
         cardImageMap.put(CardType.FOX, "com/example/eioderzwei/image/Fucks.png");
         cardImageMap.put(CardType.CUCKOO, "com/example/eioderzwei/image/Kuckuck.png");
-        cardImageMap.put(CardType.ROOSTER, "com/example/eioderzwei/image/Hahnkarte.png");
+        cardImageMap.put(ROOSTER, "com/example/eioderzwei/image/Hahnkarte.png");
     }
     public void initialize_rooster(String currentRoomName) throws RoomDoesNotExistException{
         Random random = new Random();
@@ -138,6 +141,8 @@ public class GameManager implements GameManagerInterface {
     }
     public void give_rooster_card(String playerId, String currentRoomName) throws RoomDoesNotExistException {
         roomsManager.getGameroom(currentRoomName).setRoosterCardHolder(playerId);
+        Card card = new Card(ROOSTER);
+        loginManager.getPlayer(playerId).addCardToHand(card);
     }
     public String get_rooster_holder(String currentRoomName) throws RoomDoesNotExistException {
         return roomsManager.getGameroom(currentRoomName).getRoosterCardHolder();

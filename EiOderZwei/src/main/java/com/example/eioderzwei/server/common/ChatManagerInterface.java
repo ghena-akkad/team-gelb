@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ChatManagerInterface extends Remote, Serializable {
     void sendMessage(String gameRoomName, String playerId, String msg) throws RemoteException;
-    List<String> getMessages(String gameRoomName) throws RemoteException;
+    List<String> receiveMessages(String gameRoomName) throws RemoteException;
 }

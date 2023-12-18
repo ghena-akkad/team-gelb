@@ -12,11 +12,11 @@ public class ChatManager implements ChatManagerInterface {
     }
 
     @Override
-    public synchronized void sendMessage(String gameRoomName, String userID, String message) throws RemoteException{
-            chatManagerHelper.sendTheMessage(gameRoomName, userID, message);
+    public synchronized void sendMessage(String room, String username, String message) throws RemoteException{
+            chatManagerHelper.sendMessage(room, username, message);
     }
     @Override
-    public synchronized ArrayList<String> getMessages(String gameRoomName) throws RemoteException {
-        return chatManagerHelper.getChatMessages(gameRoomName);
+    public synchronized ArrayList<String> receiveMessages(String room) throws RemoteException {
+        return chatManagerHelper.getChatMessages(room);
     }
 }

@@ -44,6 +44,16 @@ public class Player {
     public ArrayList<Card> getHand() {
         return hand;
     }
+
+    public Card get_card(CardType type){
+        for(Card card: hand) {
+            if( type == card.getType()){
+                return card;
+            }
+
+        }
+        return null;
+    }
     public void addCardToHand(Card card){
         hand.add(card);
     }
@@ -83,6 +93,8 @@ public class Player {
         return null;
     }
     public void removeCard(Card card) {
+
+
         hand.remove(card);
     }
     public Card chooseCardToSteal() {

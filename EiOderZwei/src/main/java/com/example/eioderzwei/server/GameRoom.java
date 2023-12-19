@@ -13,7 +13,7 @@ public class GameRoom {
 
     private int numberPlayers;
     private List<String> playerIds;
-    private Map<String, Player> playerMap = new HashMap<>();
+    private Map<String, Player> playerMap;
     private String roosterCardHolder;
     private DrawPile drawPile;
     private DiscardPile discardPile;
@@ -24,19 +24,16 @@ public class GameRoom {
     private Player winner;
 
     public GameRoom(String gameName, int botNumber, int requiredNumberOfPlayers) {
-        System.out.println("Gameroom constructor started");
 
         this.gameName = gameName;
         this.botNumber = botNumber;
         this.requiredNumberOfPlayers = requiredNumberOfPlayers;
-        System.out.println("requiredNumberOfPlayers = " + requiredNumberOfPlayers);
 
         this.gameStarted = false;
         this.playerIds = new ArrayList<>();
         this.playerMap = new HashMap<>();
         this.drawPile = new DrawPile();
         this.discardPile = new DiscardPile();
-        System.out.println("Game creating ok");
 
     }
     public boolean isRoomFull() {

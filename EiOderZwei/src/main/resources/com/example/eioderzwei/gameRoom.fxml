@@ -21,77 +21,77 @@
                <children>
                 <Label layoutX="676.0" layoutY="174.0" text="Ablagestapel" />
                 <Label layoutX="524.0" layoutY="174.0" text="Nachziehstapel " />
-                  <ImageView fx:id="Karte13" fitHeight="100.0" fitWidth="75.0" layoutX="28.0" layoutY="-22.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="Karte13" fitHeight="100.0" fitWidth="75.0" layoutX="28.0" layoutY="-22.0"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
                   </ImageView>
-                  <ImageView fx:id="Karte14" fitHeight="100.0" fitWidth="67.0" layoutX="22.0" layoutY="44.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="Karte14" fitHeight="100.0" fitWidth="67.0" layoutX="22.0" layoutY="44.0"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte15" fitHeight="100.0" fitWidth="67.0" layoutX="22.0" layoutY="103.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="Karte15" fitHeight="100.0" fitWidth="67.0" layoutX="22.0" layoutY="103.0"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte16" fitHeight="100.0" fitWidth="67.0" layoutX="28.0" layoutY="169.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="Karte16" fitHeight="100.0" fitWidth="67.0" layoutX="28.0" layoutY="169.0"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte17" fitHeight="100.0" fitWidth="67.0" layoutX="28.0" layoutY="225.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="Karte17" fitHeight="100.0" fitWidth="67.0" layoutX="28.0" layoutY="225.0"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte18" fitHeight="100.0" fitWidth="67.0" layoutX="22.0" layoutY="285.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-
-                  </ImageView>
-
-                  <ImageView fx:id="Karte19" fitHeight="100.0" fitWidth="95.0" layoutX="22.0" layoutY="341.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="Karte18" fitHeight="100.0" fitWidth="67.0" layoutX="22.0" layoutY="285.0"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
 
                   </ImageView>
 
-                  <ImageView fx:id="Karte20" fitHeight="100.0" fitWidth="95.0" layoutX="22.0" layoutY="413.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="Karte19" fitHeight="100.0" fitWidth="95.0" layoutX="22.0" layoutY="341.0"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte21" fitHeight="100.0" fitWidth="95.0" layoutX="28.0" layoutY="469.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+
+                  <ImageView fx:id="Karte20" fitHeight="100.0" fitWidth="95.0" layoutX="22.0" layoutY="413.0"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte22" fitHeight="100.0" fitWidth="95.0" layoutX="28.0" layoutY="527.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="Karte21" fitHeight="100.0" fitWidth="95.0" layoutX="28.0" layoutY="469.0"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte23" fitHeight="100.0" fitWidth="95.0" layoutX="193.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Karte22" fitHeight="100.0" fitWidth="95.0" layoutX="28.0" layoutY="527.0"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte24" fitHeight="100.0" fitWidth="95.0" layoutX="260.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Karte23" fitHeight="100.0" fitWidth="95.0" layoutX="193.0"  pickOnBounds="true" preserveRatio="true">
 
                   </ImageView>
-                  <ImageView fx:id="Karte25" fitHeight="100.0" fitWidth="95.0" layoutX="334.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Karte24" fitHeight="100.0" fitWidth="95.0" layoutX="260.0"  pickOnBounds="true" preserveRatio="true">
 
                   </ImageView>
-                  <ImageView fx:id="Karte26" fitHeight="100.0" fitWidth="95.0" layoutX="407.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Karte25" fitHeight="100.0" fitWidth="95.0" layoutX="334.0"  pickOnBounds="true" preserveRatio="true">
 
                   </ImageView>
-                  <ImageView fx:id="Karte27" fitHeight="100.0" fitWidth="95.0" layoutX="482.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Karte26" fitHeight="100.0" fitWidth="95.0" layoutX="407.0"  pickOnBounds="true" preserveRatio="true">
 
                   </ImageView>
-                  <ImageView fx:id="Karte28" fitHeight="100.0" fitWidth="95.0" layoutX="555.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Karte27" fitHeight="100.0" fitWidth="95.0" layoutX="482.0"  pickOnBounds="true" preserveRatio="true">
 
                   </ImageView>
-                  <ImageView fx:id="Karte29" fitHeight="100.0" fitWidth="95.0" layoutX="625.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Karte28" fitHeight="100.0" fitWidth="95.0" layoutX="555.0"  pickOnBounds="true" preserveRatio="true">
 
                   </ImageView>
-                  <ImageView fx:id="Karte30" fitHeight="100.0" fitWidth="95.0" layoutX="1349.0" layoutY="73.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte29" fitHeight="100.0" fitWidth="95.0" layoutX="625.0" pickOnBounds="true" preserveRatio="true">
 
                   </ImageView>
-                  <ImageView fx:id="Karte31" fitHeight="100.0" fitWidth="95.0" layoutX="1349.0" layoutY="141.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte30" fitHeight="100.0" fitWidth="95.0" layoutX="1349.0" layoutY="73.0"  pickOnBounds="true" preserveRatio="true" rotate="270.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte32" fitHeight="100.0" fitWidth="95.0" layoutX="1349.0" layoutY="205.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte31" fitHeight="100.0" fitWidth="95.0" layoutX="1349.0" layoutY="141.0"  pickOnBounds="true" preserveRatio="true" rotate="270.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte36" fitHeight="100.0" fitWidth="95.0" layoutX="1343.0" layoutY="463.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte32" fitHeight="100.0" fitWidth="95.0" layoutX="1349.0" layoutY="205.0"  pickOnBounds="true" preserveRatio="true" rotate="270.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte35" fitHeight="100.0" fitWidth="95.0" layoutX="1349.0" layoutY="397.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte36" fitHeight="100.0" fitWidth="95.0" layoutX="1343.0" layoutY="463.0"  pickOnBounds="true" preserveRatio="true" rotate="270.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte34" fitHeight="100.0" fitWidth="95.0" layoutX="1343.0" layoutY="332.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte35" fitHeight="100.0" fitWidth="95.0" layoutX="1349.0" layoutY="397.0"  pickOnBounds="true" preserveRatio="true" rotate="270.0">
 
                   </ImageView>
-                  <ImageView fx:id="Karte33" fitHeight="100.0" fitWidth="95.0" layoutX="1343.0" layoutY="268.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte34" fitHeight="100.0" fitWidth="95.0" layoutX="1343.0" layoutY="332.0"  pickOnBounds="true" preserveRatio="true" rotate="270.0">
+
+                  </ImageView>
+                  <ImageView fx:id="Karte33" fitHeight="100.0" fitWidth="95.0" layoutX="1343.0" layoutY="268.0"  pickOnBounds="true" preserveRatio="true" rotate="270.0">
 
                   </ImageView>
                 <ImageView fx:id="deck" fitHeight="100.0" fitWidth="75.0" layoutX="528.0" layoutY="203.0" onMouseClicked="#drawCard" pickOnBounds="true" preserveRatio="true" />
@@ -112,7 +112,7 @@
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="eggNumberNorth" layoutX="585.0" layoutY="12.0" text="0" textFill="#065e1f">
+                  <Label fx:id="eggNumberNorth" layoutX="585.0" layoutY="12.0"  textFill="#065e1f">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -132,7 +132,7 @@
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="eggNumberWest" layoutX="28.0" layoutY="128.0" text="0" textFill="#9413b4">
+                  <Label fx:id="eggNumberWest" layoutX="28.0" layoutY="128.0"  textFill="#9413b4">
                      <font>
                         <Font size="24.0" />
                      </font></Label>
@@ -155,7 +155,7 @@
                           </font>
                       </Label>
                       <Button fx:id="roosterCardButton" layoutX="863.0" layoutY="12.0" onAction="#handleRoosterCardAction" prefHeight="25.0" prefWidth="126.0" text="Hahn beanspruchen" />
-                      <Label fx:id="eggNumberSouth" layoutX="600.0" layoutY="7.0" text="0" textFill="#065e1f">
+                      <Label fx:id="eggNumberSouth" layoutX="600.0" layoutY="7.0"  textFill="#065e1f">
                           <font>
                               <Font size="24.0" />
                           </font>
@@ -197,7 +197,7 @@
                                 <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                             </image>
                         </ImageView>
-                        <Label fx:id="eggNumberEast" layoutX="25.0" layoutY="133.0" text="0" textFill="#9413b4">
+                        <Label fx:id="eggNumberEast" layoutX="25.0" layoutY="133.0"  textFill="#9413b4">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -207,18 +207,18 @@
             </VBox>
         </right>
     </BorderPane>
-    <ImageView fx:id="Karte1" fitHeight="100.0" fitWidth="75.0" layoutX="300.0" layoutY="633.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte2" fitHeight="100.0" fitWidth="75.0" layoutX="375.0" layoutY="633.0" onMouseClicked="#drawCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte3" fitHeight="100.0" fitWidth="75.0" layoutX="450.0" layoutY="633.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte4" fitHeight="100.0" fitWidth="75.0" layoutX="525.0" layoutY="633.0" onMouseClicked="#drawCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte5" fitHeight="100.0" fitWidth="75.0" layoutX="600.0" layoutY="633.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte6" fitHeight="100.0" fitWidth="75.0" layoutX="675.0" layoutY="633.0" onMouseClicked="#drawCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte7" fitHeight="100.0" fitWidth="75.0" layoutX="750.0" layoutY="633.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte8" fitHeight="100.0" fitWidth="75.0" layoutX="825.0" layoutY="633.0" onMouseClicked="#drawCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte9" fitHeight="100.0" fitWidth="75.0" layoutX="900.0" layoutY="633.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte10" fitHeight="100.0" fitWidth="75.0" layoutX="975.0" layoutY="633.0" onMouseClicked="#drawCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte11" fitHeight="100.0" fitWidth="75.0" layoutX="1050.0" layoutY="633.0" onMouseClicked="#discardCard" pickOnBounds="true" preserveRatio="true" />
-    <ImageView fx:id="Karte12" fitHeight="100.0" fitWidth="75.0" layoutX="1125.0" layoutY="633.0" onMouseClicked="#drawCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte1" fitHeight="100.0" fitWidth="75.0" layoutX="300.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte2" fitHeight="100.0" fitWidth="75.0" layoutX="375.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte3" fitHeight="100.0" fitWidth="75.0" layoutX="450.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte4" fitHeight="100.0" fitWidth="75.0" layoutX="525.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte5" fitHeight="100.0" fitWidth="75.0" layoutX="600.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte6" fitHeight="100.0" fitWidth="75.0" layoutX="675.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte7" fitHeight="100.0" fitWidth="75.0" layoutX="750.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte8" fitHeight="100.0" fitWidth="75.0" layoutX="825.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte9" fitHeight="100.0" fitWidth="75.0" layoutX="900.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte10" fitHeight="100.0" fitWidth="75.0" layoutX="975.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte11" fitHeight="100.0" fitWidth="75.0" layoutX="1050.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
+    <ImageView fx:id="Karte12" fitHeight="100.0" fitWidth="75.0" layoutX="1125.0" layoutY="633.0" onMouseClicked="#chooseCard" pickOnBounds="true" preserveRatio="true" />
     <Label layoutX="69.0" layoutY="17.0" prefHeight="35.0" prefWidth="126.0" text="Spielraum: " textFill="#9413b4">
       <font>
         <Font name="Comic Sans MS" size="22.0" />

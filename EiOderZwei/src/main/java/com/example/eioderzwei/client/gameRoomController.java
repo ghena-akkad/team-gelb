@@ -12,6 +12,8 @@ import javafx.geometry.Insets;
 
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.effect.DropShadow;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -60,29 +62,26 @@ public class gameRoomController implements Initializable {
     private Button roosterCardButton;
     private String roomName;
     private String username;
-    private String deck_card;
 
     @FXML
     private ImageView Karte1, Karte2, Karte3, Karte4, Karte5, Karte6, Karte7, Karte8, Karte9, Karte10,
             Karte11, Karte12, Karte13, Karte14, Karte15, Karte16, Karte17, Karte18, Karte19, Karte20,
             Karte21, Karte22, Karte23, Karte24, Karte25, Karte26, Karte27, Karte28, Karte29, Karte30,
             Karte31, Karte32, Karte33, Karte34, Karte35, Karte36, small0, small1, small2, small3;
-    ImageView[] cardInHandImageViews = {
-
-            Karte1, Karte2, Karte3, Karte4, Karte5, Karte6, Karte7, Karte8, Karte9, Karte10,
-            Karte11, Karte12};
-    ImageView[] cardWestImageViews = {
-            Karte13, Karte14, Karte15, Karte16, Karte17, Karte18, Karte19, Karte20,
-            Karte21, Karte22};
-    ImageView[] cardNorthImageViews = {
-            Karte23, Karte24, Karte25, Karte26, Karte27, Karte28, Karte29};
-    ImageView[] cardEastImageViews = {
-            Karte30, Karte31, Karte32, Karte33, Karte34, Karte35, Karte36};
+    ImageView[] cardInHandImageViews;
+    ImageView[] cardWestImageViews;
+    ImageView[] cardNorthImageViews ;
+    ImageView[] cardEastImageViews ;
+    private List<ImageView> selectedCards;
+    private ArrayList<String> selectedCardsString;
     @FXML
     private Label eggNumberNorth, eggNumberEast, eggNumberWest, eggNumberSouth;
 
-    private String cardNameSelected;
-    private ImageView selectedCard;
+    boolean used1;
+    boolean used2;
+
+
+
     GameManagerInterface gameman;
     RoomsManagerInterface roomman;
     ChatManagerInterface chatman;
@@ -98,6 +97,12 @@ public class gameRoomController implements Initializable {
         this.roomman = Client.getRoomsManager();
         this.chatman = Client.getChatManager();
         username = UserInfo.getUsername();
+        used1 = false;
+        used2= false;
+        eggNumberSouth.setText("0");
+        eggNumberNorth.setText("0");
+        eggNumberEast.setText("0");
+        eggNumberWest.setText("0");
         eggNumberSouth.setVisible(false);
         eggNumberNorth.setVisible(false);
         eggNumberEast.setVisible(false);
@@ -107,9 +112,19 @@ public class gameRoomController implements Initializable {
         small2.setVisible(false);
         small3.setVisible(false);
         roosterCardButton.setVisible(false);
-        System.out.println(username);
+        selectedCards = new ArrayList<>();
+        selectedCardsString = new ArrayList<>();
+        cardInHandImageViews = new ImageView[]{ Karte1, Karte2, Karte3, Karte4, Karte5, Karte6, Karte7, Karte8, Karte9, Karte10,
+                Karte11, Karte12 };
+        cardWestImageViews = new ImageView[]{
+                Karte13, Karte14, Karte15, Karte16, Karte17, Karte18, Karte19, Karte20,
+                Karte21, Karte22};
+        cardNorthImageViews =new ImageView[] {
+                Karte23, Karte24, Karte25, Karte26, Karte27, Karte28, Karte29};
+        cardEastImageViews =new ImageView[] {
+                Karte30, Karte31, Karte32, Karte33, Karte34, Karte35, Karte36};
+
         roomName = UserInfo.getRoomname();
-        System.out.println(roomName);
         initThread();
         cardsThread();
         startChatThread();
@@ -143,6 +158,7 @@ public class gameRoomController implements Initializable {
                             try {
                                 List<String> joinedPlayers = roomman.getPlayers(roomName);
                                 updatePlayerLabels(joinedPlayers);
+
                                 if ((gameman.getRequiredNumberOfPlayers(roomName) > gameman.getNumberOfPlayers(roomName))) {
                                     gameStatus.setText("Warte auf die anderen Spieler");
                                 } else {
@@ -161,6 +177,16 @@ public class gameRoomController implements Initializable {
 
                                     }else{
                                         zuglabel.setText(gameman.whose_turn(roomName));
+                                        int a = (gameman.howManyEggs(nameLabelEast.getText(),roomName));
+                                        int b = (gameman.howManyEggs(nameLabelWest.getText(),roomName));
+                                        int c = (gameman.howManyEggs(username,roomName));
+                                        int d = (gameman.howManyEggs(nameLabelNorth.getText(),roomName));
+
+                                        eggNumberEast.setText(Integer.toString(a));
+                                        eggNumberWest.setText(Integer.toString(b));
+                                        eggNumberSouth.setText(Integer.toString(c));
+                                        eggNumberNorth.setText(Integer.toString(d));
+
 
                                     }
                                 }
@@ -205,10 +231,6 @@ public class gameRoomController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-    private List<String> lastKnownSouthCards = new ArrayList<>();
-    private List<String> lastKnownWestCards = new ArrayList<>();
-    private List<String> lastKnownNorthCards = new ArrayList<>();
-    private List<String> lastKnownEastCards = new ArrayList<>();
 
     public void cardsThread(){
         synchronized (this) {
@@ -249,7 +271,7 @@ public class gameRoomController implements Initializable {
         }
     }
     private void updateDecks(String s, String string) throws FileNotFoundException {
-        if (string.equals("")) {
+        if (string.isEmpty()) {
             ablage.setImage(null);
         } else {
             FileInputStream input2 = new FileInputStream("EiOderZwei/src/main/java/" + string);
@@ -262,187 +284,77 @@ public class gameRoomController implements Initializable {
     }
 
     private void updateCardsNorth(List<String> playersCard) throws FileNotFoundException {
-        Karte23.setImage(null);
-        Karte24.setImage(null);
-        Karte25.setImage(null);
-        Karte26.setImage(null);
-        Karte27.setImage(null);
-        Karte28.setImage(null);
-        Karte29.setImage(null);
+        for (ImageView cardNorthImageView : cardNorthImageViews) {
+            cardNorthImageView.setImage(null);
+        }
         if (!playersCard.isEmpty()) {
-            int n = 1;
+            int n = 0;
             for (String card : playersCard) {
-                FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/" + card);
+                FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/"+card);
+
                 Image img = new Image(input);
-                if (n == 1) {
-                    Karte23.setImage(img);
-                }
-                if (n == 2) {
-                    Karte24.setImage(img);
-                }
-                if (n == 3) {
-                    Karte25.setImage(img);
-                }
-                if (n == 4) {
-                    Karte26.setImage(img);
-                }
-                if (n == 5) {
-                    Karte27.setImage(img);
-                }
-                if (n == 6) {
-                    Karte28.setImage(img);
-                }
-                if (n == 7) {
-                    Karte29.setImage(img);
-                }
+                cardNorthImageViews[n].setImage(img);
                 n++;
+
+
+
             }
         }
     }
 
     private void updateCardsEast(List<String> playersCard) throws FileNotFoundException {
-        Karte30.setImage(null);
-        Karte31.setImage(null);
-        Karte32.setImage(null);
-        Karte33.setImage(null);
-        Karte34.setImage(null);
-        Karte35.setImage(null);
-        Karte36.setImage(null);
+        for (ImageView cardEastImageView : cardEastImageViews) {
+            cardEastImageView.setImage(null);
+        }
         if (!playersCard.isEmpty()) {
-            int n = 1;
+            int n = 0;
             for (String card : playersCard) {
-                FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/" + card);
+                FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/"+card);
+
                 Image img = new Image(input);
-                if (n == 1) {
-                    Karte30.setImage(img);
-                }
-                if (n == 2) {
-                    Karte31.setImage(img);
-                }
-                if (n == 3) {
-                    Karte32.setImage(img);
-                }
-                if (n == 4) {
-                    Karte33.setImage(img);
-                }
-                if (n == 5) {
-                    Karte34.setImage(img);
-                }
-                if (n == 6) {
-                    Karte35.setImage(img);
-                }
-                if (n == 7) {
-                    Karte36.setImage(img);
-                }
+                cardEastImageViews[n].setImage(img);
                 n++;
+
+
+
             }
         }
     }
     private void updateCardsWest(List<String> playersCard) throws FileNotFoundException {
-        Karte13.setImage(null);
-        Karte14.setImage(null);
-        Karte15.setImage(null);
-        Karte16.setImage(null);
-        Karte17.setImage(null);
-        Karte18.setImage(null);
-        Karte19.setImage(null);
-        Karte20.setImage(null);
-        Karte21.setImage(null);
-        Karte22.setImage(null);
+        for (ImageView cardWestImageView : cardWestImageViews) {
+            cardWestImageView.setImage(null);
+        }
         if (!playersCard.isEmpty()) {
-            int n = 1;
+            int n = 0;
             for (String card : playersCard) {
-                FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/" + card);
+                FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/"+card);
+
                 Image img = new Image(input);
-                if (n == 1) {
-                    Karte13.setImage(img);
-                }
-                if (n == 2) {
-                    Karte14.setImage(img);
-                }
-                if (n == 3) {
-                    Karte15.setImage(img);
-                }
-                if (n == 4) {
-                    Karte16.setImage(img);
-                }
-                if (n == 5) {
-                    Karte17.setImage(img);
-                }
-                if (n == 6) {
-                    Karte18.setImage(img);
-                }
-                if (n == 7) {
-                    Karte19.setImage(img);
-                }
-                if (n == 8) {
-                    Karte20.setImage(img);
-                }
-                if (n == 9) {
-                    Karte21.setImage(img);
-                }
-                if (n == 10) {
-                    Karte22.setImage(img);
-                }
+                cardWestImageViews[n].setImage(img);
                 n++;
+
+
+
             }
         }
     }
     private void updateCardsSouth(List<String> playersCard) throws FileNotFoundException {
-        Karte1.setImage(null);
-        Karte2.setImage(null);
-        Karte3.setImage(null);
-        Karte4.setImage(null);
-        Karte5.setImage(null);
-        Karte6.setImage(null);
-        Karte7.setImage(null);
-        Karte8.setImage(null);
-        Karte9.setImage(null);
-        Karte10.setImage(null);
-        Karte11.setImage(null);
-        Karte12.setImage(null);
+
+        for (ImageView cardInHandImageView : cardInHandImageViews) {
+            cardInHandImageView.setImage(null);
+        }
         if (!playersCard.isEmpty()) {
-            int n = 1;
+            int n = 0;
             for (String card : playersCard) {
-                FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/" + card);
+                FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/"+card);
+
                 Image img = new Image(input);
-                if (n == 1) {
-                    Karte1.setImage(img);
-                }
-                if (n == 2) {
-                    Karte2.setImage(img);
-                }
-                if (n == 3) {
-                    Karte3.setImage(img);
-                }
-                if (n == 4) {
-                    Karte4.setImage(img);
-                }
-                if (n == 5) {
-                    Karte5.setImage(img);
-                }
-                if (n == 6) {
-                    Karte6.setImage(img);
-                }
-                if (n == 7) {
-                    Karte7.setImage(img);
-                }
-                if (n == 8) {
-                    Karte8.setImage(img);
-                }
-                if (n == 9) {
-                    Karte9.setImage(img);
-                }
-                if (n == 10) {
-                    Karte10.setImage(img);
-                }
-                if (n == 11) {
-                    Karte10.setImage(img);
-                }
-                if (n == 12) {
-                    Karte10.setImage(img);
-                }
-                n++;
+                    cardInHandImageViews[n].setImage(img);
+                    cardInHandImageViews[n].setUserData(card);
+                    n++;
+
+
+
             }
         }
     }
@@ -479,7 +391,7 @@ public class gameRoomController implements Initializable {
                 }
                 break;
             case 4:
-                for (String name : playerNames) {
+
                     if (playerNames.get(1).equals(username)) {
                         nameLabelNorth.setText(playerNames.get(3));
                         nameLabelWest.setText(playerNames.get(2));
@@ -497,8 +409,7 @@ public class gameRoomController implements Initializable {
                         nameLabelEast.setText(playerNames.get(2));
                         nameLabelWest.setText(playerNames.get(0));
                     }
-                }
-                break;
+
         }
     }
 
@@ -506,78 +417,92 @@ public class gameRoomController implements Initializable {
 
 
 
-    private List<ImageView> selectedCards = new ArrayList<>();
+
+
     public void chooseCard(MouseEvent actionEvent) {
         ImageView card = (ImageView) actionEvent.getSource();
+        String path = (String) card.getUserData();
         if (selectedCards.contains(card)) {
             selectedCards.remove(card);
-            card.setStyle(""); // Reset style for deselection
+            selectedCardsString.remove(path);
+            card.setEffect(null);
+            card.setStyle("");
         } else {
             selectedCards.add(card);
-            card.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0)"); // Style for selection
+            selectedCardsString.add(path);
+            System.out.println(selectedCardsString);
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.setRadius(15.0);
+            dropShadow.setColor(Color.rgb(0, 0, 255, 0.8));
+            dropShadow.setSpread(0.5);
+            card.setEffect(dropShadow);
+            card.setStyle("-fx-border-color: red; -fx-border-width: 4px;");
         }
     }
     @FXML
-    private void onDiscardPileClicked(MouseEvent event) {
+    private void onDiscardPileClicked(MouseEvent event) throws RoomDoesNotExistException, RemoteException {
+        if(gameman.is_turn(username, roomName )) {
+            if (!gameman.lay_eggs(username, roomName, selectedCardsString)) {
+                showErrorPopup("Keine Eier wurden gelegt");
+                resetCardSelection();
+            } else {
+                resetCardSelection();
 
-        }
-    public void drawCard(MouseEvent actionEvent) throws RoomDoesNotExistException {
-        try {
-            String drawnCard = gameman.draw_card(roomName);
-            // Check if drawn
-            if (drawnCard != null && !drawnCard.isEmpty()) {
-                FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/" + drawnCard);
-                Image img = new Image(input);
-
-                if(drawnCard.contains("Hahnkarte")) {
-                    if (gameman.get_rooster_holder(roomName).equals(username)) {
-                        String additionalCard = gameman.draw_card(roomName);
-                        // Load the image of the additional card
-                        FileInputStream additionalCardInput = new FileInputStream("EiOderZwei/src/main/java/" + additionalCard);
-                        Image additionalCardImage = new Image(additionalCardInput);
-                        // Add the additional card to the player's hand
-
-                    }
-                    //handleRoosterCard();
-                } else if(drawnCard.contains("Fucks")) {
-                    // Handle fox card logic
-                    handleFoxCard();
+                if(gameman.get_rooster_holder(roomName).equals(username) )
+                {
+                    used2 = true;
                 }
+                else{
+                    gameman.give_turn(roomName);
+
+
+                }
+
             }
-        } catch (FileNotFoundException | RemoteException e) {
-            e.printStackTrace();
+        }
+        else{
+            showErrorPopup("Nicht dein Zug!");
+        }
+
+
+        }
+    public void drawCard(MouseEvent actionEvent) throws IOException, RoomDoesNotExistException {
+        if(gameman.is_turn(username, roomName )){
+            gameman.draw_card(roomName, username);
+
+            if(gameman.get_rooster_holder(roomName).equals(username) && !used1 &&!used2)
+            {
+                used1 = true;
+            }
+            else{
+                used1 = false;
+                used2 = false;
+                gameman.give_turn(roomName);
+
+
+            }
+
+
+        }
+        else{
+            showErrorPopup("Nicht dein Zug!");
         }
     }
 
-    public void discardCard(MouseEvent actionEvent) {
-        ImageView card = (ImageView) actionEvent.getSource();
-        if (selectedCards.contains(card)) {
-            selectedCards.remove(card);
-            card.setStyle(""); // Reset style for deselection
-        } else {
-            selectedCards.add(card);
-            card.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0)"); // Style for selection
-        }
-    }
 
 
 
     private void resetCardSelection() {
         for (ImageView card : selectedCards) {
-            card.setStyle(""); // Reset style
+            card.setEffect(null);
+            card.setStyle("");
         }
         selectedCards.clear();
+        selectedCardsString.clear();
     }
 
-    //diese methode wollte ich impl damit man wenn man auf
-    // imageviews clicken kann und sie werden zu cards umgeschrieben was man
-    // braucht um karten zu selektieren und dann ei zu legen
 
-    private void getCardFromImageView(ImageView imageView) { //anstelle von void muss Card hin
-        // Implementation depends on how you're associating ImageViews with Card objects
-        // For example, you might use imageView.getId() or a Map<ImageView, Card>
 
-    }
     private void handleRoosterCard() {
         try {
             boolean canClaimRooster = gameman.want_rooster_card(username, roomName);

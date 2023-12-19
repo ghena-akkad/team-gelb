@@ -9,9 +9,12 @@ import java.util.Map;
 public class RoomsManager implements RoomsManagerInterface {
 
     private RoomsManagerHelper helper;
+    private LoginManagerHelper loginManager;
+
 
     public RoomsManager() {
         this.helper = new RoomsManagerHelper();
+        this.loginManager = new LoginManagerHelper();
 
     }
 
@@ -30,17 +33,12 @@ public class RoomsManager implements RoomsManagerInterface {
     /**
      * Tritt einem bestehenden Spielzimmer bei.
      */
-    public void joinRoom(String roomName, String username, String hashedPassword) throws RoomDoesNotExistException, RoomIsFullException {
+    public void joinRoom(String roomName, String username) throws RoomDoesNotExistException, RoomIsFullException {
         if (helper.ifRoomExists(roomName)) {
             GameRoom gameroom = helper.getGameroom(roomName);
-
-            // Check if the room is full before adding a new player
             if (!gameroom.isRoomFull()) {
-                // Create a new Player object. Adjust this based on your Player class constructor.
-                Player newPlayer = new Player(username, hashedPassword);
-
-                // Add the player to the GameRoom
-                gameroom.addPlayer(username, newPlayer);
+                Player player = loginManager.getPlayer(username);
+                gameroom.addPlayer(username, player);
             } else {
                 throw new RoomIsFullException("Raum ist schon voll");
             }

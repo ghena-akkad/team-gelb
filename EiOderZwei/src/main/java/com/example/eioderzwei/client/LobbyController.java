@@ -38,10 +38,7 @@ public class LobbyController {
     private Button goToGameRoom;
     @FXML
     private Button enterButton;
-    @FXML
-    private Button next1;
-    @FXML
-    private Button next2;
+
     @FXML
     private Button createGameButton;
     RoomsManagerInterface roomman;
@@ -55,8 +52,6 @@ public class LobbyController {
         roomNameField.setVisible(false);
         newRoomNameField.setVisible(false);
         goToGameRoom.setVisible(false);
-        next1.setVisible(false);
-        next2.setVisible(false);
         createGameButton.setVisible(false);
         playerNumberField.setVisible(false);
         botNumberField.setVisible(false);
@@ -98,7 +93,7 @@ public class LobbyController {
             try {
                 String username = UserInfo.getUsername();
                 String hashedPassword = UserInfo.getUserPasswordHash(); // Retrieve stored hashed password
-                roomman.joinRoom(roomName, username, hashedPassword);
+                roomman.joinRoom(roomName, username);
                 UserInfo.setRoomname(roomName);
                 int requiredPlayers = roomman.getRequiredPlayersNumber(roomName);
                 openPlayTableWindow(username, roomName, requiredPlayers);
@@ -117,15 +112,53 @@ public class LobbyController {
         }
     }
     @FXML
-    public void onNextButtonClicked1() {
+    public void onCreateGameButtonClicked() {
         String room_name = newRoomNameField.getText();
 
         if (!room_name.isEmpty()) {
             try {
                 roomman.ifRoomExists(room_name);
                 UserInfo.setRoomname(room_name);
-                next1.setVisible(false);
-                next2.setVisible(true);
+                String pn = playerNumberField.getText();
+                if (!pn.isEmpty()) {
+                    try {
+                        int playerNumber = Integer.parseInt(playerNumberField.getText());
+                        if (playerNumber > 1 && playerNumber < 6) {
+                            UserInfo.setPlayNumber(playerNumber);
+                            String botNumberText = botNumberField.getText();
+                            if (!botNumberText.isEmpty()) {
+                                try {
+                                    int botNumber = Integer.parseInt(botNumberText);
+                                    if (botNumber < UserInfo.getPlayNumber()) {
+                                        try {
+                                            roomman.createRoom(UserInfo.getRoomname(), botNumber, UserInfo.getPlayNumber());
+                                            String hashedPassword = UserInfo.getUserPasswordHash(); // Retrieve the stored hashed password
+                                            roomman.joinRoom(UserInfo.getRoomname(), UserInfo.getUsername()); // Include the hashed password
+                                            openPlayTableWindow(UserInfo.getUsername(), UserInfo.getRoomname(), UserInfo.getPlayNumber());
+                                        } catch (RemoteException e) {
+                                            throw new RuntimeException(e);
+                                        } catch (RoomDoesNotExistException | RoomIsFullException e) {
+                                            showErrorPopup("Problem beim Beitritt zum Raum: " + e.getMessage());
+                                        }
+                                    } else {
+                                        showErrorPopup("Die Anzahl von Bots muss weniger als " + UserInfo.getPlayNumber() + " sein!");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    showErrorPopup("Ungültige Eingabe. Bitte nur Zahlen eingeben.");
+                                }
+                            } else {
+                                showErrorPopup("Bitte Anzahl von Bots eingeben");
+                            }
+                        } else {
+                            showErrorPopup("Ungültige Eingaben. Überprüfe die Anzahl der Spieler (2 bis 5 erlaubt)");
+                        }
+                    } catch (NumberFormatException e) {
+                        // Handle the case where the input is not a valid integer
+                        showErrorPopup("Ungültige Eingabe. Bitte nur Zahlen eingeben.");
+                    }
+                } else {
+                    showErrorPopup("Bitte Anzahl von Spieler eingeben");
+                }
             } catch (RoomNameAlreadyExistsException e) {
                 showErrorPopup("Der Raum mit diesem Namen existiert bereits. Bitte wähle einen anderen Namen.");
 
@@ -137,59 +170,13 @@ public class LobbyController {
             showErrorPopup("Bitte Spielraum Namen eingeben");
         }
     }
-    @FXML
-    public void onNextButtonClicked2() {
-        String pn = playerNumberField.getText();
-        if (!pn.isEmpty()) {
-            try {
-                int playerNumber = Integer.parseInt(playerNumberField.getText());
-                if (playerNumber > 1 && playerNumber < 6) {
-                    UserInfo.setPlayNumber(playerNumber);
-                    next2.setVisible(false);
-                    createGameButton.setVisible(true);
-                } else {
-                    showErrorPopup("Ungültige Eingaben. Überprüfe die Anzahl der Spieler (2 bis 5 erlaubt)");
-                }
-            } catch (NumberFormatException e) {
-                // Handle the case where the input is not a valid integer
-                showErrorPopup("Ungültige Eingabe. Bitte nur Zahlen eingeben.");
-            }
-        } else {
-            showErrorPopup("Bitte Anzahl von Spieler eingeben");
-        }
-    }
-    @FXML
-    private void onCreateGameButtonClicked() {
-        String botNumberText = botNumberField.getText();
-        if (!botNumberText.isEmpty()) {
-            try {
-                int botNumber = Integer.parseInt(botNumberText);
-                if (botNumber < UserInfo.getPlayNumber()) {
-                    try {
-                        roomman.createRoom(UserInfo.getRoomname(), botNumber, UserInfo.getPlayNumber());
-                        String hashedPassword = UserInfo.getUserPasswordHash(); // Retrieve the stored hashed password
-                        roomman.joinRoom(UserInfo.getRoomname(), UserInfo.getUsername(), hashedPassword); // Include the hashed password
-                        openPlayTableWindow(UserInfo.getUsername(), UserInfo.getRoomname(), UserInfo.getPlayNumber());
-                    } catch (RemoteException e) {
-                        throw new RuntimeException(e);
-                    } catch (RoomDoesNotExistException | RoomIsFullException e) {
-                        showErrorPopup("Problem beim Beitritt zum Raum: " + e.getMessage());
-                    }
-                } else {
-                    showErrorPopup("Die Anzahl von Bots muss weniger als " + UserInfo.getPlayNumber() + " sein!");
-                }
-            } catch (NumberFormatException e) {
-                showErrorPopup("Ungültige Eingabe. Bitte nur Zahlen eingeben.");
-            }
-        } else {
-            showErrorPopup("Bitte Anzahl von Bots eingeben");
-        }
-    }
+
+
     protected void roomNameFieldAction() {
         roomNameField.setVisible(true);
         newRoomNameField.setVisible(true);
         goToGameRoom.setVisible(true);
-        next1.setVisible(true);
+        createGameButton.setVisible(true);
         playerNumberField.setVisible(true);
         botNumberField.setVisible(true);
         l2.setVisible(true);

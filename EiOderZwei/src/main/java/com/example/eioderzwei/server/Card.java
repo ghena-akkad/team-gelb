@@ -77,7 +77,7 @@ public class Card {
             case FOURNORMAL:
                 return 4;
             case ONEBIO:
-                return 1; // Assuming bio grains have the same base value as normal grains
+                return 1;
             case TWOBIO:
                 return 2;
             case THREEBIO:

@@ -52,11 +52,10 @@ public class RoomsManagerHelper {
     }
 
     public  GameRoom getGameroom(String roomname) throws RoomDoesNotExistException {
-        System.out.println("starting getGameeroom");
+
 
         if (gameRooms.containsKey(roomname)) {
             GameRoom gameroom = gameRooms.get(roomname);
-            System.out.println("getGameroom ok");
 
             return gameroom;
         } else {

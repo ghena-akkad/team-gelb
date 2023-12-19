@@ -15,6 +15,8 @@ import static com.example.eioderzwei.server.CardType.ROOSTER;
 public class GameManager implements GameManagerInterface {
     private RoomsManagerHelper roomsManager;
     private LoginManagerHelper loginManager;
+    private static final Map<String, CardType> imageCardMap = new HashMap<>();
+
     private Map<CardType, String> cardImageMap;
     public GameManager() {
         this.roomsManager = new RoomsManagerHelper();
@@ -22,16 +24,19 @@ public class GameManager implements GameManagerInterface {
         get_map();
     }
     public void  get_map(){
-        Map<CardType, String> cardImageMap = new HashMap<>();
-        cardImageMap.put(CardType.TWONORMAL, "com/example/eioderzwei/image/2Korn.png");
-        cardImageMap.put(CardType.THREENORMAL, "com/example/eioderzwei/image/3Korn.png");
-        cardImageMap.put(CardType.FOURNORMAL, "com/example/eioderzwei/image/4Korn.png");
-        cardImageMap.put(CardType.ONEBIO, "com/example/eioderzwei/image/1BioKorn.png");
-        cardImageMap.put(CardType.TWOBIO, "com/example/eioderzwei/image/2BioKörner.png");
-        cardImageMap.put(CardType.THREEBIO, "com/example/eioderzwei/image/3BioKorn.png");
-        cardImageMap.put(CardType.FOX, "com/example/eioderzwei/image/Fucks.png");
-        cardImageMap.put(CardType.CUCKOO, "com/example/eioderzwei/image/Kuckuck.png");
-        cardImageMap.put(ROOSTER, "com/example/eioderzwei/image/Hahnkarte.png");
+        imageCardMap.put("com/example/eioderzwei/image/2Korn.png", CardType.TWONORMAL);
+        imageCardMap.put("com/example/eioderzwei/image/3Korn.png", CardType.THREENORMAL);
+        imageCardMap.put("com/example/eioderzwei/image/4Korn.png", CardType.FOURNORMAL);
+        imageCardMap.put("com/example/eioderzwei/image/1BioKorn.png", CardType.ONEBIO);
+        imageCardMap.put("com/example/eioderzwei/image/2BioKörner.png", CardType.TWOBIO);
+        imageCardMap.put("com/example/eioderzwei/image/3BioKorn.png", CardType.THREEBIO);
+        imageCardMap.put("com/example/eioderzwei/image/Fucks.png",CardType.FOX);
+        imageCardMap.put("com/example/eioderzwei/image/Kuckuck.png", CardType.CUCKOO);
+        imageCardMap.put("com/example/eioderzwei/image/Hahnkarte.png", ROOSTER);
+    }
+
+    public CardType getCard(String s) {
+        return imageCardMap.get(s);
     }
     public void initialize_rooster(String currentRoomName) throws RoomDoesNotExistException{
         Random random = new Random();
@@ -67,10 +72,12 @@ public class GameManager implements GameManagerInterface {
     public String whose_turn(String currentRoomName)throws RoomDoesNotExistException {
         return roomsManager.getGameroom(currentRoomName).getCurrentPlayer().getUsername();
     }
-    public String  draw_card(String currentRoomName) throws RoomDoesNotExistException {
+    public void  draw_card(String currentRoomName, String player) throws RoomDoesNotExistException {
         Card card = roomsManager.getGameroom(currentRoomName).getDrawPile().drawCard();
+        loginManager.getPlayer(player).addCardToHand(card);
         String imagePath = card.getImagePath();
-        return imagePath;
+
+
     }
     public String showTopCard(String currentRoomName) throws RoomDoesNotExistException {
         Card card = roomsManager.getGameroom(currentRoomName).getDrawPile().showTopCard();
@@ -90,15 +97,12 @@ public class GameManager implements GameManagerInterface {
         return roomsManager.getGameroom(currentRoomName).getPlayerIds().size();
     }
     public int getRequiredNumberOfPlayers(String currentRoomName)throws RoomDoesNotExistException {
-            System.out.println("getrequired ok");
             GameRoom g = roomsManager.getGameroom(currentRoomName);
             if(g != null) {
-                System.out.println("g is not null");
 
                 return g.getRequiredNumberOfPlayers();
             }
             else{
-                System.out.println("g is null");
                 return -1;
             }
     }
@@ -118,26 +122,70 @@ public class GameManager implements GameManagerInterface {
         Player player = room.getPlayerMap().get(playerId);
         return player.getEggCount();
     }
-    public boolean lay_eggs(String playerId, String currentRoomName) throws RoomDoesNotExistException {
+    public boolean lay_eggs(String playerId, String currentRoomName, ArrayList<String> selected) throws RoomDoesNotExistException {
+
         GameRoom room = roomsManager.getGameroom(currentRoomName);
         Player player = room.getPlayerMap().get(playerId);
-        int totalGrainCount = 0;
-        List<Card> cardsToRemove = new ArrayList<>();
-        for (Card card : player.getHand()) {
-            if (card.isGrainCard()) {
-                cardsToRemove.add(card);
-                totalGrainCount += card.getWert() * (card.getBio() ? 2 : 1); // Bio grains count double
+
+
+
+        ArrayList<Card> biocards = new ArrayList<>();
+        ArrayList<Card> cards = new ArrayList<>();
+
+        int grainCount = 0;
+        int bioGrainCount = 0;
+
+        for(String s: selected){
+            CardType t = getCard(s);
+
+            Card k = player.get_card(t);
+            if(k.getBio()){
+                biocards.add(k);
+
             }
+            else{
+                cards.add(k);
+            }
+
         }
-        int eggsLaid = totalGrainCount / 5; // 5 grains needed per egg
+
+        for (Card card : biocards) {
+
+            bioGrainCount += card.getWert();
+        }
+
+
+        int eggsLaidBio = (bioGrainCount / 5)*2;
+        int rest = bioGrainCount%5;
+
+        for (Card card : cards) {
+
+            grainCount += card.getWert();
+        }
+        grainCount+=rest;
+        int eggslaidnotbio= (grainCount / 5);
+        int eggsLaid = eggsLaidBio+eggslaidnotbio;
         if (eggsLaid > 0) {
-            // Remove used grain cards from the player's hand
-            player.getHand().removeAll(cardsToRemove);
-            // Increment the player's egg count
+            for (Card card : biocards) {
+                player.removeCard(card);
+                roomsManager.getGameroom(currentRoomName).getDiscardPile().discard_card(card);
+
+            }
+            for (Card card : cards) {
+                player.removeCard(card);
+                roomsManager.getGameroom(currentRoomName).getDiscardPile().discard_card(card);
+
+            }
+
             player.incrementEggCountBy(eggsLaid);
-            return true; // Egg laying was successful
+
+            System.out.println("eggsLaid = " + eggsLaid);
+
+
+            return true;
         }
-        return false; // Not enough grains to lay any eggs
+
+        return false;
     }
     public void give_rooster_card(String playerId, String currentRoomName) throws RoomDoesNotExistException {
         roomsManager.getGameroom(currentRoomName).setRoosterCardHolder(playerId);

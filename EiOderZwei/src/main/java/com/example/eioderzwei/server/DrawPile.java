@@ -30,7 +30,7 @@ public class DrawPile {
 
         addCards(CardType.FOX, 13);
 
-        addCards(CardType.ROOSTER, 3);
+        addCards(CardType.CUCKOO, 4);
 
         // Mischen des Ziehstapels
         Collections.shuffle(drawPile);
@@ -45,7 +45,6 @@ public class DrawPile {
 
 
     public Card showTopCard() {
-        System.out.println("showTopCard in DrawPile ok");
 
         return drawPile.isEmpty() ? null : drawPile.peek();
 

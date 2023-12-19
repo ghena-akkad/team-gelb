@@ -51,7 +51,11 @@ public class GameManager implements GameManagerInterface {
         Random random = new Random();
         int number = roomsManager.getGameroom(currentRoomName).getPlayersNumber();
         String random_player = roomsManager.getGameroom(currentRoomName).getPlayerIds().get(random.nextInt(number));
-        give_rooster_card(random_player, currentRoomName);
+        Card card = new Card(ROOSTER);
+        roomsManager.getGameroom(currentRoomName).setRoosterCardHolder(random_player);
+
+        loginManager.getPlayer(random_player).addCardToHand(card);
+
     }
     public boolean has_game_started(String currentRoomName) throws RoomDoesNotExistException {
         return roomsManager.getGameroom(currentRoomName).hasGameStarted();
@@ -81,13 +85,30 @@ public class GameManager implements GameManagerInterface {
     public String whose_turn(String currentRoomName)throws RoomDoesNotExistException {
         return roomsManager.getGameroom(currentRoomName).getCurrentPlayer().getUsername();
     }
-    public void  draw_card(String currentRoomName, String player) throws RoomDoesNotExistException {
+    public String  draw_card(String currentRoomName, String player) throws RoomDoesNotExistException {
         Card card = roomsManager.getGameroom(currentRoomName).getDrawPile().drawCard();
         loginManager.getPlayer(player).addCardToHand(card);
         String imagePath = card.getImagePath();
+        return imagePath;
 
 
     }
+    public void  discard_card(String currentRoomName, String playerId, String card) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+        Player player = room.getPlayerMap().get(playerId);
+        CardType t = getCard(card);
+        Card k = player.get_card(t);
+        player.removeCard(k);
+
+
+
+
+
+
+    }
+
+
+
     public String showTopCard(String currentRoomName) throws RoomDoesNotExistException {
         Card card = roomsManager.getGameroom(currentRoomName).getDrawPile().showTopCard();
         String imagePath = card.getImagePath();
@@ -131,23 +152,23 @@ public class GameManager implements GameManagerInterface {
         Player player = room.getPlayerMap().get(playerId);
         return player.getEggCount();
     }
-    public boolean lay_eggs(String playerId, String currentRoomName, ArrayList<String> selected) throws RoomDoesNotExistException {
-
+    public void incEggNumber(String playerId, String currentRoomName, int number) throws RoomDoesNotExistException {
         GameRoom room = roomsManager.getGameroom(currentRoomName);
         Player player = room.getPlayerMap().get(playerId);
-
-
-
+         player.incrementEggCountBy(number);
+    }
+    public boolean lay_eggs(String playerId, String currentRoomName, ArrayList<String> selected) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+        Player player = room.getPlayerMap().get(playerId);
         ArrayList<Card> biocards = new ArrayList<>();
         ArrayList<Card> cards = new ArrayList<>();
-
         int grainCount = 0;
         int bioGrainCount = 0;
-
         for(String s: selected){
             CardType t = getCard(s);
 
             Card k = player.get_card(t);
+            k.setUsed(true);
             if(k.getBio()){
                 biocards.add(k);
 
@@ -197,9 +218,18 @@ public class GameManager implements GameManagerInterface {
         return false;
     }
     public void give_rooster_card(String playerId, String currentRoomName) throws RoomDoesNotExistException {
+
+        String holder = roomsManager.getGameroom(currentRoomName).getRoosterCardHolder();
+
+        Player holderplayer =loginManager.getPlayer(holder);
+        Card card = holderplayer.get_card(ROOSTER);
+        holderplayer.removeCard(card);
         roomsManager.getGameroom(currentRoomName).setRoosterCardHolder(playerId);
-        Card card = new Card(ROOSTER);
         loginManager.getPlayer(playerId).addCardToHand(card);
+
+
+
+
     }
     public String get_rooster_holder(String currentRoomName) throws RoomDoesNotExistException {
         return roomsManager.getGameroom(currentRoomName).getRoosterCardHolder();
@@ -208,11 +238,14 @@ public class GameManager implements GameManagerInterface {
         GameRoom room = roomsManager.getGameroom(currentRoomName);
         Player playerRequesting = room.getPlayerMap().get(playerId);
         String roosterHolderId = room.getRoosterCardHolder();
+
+
         Player roosterHolder = roosterHolderId != null ? room.getPlayerMap().get(roosterHolderId) : null;
         if (roosterHolder == null || playerRequesting.getEggCount() < roosterHolder.getEggCount()) {
-            room.setRoosterCardHolder(playerId);
+
             return true;
         }
+
         return false;
     }
     public void steal_card(String stealerId, String victimId, Card cardToSteal, String currentRoomName) throws RoomDoesNotExistException {

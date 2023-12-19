@@ -9,16 +9,21 @@ import java.util.Map;
  */
 public class Card {
     private final CardType type;
+    private boolean used;
     private final String back = "EiOderZwei/src/main/java/com/example/eioderzwei/image/egg.png";
 
 
     public Card(CardType type) {
 
         this.type = type;
+        this.used = false;
     }
     public CardType getType(){
         return type;
     }
+    public boolean getUsed(){return used;}
+    public void setUsed(boolean u){ used = u;}
+
     private static final Map<CardType, String> cardImageMap = new HashMap<>();
 // TODO Ei noch hinzufügen ?
 
@@ -42,6 +47,10 @@ public class Card {
     }
     public boolean isHahnCard(){
         return type == CardType.ROOSTER;
+
+    }
+    public boolean isCuckooCard(){
+        return type == CardType.CUCKOO;
 
     }
     public String getDescription() {

@@ -183,6 +183,12 @@ public class gameRoomController implements Initializable {
                                         start();
 
                                     }else{
+                                        if(gameman.get_rooster_holder(roomName).equals(username)){
+                                            roosterCardButton.setDisable(true);
+                                        }else{
+                                            roosterCardButton.setDisable(false);
+
+                                        }
                                         zuglabel.setText(gameman.whose_turn(roomName));
                                         int a = (gameman.howManyEggs(nameLabelEast.getText(),roomName));
                                         int b = (gameman.howManyEggs(nameLabelWest.getText(),roomName));
@@ -230,6 +236,7 @@ public class gameRoomController implements Initializable {
             Image img = new Image(input);
             deck.setImage(img);
             gameman.initialize_rooster(roomName);
+
         } catch (RoomDoesNotExistException e) {
             throw new RuntimeException(e);
         } catch (FileNotFoundException e) {
@@ -429,41 +436,46 @@ public class gameRoomController implements Initializable {
     public void chooseCard(MouseEvent actionEvent) {
         ImageView card = (ImageView) actionEvent.getSource();
         String path = (String) card.getUserData();
-        if (selectedCards.contains(card)) {
+        if (card.getImage()!=null&&selectedCards.contains(card)) {
             selectedCards.remove(card);
             selectedCardsString.remove(path);
             card.setEffect(null);
             card.setStyle("");
         } else {
-            selectedCards.add(card);
-            selectedCardsString.add(path);
-            System.out.println(selectedCardsString);
-            DropShadow dropShadow = new DropShadow();
-            dropShadow.setRadius(15.0);
-            dropShadow.setColor(Color.rgb(0, 0, 255, 0.8));
-            dropShadow.setSpread(0.5);
-            card.setEffect(dropShadow);
-            card.setStyle("-fx-border-color: red; -fx-border-width: 4px;");
+            if(card.getImage()!=null){
+                selectedCards.add(card);
+                selectedCardsString.add(path);
+                DropShadow dropShadow = new DropShadow();
+                dropShadow.setRadius(15.0);
+                dropShadow.setColor(Color.rgb(0, 0, 255, 0.8));
+                dropShadow.setSpread(0.5);
+                card.setEffect(dropShadow);
+                card.setStyle("-fx-border-color: red; -fx-border-width: 4px;");
+
+            }
+
         }
     }
     @FXML
     private void onDiscardPileClicked(MouseEvent event) throws RoomDoesNotExistException, RemoteException {
-        if(gameman.is_turn(username, roomName )) {
-            if (!gameman.lay_eggs(username, roomName, selectedCardsString)) {
-                showErrorPopup("Keine Eier wurden gelegt");
-                resetCardSelection();
-            } else {
-                resetCardSelection();
+        if(gameman.is_turn(username, roomName ) ) {
+            if (!used2) {
+                if (!gameman.lay_eggs(username, roomName, selectedCardsString)) {
+                    showErrorPopup("Keine Eier wurden gelegt");
+                    resetCardSelection();
+                } else {
+                    resetCardSelection();
 
-                if(gameman.get_rooster_holder(roomName).equals(username) )
-                {
-                    used2 = true;
+                    if (gameman.get_rooster_holder(roomName).equals(username)) {
+                        used2 = true;
+                    } else {
+                        gameman.give_turn(roomName);
+
+
+                    }
+
                 }
-                else{
-                    gameman.give_turn(roomName);
-
-
-                }
+            } else {showErrorPopup("Nur Karte ziehen möglich");
 
             }
         }
@@ -475,7 +487,12 @@ public class gameRoomController implements Initializable {
         }
     public void drawCard(MouseEvent actionEvent) throws IOException, RoomDoesNotExistException {
         if(gameman.is_turn(username, roomName )){
-            gameman.draw_card(roomName, username);
+            String card = gameman.draw_card(roomName, username);
+
+            if(card.equals("com/example/eioderzwei/image/Kuckuck.png")){
+                gameman.incEggNumber(username,roomName,1);
+                gameman.discard_card(roomName, username, "com/example/eioderzwei/image/Kuckuck.png");
+            }
 
             if(gameman.get_rooster_holder(roomName).equals(username) && !used1 &&!used2)
             {
@@ -488,6 +505,7 @@ public class gameRoomController implements Initializable {
 
 
             }
+
 
 
         }
@@ -511,34 +529,40 @@ public class gameRoomController implements Initializable {
 
 
     private void handleRoosterCard() {
+
         try {
             boolean canClaimRooster = gameman.want_rooster_card(username, roomName);
             if (canClaimRooster) {
-                // Show dialog to ask player if they want to claim the rooster card
+
                 boolean claimDecision = showRoosterCardClaimDialog();
+
                 if (claimDecision) {
-                    // Player decided to claim the rooster card
+
                     gameman.give_rooster_card(username, roomName);
-                    // Update UI to show the player now has the rooster card
+                    used2 = true;
                 }
+            }else{
+                showErrorPopup("Sie haben mehr Eier als der Besitzer von Hahnkarte!");
             }
+
         } catch (RemoteException | RoomDoesNotExistException e) {
             e.printStackTrace();
-            // Handle exceptions
         }
     }
     @FXML
     private void handleRoosterCardAction(ActionEvent event) {
+
+
         handleRoosterCard();
     }
     private boolean showRoosterCardClaimDialog() {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Claim Rooster Card");
-        alert.setHeaderText("Do you want to claim the Rooster Card?");
-        alert.setContentText("If you have fewer eggs than the current holder, you can claim the Rooster Card.");
-        // Add buttons
-        ButtonType buttonYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
-        ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.NO);
+        alert.setTitle("Hahnkarte beanspruchen");
+        alert.setHeaderText("Möchten Sie die Rooster Card anfordern?");
+        alert.setContentText("Wenn Sie weniger Eier haben als der aktuelle Besitzer, können Sie die Hahnenkarte beanspruchen.");
+        ButtonType buttonYes = new ButtonType("Ja", ButtonBar.ButtonData.YES);
+        ButtonType buttonNo = new ButtonType("Nein", ButtonBar.ButtonData.NO);
         alert.getButtonTypes().setAll(buttonYes, buttonNo);
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == buttonYes;

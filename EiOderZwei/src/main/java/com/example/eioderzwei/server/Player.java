@@ -47,7 +47,7 @@ public class Player {
 
     public Card get_card(CardType type){
         for(Card card: hand) {
-            if( type == card.getType()){
+            if( type == card.getType() && !card.getUsed()){
                 return card;
             }
 

@@ -27,7 +27,8 @@ public interface GameManagerInterface extends Remote {
     boolean is_turn(String playername, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
     String whose_turn(String currentRoomName)throws RemoteException, RoomDoesNotExistException;
 
-    void  draw_card(String currentRoomName, String player) throws RemoteException, RoomDoesNotExistException;
+    String  draw_card(String currentRoomName, String player) throws RemoteException, RoomDoesNotExistException;
+    void  discard_card(String currentRoomName, String playerId, String card)throws RemoteException, RoomDoesNotExistException;
 
     String showTopCard(String currentRoomName) throws RemoteException, RoomDoesNotExistException;
     String showTopCardAblage(String currentRoomName)throws RemoteException, RoomDoesNotExistException;
@@ -44,6 +45,7 @@ public interface GameManagerInterface extends Remote {
     void setWinner(String playername, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
 
     int howManyEggs(String playerId, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
+    void incEggNumber(String playerId, String currentRoomName, int number)throws RemoteException, RoomDoesNotExistException;
 
     boolean lay_eggs(String playerId, String currentRoomName, ArrayList<String> selected) throws RemoteException, RoomDoesNotExistException;
 

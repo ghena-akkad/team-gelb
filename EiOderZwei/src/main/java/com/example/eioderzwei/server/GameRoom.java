@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import com.example.eioderzwei.server.Player;
+/* TODO: rankList als Map/Hashmap, initialize im Konstruktor,
+    1) methode für update von rankList
+    2)methode get_rankList, die rankList zurückgibt
+
+
+*/
 
 public class GameRoom {
     private final String gameName;

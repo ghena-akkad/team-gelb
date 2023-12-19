@@ -8,6 +8,15 @@ import com.example.eioderzwei.server.exceptions.RoomDoesNotExistException;
 
 import static com.example.eioderzwei.server.CardType.ROOSTER;
 
+/* TODO Ranklist: Beide methoden nehmen room number als Parameter und finden den Raum mithilfe von roomsManager
+    1) methode für update von rankList
+    2) methode get_rankList, die rankList zurückgibt
+
+   */
+/* TODO neue Runde: Methoden start_round und end_round schreiben
+
+
+
 /**
  *
  * Spiellogik

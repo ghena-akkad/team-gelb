@@ -39,6 +39,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+
+
+/* TODO neue Runde: Button hinzufügen
+
+
+
+ */
 public class gameRoomController implements Initializable {
     @FXML
     private Label nameLabel;
@@ -67,7 +74,7 @@ public class gameRoomController implements Initializable {
     private ImageView Karte1, Karte2, Karte3, Karte4, Karte5, Karte6, Karte7, Karte8, Karte9, Karte10,
             Karte11, Karte12, Karte13, Karte14, Karte15, Karte16, Karte17, Karte18, Karte19, Karte20,
             Karte21, Karte22, Karte23, Karte24, Karte25, Karte26, Karte27, Karte28, Karte29, Karte30,
-            Karte31, Karte32, Karte33, Karte34, Karte35, Karte36, small0, small1, small2, small3;
+            Karte31, Karte32, Karte33, Karte34, Karte35, Karte36, Karte37, Karte38, Karte39, Karte40, small0, small1, small2, small3;
     ImageView[] cardInHandImageViews;
     ImageView[] cardWestImageViews;
     ImageView[] cardNorthImageViews ;
@@ -76,6 +83,7 @@ public class gameRoomController implements Initializable {
     private ArrayList<String> selectedCardsString;
     @FXML
     private Label eggNumberNorth, eggNumberEast, eggNumberWest, eggNumberSouth;
+
 
     boolean used1;
     boolean used2;
@@ -114,15 +122,14 @@ public class gameRoomController implements Initializable {
         roosterCardButton.setVisible(false);
         selectedCards = new ArrayList<>();
         selectedCardsString = new ArrayList<>();
-        cardInHandImageViews = new ImageView[]{ Karte1, Karte2, Karte3, Karte4, Karte5, Karte6, Karte7, Karte8, Karte9, Karte10,
-                Karte11, Karte12 };
+        cardInHandImageViews = new ImageView[]{
+                Karte1, Karte2, Karte3, Karte4, Karte5, Karte6, Karte7, Karte8, Karte9, Karte10};
         cardWestImageViews = new ImageView[]{
-                Karte13, Karte14, Karte15, Karte16, Karte17, Karte18, Karte19, Karte20,
-                Karte21, Karte22};
+                Karte11, Karte12, Karte13, Karte14, Karte15, Karte16, Karte17, Karte18, Karte19, Karte20};
         cardNorthImageViews =new ImageView[] {
-                Karte23, Karte24, Karte25, Karte26, Karte27, Karte28, Karte29};
+                Karte21, Karte22, Karte23, Karte24, Karte25, Karte26, Karte27, Karte28, Karte29, Karte30};
         cardEastImageViews =new ImageView[] {
-                Karte30, Karte31, Karte32, Karte33, Karte34, Karte35, Karte36};
+                Karte31, Karte32, Karte33, Karte34, Karte35, Karte36, Karte37, Karte38, Karte39, Karte40};
 
         roomName = UserInfo.getRoomname();
         initThread();

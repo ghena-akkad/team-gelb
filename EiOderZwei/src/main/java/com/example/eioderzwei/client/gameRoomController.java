@@ -193,8 +193,8 @@ public class gameRoomController implements Initializable {
 
 
                                     eggNumberSouth.setVisible(true);
-                                    eggNumberNorth.setVisible(true);
-                                    eggNumberEast.setVisible(true);
+                                    //eggNumberNorth.setVisible(true);
+                                    //eggNumberEast.setVisible(true);
                                     eggNumberWest.setVisible(true);
                                     small0.setVisible(true);
                                     small1.setVisible(true);
@@ -225,15 +225,15 @@ public class gameRoomController implements Initializable {
 
 
                                         zuglabel.setText(gameman.whose_turn(roomName));
-                                        int a = (gameman.howManyEggs(nameLabelEast.getText(),roomName));
+                                        //int a = (gameman.howManyEggs(nameLabelEast.getText(),roomName));
                                         int b = (gameman.howManyEggs(nameLabelWest.getText(),roomName));
                                         int c = (gameman.howManyEggs(username,roomName));
-                                        int d = (gameman.howManyEggs(nameLabelNorth.getText(),roomName));
+                                        //int d = (gameman.howManyEggs(nameLabelNorth.getText(),roomName));
 
-                                        eggNumberEast.setText(Integer.toString(a));
+                                        //eggNumberEast.setText(Integer.toString(a));
                                         eggNumberWest.setText(Integer.toString(b));
                                         eggNumberSouth.setText(Integer.toString(c));
-                                        eggNumberNorth.setText(Integer.toString(d));
+                                       // eggNumberNorth.setText(Integer.toString(d));
 
 
                                     }
@@ -295,8 +295,8 @@ public class gameRoomController implements Initializable {
                                     updateCardsSouth(gameman.get_players_card(username));
 
                                     updateCardsWest(gameman.get_players_card(nameLabelWest.getText()));
-                                    updateCardsEast(gameman.get_players_card(nameLabelEast.getText()));
-                                    updateCardsNorth(gameman.get_players_card(nameLabelNorth.getText()));
+                                    //updateCardsEast(gameman.get_players_card(nameLabelEast.getText()));
+                                    //updateCardsNorth(gameman.get_players_card(nameLabelNorth.getText()));
                                     updateDecks(gameman.showTopCard(roomName), gameman.showTopCardAblage(roomName));
                                 }
 
@@ -422,8 +422,8 @@ public class gameRoomController implements Initializable {
         switch (playerNames.size()) {
             case 1:
                 nameLabelWest.setText("Warten...");
-                nameLabelEast.setText("Warten...");
-                nameLabelNorth.setText("Warten...");
+                //nameLabelEast.setText("Warten...");
+                //nameLabelNorth.setText("Warten...");
                 break;
             case 2:
                 if (playerNames.get(1).equals(username)) {
@@ -431,8 +431,8 @@ public class gameRoomController implements Initializable {
                 } else {
                     nameLabelWest.setText(playerNames.get(1));
                 }
-                nameLabelEast.setText("Warten...");
-                nameLabelNorth.setText("Warten...");
+                //nameLabelEast.setText("Warten...");
+                //nameLabelNorth.setText("Warten...");
                 break;
             case 3:
                 if (playerNames.get(1).equals(username)) {
@@ -671,41 +671,10 @@ public class gameRoomController implements Initializable {
             for (ImageView cardInHandImageView : cardInHandImageViews) {
                 cardInHandImageView.setOpacity(0.34);
                 cardInHandImageView.setDisable(true);
-            }for (ImageView c : cardEastImageViews) {
-                c.setOpacity(0.34);
-                c.setDisable(true);
-            }for (ImageView c : cardNorthImageViews) {
-                c.setOpacity(0.34);
-                c.setDisable(true);
-            }
-
-        }else if(nameLabelEast.getText().equals(gameman.get_victim(roomName))){
-            for (ImageView cardInHandImageView : cardInHandImageViews) {
-                cardInHandImageView.setOpacity(0.34);
-                cardInHandImageView.setDisable(true);
-            }for (ImageView c : cardWestImageViews) {
-                c.setOpacity(0.34);
-                c.setDisable(true);
-            }for (ImageView c : cardNorthImageViews) {
-                c.setOpacity(0.34);
-                c.setDisable(true);
             }
 
         }
-        else if(nameLabelNorth.getText().equals(gameman.get_victim(roomName))){
-            for (ImageView cardInHandImageView : cardInHandImageViews) {
-                cardInHandImageView.setOpacity(0.34);
-                cardInHandImageView.setDisable(true);
-            }for (ImageView c : cardWestImageViews) {
-            }for (ImageView c : cardWestImageViews) {
-                c.setOpacity(0.34);
-                c.setDisable(true);
-            }for (ImageView c : cardEastImageViews) {
-                c.setOpacity(0.34);
-                c.setDisable(true);
-            }
 
-        }
 
 
     }
@@ -713,12 +682,6 @@ public class gameRoomController implements Initializable {
             for (ImageView cardInHandImageView : cardInHandImageViews) {
                 cardInHandImageView.setOpacity(1.0);
                 cardInHandImageView.setDisable(false);
-            }for (ImageView c : cardEastImageViews) {
-                c.setOpacity(1.0);
-                c.setDisable(false);
-            }for (ImageView c : cardNorthImageViews) {
-                c.setOpacity(1.0);
-                c.setDisable(false);
             }
         for (ImageView c : cardWestImageViews) {
             c.setOpacity(1.0);

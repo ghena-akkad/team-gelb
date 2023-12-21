@@ -185,7 +185,7 @@ public class LobbyController {
         try {
             switch (desiredPlayerNumber) {
                 case 2:
-                    FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("/com/example/eioderzwei/gameRoom2.fxml"));
+                    FXMLLoader fxmlLoader2 = new FXMLLoader(getClass().getResource("/com/example/eioderzwei/gameRoom.fxml"));
                     Parent root2 =  fxmlLoader2.load();
                     gameRoomController c2 = fxmlLoader2.getController();
                     c2.setUserName(playerName);

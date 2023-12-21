@@ -1,5 +1,4 @@
 package com.example.eioderzwei.client;
-import com.example.eioderzwei.server.Card;
 import com.example.eioderzwei.server.MessageObject; //TODO ist es ok diese Klasse zu importieren so ?
 import com.example.eioderzwei.server.common.ChatManagerInterface;
 import com.example.eioderzwei.server.common.GameManagerInterface;
@@ -9,6 +8,8 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+
+import javafx.scene.control.ButtonType;
 
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -81,12 +82,20 @@ public class gameRoomController implements Initializable {
     ImageView[] cardEastImageViews ;
     private List<ImageView> selectedCards;
     private ArrayList<String> selectedCardsString;
+    private ImageView cardToSave;
+    private String cardToSaveString;
+    private ImageView cardToSteal;
+    private String cardToStealString;
+
     @FXML
     private Label eggNumberNorth, eggNumberEast, eggNumberWest, eggNumberSouth;
 
 
     boolean used1;
     boolean used2;
+    boolean used3;
+
+
 
 
 
@@ -99,6 +108,11 @@ public class gameRoomController implements Initializable {
     private TextField messageInputField;
     @FXML
     private Button sendButton;
+    @FXML
+    private Button confirmButton;
+    @FXML
+    private Button confirmButton2;
+
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.gameman = Client.getGameManager();
@@ -107,6 +121,10 @@ public class gameRoomController implements Initializable {
         username = UserInfo.getUsername();
         used1 = false;
         used2= false;
+        used3=false;
+        confirmButton.setVisible(false);
+        confirmButton2.setVisible(false);
+
         eggNumberSouth.setText("0");
         eggNumberNorth.setText("0");
         eggNumberEast.setText("0");
@@ -131,10 +149,11 @@ public class gameRoomController implements Initializable {
         cardEastImageViews =new ImageView[] {
                 Karte31, Karte32, Karte33, Karte34, Karte35, Karte36, Karte37, Karte38, Karte39, Karte40};
 
+
         roomName = UserInfo.getRoomname();
         initThread();
         cardsThread();
-        startChatThread();
+        //startChatThread();
         try (FileInputStream input = new FileInputStream("EiOderZwei/src/main/java/com/example/eioderzwei/image/egg.png")) {
             Image img = new Image(input);
             small0.setImage(img);
@@ -165,11 +184,14 @@ public class gameRoomController implements Initializable {
                             try {
                                 List<String> joinedPlayers = roomman.getPlayers(roomName);
                                 updatePlayerLabels(joinedPlayers);
+                                //if(gameman.getNumberOfPlayers(roomName)!=2){
 
                                 if ((gameman.getRequiredNumberOfPlayers(roomName) > gameman.getNumberOfPlayers(roomName))) {
                                     gameStatus.setText("Warte auf die anderen Spieler");
                                 } else {
                                     gameStatus.setText("Spiel läuft");
+
+
                                     eggNumberSouth.setVisible(true);
                                     eggNumberNorth.setVisible(true);
                                     eggNumberEast.setVisible(true);
@@ -189,6 +211,19 @@ public class gameRoomController implements Initializable {
                                             roosterCardButton.setDisable(false);
 
                                         }
+                                        if(gameman.get_fox_karte_gezogen(roomName)){
+                                            used3=true;
+                                            if(gameman.get_victim(roomName).equals(username)&&!gameman.get_fox_prompt(roomName)&& gameman.get_prompt_required(roomName)){
+                                                gameman.set_fox_prompt(roomName, true);
+                                                promptVictimToChooseCard();
+
+                                            }
+
+                                        }else{
+                                            used3=false;
+                                        }
+
+
                                         zuglabel.setText(gameman.whose_turn(roomName));
                                         int a = (gameman.howManyEggs(nameLabelEast.getText(),roomName));
                                         int b = (gameman.howManyEggs(nameLabelWest.getText(),roomName));
@@ -236,6 +271,7 @@ public class gameRoomController implements Initializable {
             Image img = new Image(input);
             deck.setImage(img);
             gameman.initialize_rooster(roomName);
+            gameman.set_victim(roomName, "");
 
         } catch (RoomDoesNotExistException e) {
             throw new RuntimeException(e);
@@ -292,9 +328,15 @@ public class gameRoomController implements Initializable {
             Image img2 = new Image(input2);
             ablage.setImage(img2);
         }
-        FileInputStream input1 = new FileInputStream("EiOderZwei/src/main/java/" + s);
-        Image img1 = new Image(input1);
-        deck.setImage(img1);
+        if(s.isEmpty()){
+            deck.setImage(null);
+        }
+        else{
+            FileInputStream input1 = new FileInputStream("EiOderZwei/src/main/java/" + s);
+            Image img1 = new Image(input1);
+            deck.setImage(img1);
+        }
+
     }
 
     private void updateCardsNorth(List<String> playersCard) throws FileNotFoundException {
@@ -308,6 +350,7 @@ public class gameRoomController implements Initializable {
 
                 Image img = new Image(input);
                 cardNorthImageViews[n].setImage(img);
+                cardNorthImageViews[n].setUserData(card);
                 n++;
 
 
@@ -327,6 +370,7 @@ public class gameRoomController implements Initializable {
 
                 Image img = new Image(input);
                 cardEastImageViews[n].setImage(img);
+                cardEastImageViews[n].setUserData(card);
                 n++;
 
 
@@ -345,6 +389,7 @@ public class gameRoomController implements Initializable {
 
                 Image img = new Image(input);
                 cardWestImageViews[n].setImage(img);
+                cardWestImageViews[n].setUserData(card);
                 n++;
 
 
@@ -433,84 +478,178 @@ public class gameRoomController implements Initializable {
 
 
 
-    public void chooseCard(MouseEvent actionEvent) {
-        ImageView card = (ImageView) actionEvent.getSource();
-        String path = (String) card.getUserData();
-        if (card.getImage()!=null&&selectedCards.contains(card)) {
-            selectedCards.remove(card);
-            selectedCardsString.remove(path);
-            card.setEffect(null);
-            card.setStyle("");
-        } else {
-            if(card.getImage()!=null){
-                selectedCards.add(card);
-                selectedCardsString.add(path);
-                DropShadow dropShadow = new DropShadow();
-                dropShadow.setRadius(15.0);
-                dropShadow.setColor(Color.rgb(0, 0, 255, 0.8));
-                dropShadow.setSpread(0.5);
-                card.setEffect(dropShadow);
-                card.setStyle("-fx-border-color: red; -fx-border-width: 4px;");
+    public void chooseCard(MouseEvent actionEvent) throws RoomDoesNotExistException, RemoteException {
+        if(gameman.has_game_started(roomName)) {
 
-            }
-
-        }
-    }
-    @FXML
-    private void onDiscardPileClicked(MouseEvent event) throws RoomDoesNotExistException, RemoteException {
-        if(gameman.is_turn(username, roomName ) ) {
-            if (!used2) {
-                if (!gameman.lay_eggs(username, roomName, selectedCardsString)) {
-                    showErrorPopup("Keine Eier wurden gelegt");
-                    resetCardSelection();
-                } else {
-                    resetCardSelection();
-
-                    if (gameman.get_rooster_holder(roomName).equals(username)) {
-                        used2 = true;
+            if (gameman.get_victim(roomName).equals(username)) {
+                ImageView card = (ImageView) actionEvent.getSource();
+                String path = (String) card.getUserData();
+                if (card.getImage() != null && !card.equals(cardToSave)) {
+                    if (path.equals("com/example/eioderzwei/image/Hahnkarte.png")) {
+                        showErrorPopup("Nur Körnerkarten können ausgewählt werden");
                     } else {
-                        gameman.give_turn(roomName);
+                        if (cardToSave != null) {
+                            cardToSave.setEffect(null);
+                            cardToSave.setStyle("");
+                        }
 
+                        cardToSave = card;
+                        cardToSaveString = path;
+                        DropShadow dropShadow = new DropShadow();
+                        dropShadow.setRadius(15.0);
+                        dropShadow.setColor(Color.rgb(5, 74, 15, 0.8));
+                        dropShadow.setSpread(0.5);
+                        card.setEffect(dropShadow);
+                        card.setStyle("-fx-border-color: red; -fx-border-width: 4px;");
+                    }
+
+                } else if (card.getImage() != null) {
+                    cardToSave.setEffect(null);
+                    cardToSave.setStyle("");
+                    cardToSave = null;
+                    cardToSaveString = "";
+
+                }
+
+            } else {
+                ImageView card = (ImageView) actionEvent.getSource();
+                String path = (String) card.getUserData();
+                if (card.getImage() != null && selectedCards.contains(card)) {
+                    selectedCards.remove(card);
+                    selectedCardsString.remove(path);
+                    card.setEffect(null);
+                    card.setStyle("");
+                } else {
+                    if (card.getImage() != null) {
+                        selectedCards.add(card);
+                        selectedCardsString.add(path);
+                        DropShadow dropShadow = new DropShadow();
+                        dropShadow.setRadius(15.0);
+                        dropShadow.setColor(Color.rgb(0, 0, 255, 0.8));
+                        dropShadow.setSpread(0.5);
+                        card.setEffect(dropShadow);
+                        card.setStyle("-fx-border-color: red; -fx-border-width: 4px;");
 
                     }
 
                 }
-            } else {showErrorPopup("Nur Karte ziehen möglich");
+            }
+        }
+    }
+    public void chooseCardToSteal(MouseEvent actionEvent) throws RoomDoesNotExistException, RemoteException {
+        if(gameman.has_game_started(roomName)) {
+            if (gameman.get_stealer(roomName).equals(username)) {
+                ImageView card = (ImageView) actionEvent.getSource();
+                String path = (String) card.getUserData();
+                if (card.getImage() != null && !card.equals(cardToSteal)) {
+                    if (false) {
+                        showErrorPopup("Du darfst nur bei " + gameman.get_victim(roomName) + " klauen");
+                    }else if(path.equals("com/example/eioderzwei/image/Hahnkarte.png")){
+                        showErrorPopup("Du darfst nur Körnerkarten klauen");
+
+                    }else {
+                        if (cardToSteal != null) {
+                            cardToSteal.setEffect(null);
+                            cardToSteal.setStyle("");
+                        }
+
+                        cardToSteal = card;
+                        cardToStealString = path;
+                        DropShadow dropShadow = new DropShadow();
+                        dropShadow.setRadius(15.0);
+                        dropShadow.setColor(Color.rgb(0, 0, 255, 0.8));
+                        dropShadow.setSpread(0.5);
+                        card.setEffect(dropShadow);
+                        card.setStyle("-fx-border-color: red; -fx-border-width: 4px;");
+                    }
+
+
+                } else if (card.getImage() != null) {
+                    cardToSteal.setEffect(null);
+                    cardToSteal.setStyle("");
+                    cardToSteal = null;
+                    cardToStealString = "";
+
+                }
+
 
             }
         }
-        else{
-            showErrorPopup("Nicht dein Zug!");
+
+    }
+
+        @FXML
+    private void onDiscardPileClicked(MouseEvent event) throws RoomDoesNotExistException, RemoteException {
+        if(gameman.has_game_started(roomName)) {
+            if (gameman.is_turn(username, roomName)) {
+                if (!used2) {
+                    if (!gameman.lay_eggs(username, roomName, selectedCardsString)) {
+                        showErrorPopup("Keine Eier wurden gelegt");
+                        resetCardSelection();
+                    } else {
+                        resetCardSelection();
+
+                        if (gameman.get_rooster_holder(roomName).equals(username)) {
+                            used2 = true;
+                        } else {
+                            gameman.give_turn(roomName);
+
+
+                        }
+
+                    }
+                } else {
+                    showErrorPopup("Nur Karte ziehen möglich");
+
+                }
+            } else {
+                showErrorPopup("Nicht dein Zug!");
+            }
         }
 
 
         }
     public void drawCard(MouseEvent actionEvent) throws IOException, RoomDoesNotExistException {
-        if(gameman.is_turn(username, roomName )){
-            String card = gameman.draw_card(roomName, username);
+        if(gameman.has_game_started(roomName)) {
 
-            if(card.equals("com/example/eioderzwei/image/Kuckuck.png")){
-                gameman.incEggNumber(username,roomName,1);
-                gameman.discard_card(roomName, username, "com/example/eioderzwei/image/Kuckuck.png");
+            if (gameman.is_turn(username, roomName)) {
+                String card = gameman.draw_card(roomName, username);
+
+                if (card.equals("com/example/eioderzwei/image/Kuckuck.png")) {
+                    gameman.incEggNumber(username, roomName, 1);
+                    gameman.discard_card(roomName, username, "com/example/eioderzwei/image/Kuckuck.png");
+                }
+                if (card.equals("com/example/eioderzwei/image/Fucks.png")) {
+                    gameman.set_fox_karte_gezogen(roomName, true);
+                    handleFoxCard();
+
+                }
+
+
+                if (gameman.get_rooster_holder(roomName).equals(username) && !used1 && !used2) {
+                    used1 = true;  // one draw happened, second left
+                    gameman.setGezogen(roomName, false);
+
+
+                } else {
+
+                    gameman.setGezogen(roomName, true);
+
+                    if (!used3) {
+
+                        // both draw or egglay+draw or rooster+draw or fox happened, either way give turn
+                        used1 = false;
+                        used2 = false;
+                        gameman.give_turn(roomName);
+                    }
+
+
+                }
+
+
+            } else {
+                showErrorPopup("Nicht dein Zug!");
             }
-
-            if(gameman.get_rooster_holder(roomName).equals(username) && !used1 &&!used2)
-            {
-                used1 = true;
-            }
-            else{
-                used1 = false;
-                used2 = false;
-                gameman.give_turn(roomName);
-
-
-            }
-
-
-
-        }
-        else{
-            showErrorPopup("Nicht dein Zug!");
         }
     }
 
@@ -527,8 +666,76 @@ public class gameRoomController implements Initializable {
     }
 
 
+    private void disable_cards() throws RoomDoesNotExistException, RemoteException {
+        if(nameLabelWest.getText().equals(gameman.get_victim(roomName))){
+            for (ImageView cardInHandImageView : cardInHandImageViews) {
+                cardInHandImageView.setOpacity(0.34);
+                cardInHandImageView.setDisable(true);
+            }for (ImageView c : cardEastImageViews) {
+                c.setOpacity(0.34);
+                c.setDisable(true);
+            }for (ImageView c : cardNorthImageViews) {
+                c.setOpacity(0.34);
+                c.setDisable(true);
+            }
+
+        }else if(nameLabelEast.getText().equals(gameman.get_victim(roomName))){
+            for (ImageView cardInHandImageView : cardInHandImageViews) {
+                cardInHandImageView.setOpacity(0.34);
+                cardInHandImageView.setDisable(true);
+            }for (ImageView c : cardWestImageViews) {
+                c.setOpacity(0.34);
+                c.setDisable(true);
+            }for (ImageView c : cardNorthImageViews) {
+                c.setOpacity(0.34);
+                c.setDisable(true);
+            }
+
+        }
+        else if(nameLabelNorth.getText().equals(gameman.get_victim(roomName))){
+            for (ImageView cardInHandImageView : cardInHandImageViews) {
+                cardInHandImageView.setOpacity(0.34);
+                cardInHandImageView.setDisable(true);
+            }for (ImageView c : cardWestImageViews) {
+            }for (ImageView c : cardWestImageViews) {
+                c.setOpacity(0.34);
+                c.setDisable(true);
+            }for (ImageView c : cardEastImageViews) {
+                c.setOpacity(0.34);
+                c.setDisable(true);
+            }
+
+        }
+
+
+    }
+    private void enable_cards() throws RoomDoesNotExistException, RemoteException {
+            for (ImageView cardInHandImageView : cardInHandImageViews) {
+                cardInHandImageView.setOpacity(1.0);
+                cardInHandImageView.setDisable(false);
+            }for (ImageView c : cardEastImageViews) {
+                c.setOpacity(1.0);
+                c.setDisable(false);
+            }for (ImageView c : cardNorthImageViews) {
+                c.setOpacity(1.0);
+                c.setDisable(false);
+            }
+        for (ImageView c : cardWestImageViews) {
+            c.setOpacity(1.0);
+            c.setDisable(false);
+        }
+
+
+
+
+
+
+    }
+
+
 
     private void handleRoosterCard() {
+
 
         try {
             boolean canClaimRooster = gameman.want_rooster_card(username, roomName);
@@ -550,10 +757,20 @@ public class gameRoomController implements Initializable {
         }
     }
     @FXML
-    private void handleRoosterCardAction(ActionEvent event) {
+    private void handleRoosterCardAction(ActionEvent event) throws RoomDoesNotExistException, RemoteException {
+        if(gameman.is_turn(username, roomName ) ) {
+            if (!used2) {
+                handleRoosterCard();
+
+            } else {
+                showErrorPopup("Nur Karte ziehen möglich");
+            }
+        }else{
+            showErrorPopup("Nicht dein Zug!");
+
+        }
 
 
-        handleRoosterCard();
     }
     private boolean showRoosterCardClaimDialog() {
 
@@ -569,53 +786,77 @@ public class gameRoomController implements Initializable {
     }
     public void handleFoxCard() {
         try {
+            gameman.set_stealer(roomName, username);
             List<String> availablePlayers = gameman.getAvailablePlayersToSteal(username, roomName);
-            String chosenVictimId = promptPlayerToChooseVictim(availablePlayers); // UI method to choose a victim
+            String chosenVictimId = promptPlayerToChooseVictim(availablePlayers);
+            boolean option = promptPlayerToChooseOption();
+            if(!option){ //    2 option alle karten bis auf eine
 
-            List<Card> availableCards = gameman.getAvailableCardsToSteal(username, chosenVictimId, roomName);
-            Card chosenCard = promptPlayerToChooseCard(availableCards); // UI method to choose a card
+                gameman.set_prompt_required(roomName,true);
+            }
+            else{
+                disable_cards();
+                confirmButton2.setVisible(true);
 
-            // Send the final choices back to the server
-            gameman.steal_card(username, chosenVictimId, chosenCard, roomName);
+            }
         } catch (RemoteException | RoomDoesNotExistException e) {
             e.printStackTrace();
-            // Handle exceptions
         }
     }
 
-    private String promptPlayerToChooseVictim(List<String> availablePlayers) {
+    private String promptPlayerToChooseVictim(List<String> availablePlayers) throws RoomDoesNotExistException, RemoteException {
         ChoiceDialog<String> dialog = new ChoiceDialog<>(availablePlayers.get(0), availablePlayers);
-        dialog.setTitle("Choose a Victim");
-        dialog.setHeaderText("Select a player to steal from:");
-        dialog.setContentText("Available Players:");
+        dialog.setTitle("Spieler Auswahl");
+        dialog.setHeaderText("Wähle einen Spieler aus, von dem du klauen möchtest:");
+        dialog.setContentText("Verfügbare Spieler:");
+        dialog.getDialogPane().getButtonTypes().remove(ButtonType.CANCEL);
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
+            gameman.set_victim(roomName, result.get());
+
             return result.get();
         } else {
-            return null; // Handle the case where the player doesn't make a choice
+
+            return null;
         }
+    }
+    private boolean promptPlayerToChooseOption(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Option");
+        alert.setHeaderText("Wähle eine Option:");
+
+        ButtonType option1Button = new ButtonType("Ich wähle eine beliebige Karte");
+        ButtonType option2Button = new ButtonType("Ich wähle alle bis auf eine Körnerkarte");
+
+
+        alert.getButtonTypes().setAll(option1Button, option2Button);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == option1Button;
+
     }
 
-    private Card promptPlayerToChooseCard(List<Card> availableCards) {
-        List<String> cardDescriptions = availableCards.stream()
-                .map(card -> card.getDescription())
-                .collect(Collectors.toList());
-        ChoiceDialog<String> dialog = new ChoiceDialog<>(cardDescriptions.get(0), cardDescriptions);
-        dialog.setTitle("Choose a Card");
-        dialog.setHeaderText("Select a card to steal:");
-        dialog.setContentText("Available Cards:");
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            String selectedDescription = result.get();
-            return availableCards.stream()
-                    .filter(card -> card.getDescription().equals(selectedDescription))
-                    .findFirst()
-                    .orElse(null);
-        } else {
-            return null; // Handle the case where the player doesn't make a choice
-        }
+    private void promptVictimToChooseCard() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Karte Auswahl");
+        alert.setHeaderText(null);
+
+        alert.setContentText("Achtung! Du wurdest als Opfer ausgewählt." +
+                " Wähle eine Karte aus, die du behalten möchtest");
+
+        ButtonType okButton = new ButtonType("OK", ButtonType.OK.getButtonData());
+        alert.getButtonTypes().setAll(okButton);
+
+        alert.showAndWait().ifPresent(buttonType -> {
+            if (buttonType == okButton) {
+            }
+        });
+        confirmButton.setVisible(true);
     }
+
+
+
     public void displayMessage(MessageObject message) {
         // Check if the current user is mentioned in the message
         if (message.getMentionedUsers().contains(UserInfo.getUsername())) {
@@ -708,4 +949,31 @@ public class gameRoomController implements Initializable {
         return mentionedUsers;
     }
 
+    public void onConfirmButtonClicked(ActionEvent actionEvent) throws RoomDoesNotExistException, RemoteException {
+        if(cardToSave!=null){
+            gameman.steal_all_cards_except_one(roomName, cardToSaveString);
+            confirmButton.setVisible(false);
+            cardToSave.setEffect(null);
+            cardToSave.setStyle("");
+
+        }else{
+            showErrorPopup("Wähle eine Karte aus, die du behalten möchtest!");
+        }
+
+
+    }
+    public void onConfirmButtonClicked2(ActionEvent actionEvent) throws RoomDoesNotExistException, RemoteException {
+        if(cardToSteal!=null){
+            gameman.steal_card(cardToStealString, roomName);
+            confirmButton2.setVisible(false);
+            cardToSteal.setEffect(null);
+            cardToSteal.setStyle("");
+            enable_cards();
+
+        }else{
+            showErrorPopup("Wähle eine Karte aus, die du klauen möchtest!");
+        }
+
+
+    }
 }

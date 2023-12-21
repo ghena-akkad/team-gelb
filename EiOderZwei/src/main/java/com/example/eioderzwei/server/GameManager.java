@@ -26,6 +26,7 @@ public class GameManager implements GameManagerInterface {
     private LoginManagerHelper loginManager;
     private static final Map<String, CardType> imageCardMap = new HashMap<>();
 
+
     private Map<CardType, String> cardImageMap;
     public GameManager() {
         this.roomsManager = new RoomsManagerHelper();
@@ -50,7 +51,8 @@ public class GameManager implements GameManagerInterface {
     public void initialize_rooster(String currentRoomName) throws RoomDoesNotExistException{
         Random random = new Random();
         int number = roomsManager.getGameroom(currentRoomName).getPlayersNumber();
-        String random_player = roomsManager.getGameroom(currentRoomName).getPlayerIds().get(random.nextInt(number));
+        //String random_player = roomsManager.getGameroom(currentRoomName).getPlayerIds().get(random.nextInt(number));
+        String random_player = roomsManager.getGameroom(currentRoomName).getPlayerIds().get(0);
         Card card = new Card(ROOSTER);
         roomsManager.getGameroom(currentRoomName).setRoosterCardHolder(random_player);
 
@@ -71,6 +73,13 @@ public class GameManager implements GameManagerInterface {
             cards.add(imagePath);
         }
         return cards;
+    }
+    public int getPlayersIndex(String roomname, String name) throws RoomDoesNotExistException {
+        GameRoom room =roomsManager.getGameroom(name);
+        return room.getPlayersIndex(name);
+
+
+
     }
     public void give_turn(String currentRoomName) throws RoomDoesNotExistException {
         roomsManager.getGameroom(currentRoomName).nextPlayerTurn();
@@ -111,8 +120,12 @@ public class GameManager implements GameManagerInterface {
 
     public String showTopCard(String currentRoomName) throws RoomDoesNotExistException {
         Card card = roomsManager.getGameroom(currentRoomName).getDrawPile().showTopCard();
-        String imagePath = card.getImagePath();
-        return imagePath;
+        if(card!=null){
+            String imagePath = card.getImagePath();
+            return imagePath;
+        }
+        String leer = "";
+        return leer;
     }
     public String showTopCardAblage(String currentRoomName) throws RoomDoesNotExistException {
         Card card = roomsManager.getGameroom(currentRoomName).getDiscardPile().viewTopCard();
@@ -209,7 +222,6 @@ public class GameManager implements GameManagerInterface {
 
             player.incrementEggCountBy(eggsLaid);
 
-            System.out.println("eggsLaid = " + eggsLaid);
 
 
             return true;
@@ -248,27 +260,153 @@ public class GameManager implements GameManagerInterface {
 
         return false;
     }
-    public void steal_card(String stealerId, String victimId, Card cardToSteal, String currentRoomName) throws RoomDoesNotExistException {
+    public void steal_card(String cardToSteal, String currentRoomName) throws RoomDoesNotExistException {
         GameRoom room = roomsManager.getGameroom(currentRoomName);
-        Player stealer = room.getPlayerMap().get(stealerId);
-        Player victim = room.getPlayerMap().get(victimId);
-        // Steal the specified card from the victim
-        if (victim.getHand().contains(cardToSteal)) {
-            victim.removeCard(cardToSteal); // Remove the card from the victim's hand
-            stealer.addCardToHand(cardToSteal); // Add the card to the stealer's hand
+        Player stealer = room.getPlayerMap().get(room.get_stealer());
+        Player victim = room.getPlayerMap().get(room.get_victim());
+
+        ArrayList<Card> victimscards = victim.getHand();
+        Iterator<Card> iterator = victimscards.iterator();
+        while (iterator.hasNext()) {
+            Card card = iterator.next();
+            String imagePath = card.getImagePath();
+            if (imagePath.equals(cardToSteal)) {
+                    iterator.remove();
+                    stealer.addCardToHand(card);
+
+                    break;
+                }
+            }
+        set_fox_karte_gezogen(currentRoomName, false);
+        if(!room.get_stealer().equals(room.getRoosterCardHolder()) || room.getGezogen()){
+            setGezogen(currentRoomName, false);
+            give_turn(currentRoomName);
+
+
+
         }
-        // Optionally, handle the case where the card is no longer in the victim's hand
+        CardType t = getCard("com/example/eioderzwei/image/Fucks.png");
+        Card k = stealer.get_card(t);
+        stealer.removeCard(k);
+        room.getDiscardPile().discard_card(k);
+
+
+
+
+    }
+    public void steal_all_cards_except_one(String roomname, String cardNotToSteal)throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(roomname);
+
+        String s = room.get_stealer();
+        String v = room.get_victim();
+
+
+
+        Player stealer = room.getPlayerMap().get(s);
+        Player victim = room.getPlayerMap().get(v);
+        boolean saved = false;
+        ArrayList<Card> victimscards = victim.getHand();
+
+        Iterator<Card> iterator = victimscards.iterator();
+        while (iterator.hasNext()) {
+            Card card = iterator.next();
+            String imagePath = card.getImagePath();
+            if (imagePath.equals(cardNotToSteal)) {
+                if (!saved) {
+                    saved = true;
+                } else {
+                    iterator.remove();
+                    stealer.addCardToHand(card);
+                }
+            } else if (card.isGrainCard()) {
+                iterator.remove();
+                stealer.addCardToHand(card);
+            }
+
+        }
+        set_fox_karte_gezogen(roomname, false);
+        if(!room.get_stealer().equals(room.getRoosterCardHolder()) || room.getGezogen()){
+
+            setGezogen(roomname, false);
+            give_turn(roomname);
+
+
+        }
+        CardType t = getCard("com/example/eioderzwei/image/Fucks.png");
+        Card k = stealer.get_card(t);
+        stealer.removeCard(k);
+        room.getDiscardPile().discard_card(k);
+
+        room.set_stealer("");
+        room.set_victim("");
+        room.set_foxPrompt(false);
+        room.setPromptRequired(false);
+
+
+
     }
     public List<String> getAvailablePlayersToSteal(String chooserId, String currentRoomName) throws RoomDoesNotExistException {
         GameRoom room = roomsManager.getGameroom(currentRoomName);
         List<String> availablePlayerIds = new ArrayList<>(room.getPlayerIds());
-        // Remove the chooser from the list
         availablePlayerIds.remove(chooserId);
-        return availablePlayerIds; // Return the list of available players
+        return availablePlayerIds;
     }
-    public List<Card> getAvailableCardsToSteal(String stealerId, String victimId, String currentRoomName) throws RoomDoesNotExistException {
+    public String get_victim(String currentRoomName) throws RoomDoesNotExistException {
         GameRoom room = roomsManager.getGameroom(currentRoomName);
-        Player victim = room.getPlayerMap().get(victimId);
-        return new ArrayList<>(victim.getHand()); // Return a list of cards from the victim's hand
+        return room.get_victim();
     }
+
+    public void set_victim(String currentRoomName, String victim) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+         room.set_victim(victim);
+    }
+    public String get_stealer(String currentRoomName) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+        return room.get_stealer();
+    }
+
+    public void set_stealer(String currentRoomName, String stealer) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+        room.set_stealer(stealer);
+    }
+    public boolean get_fox_prompt(String currentRoomName) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+        return room.hasFoxPrompt();
+    }
+    public void set_fox_prompt(String currentRoomName, boolean b) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+        room.set_foxPrompt(b);
+    }
+    public boolean get_prompt_required(String currentRoomName) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+        return room.ifPromptRequired();
+    }
+    public void set_prompt_required(String currentRoomName, boolean b) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+        room.setPromptRequired(b);
+    }
+
+    public boolean get_fox_karte_gezogen(String currentRoomName) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+        return room.get_foxKarteGezogen();
+    }
+    public void set_fox_karte_gezogen(String currentRoomName, boolean b) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(currentRoomName);
+        room.set_foxKarteGezogen(b);
+    }
+    public boolean getGezogen(String roomname) throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(roomname);
+
+        return room.getGezogen();
+
+
+    }
+    public void setGezogen(String roomname, boolean gezogen)throws RoomDoesNotExistException {
+        GameRoom room = roomsManager.getGameroom(roomname);
+        room.setGezogen(gezogen);
+
+
+
+    }
+
 }

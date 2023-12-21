@@ -21,6 +21,10 @@ public class GameRoom {
     private List<String> playerIds;
     private Map<String, Player> playerMap;
     private String roosterCardHolder;
+    private String victim;
+    private String stealer;
+    private boolean gezogen;
+
     private DrawPile drawPile;
     private DiscardPile discardPile;
 
@@ -28,6 +32,9 @@ public class GameRoom {
     private int botNumber;
     private int currentPlayerIndex = 0;
     private Player winner;
+    private boolean fox_prompt;
+    private boolean need_prompt;
+    private boolean fox_karte_gezogen;
 
     public GameRoom(String gameName, int botNumber, int requiredNumberOfPlayers) {
 
@@ -40,6 +47,9 @@ public class GameRoom {
         this.playerMap = new HashMap<>();
         this.drawPile = new DrawPile();
         this.discardPile = new DiscardPile();
+        this.fox_prompt = false;
+        this.need_prompt=false;
+        this.fox_karte_gezogen = false;
 
     }
     public boolean isRoomFull() {
@@ -61,6 +71,17 @@ public class GameRoom {
     public List<String> getPlayerIds() {
         return new ArrayList<>(playerIds);
     }
+    public int getPlayersIndex(String name){
+        int i = 0;
+        for(String id : playerIds){
+            if(id.equals(name)){
+                return i;
+            }
+            i++;
+        }
+        return -1;
+
+    }
     public Map<String, Player> getPlayerMap() {
         return playerMap;
     }
@@ -77,6 +98,25 @@ public class GameRoom {
 
     public void startGame() {
         gameStarted = true;
+    }
+    public boolean hasFoxPrompt(){
+        return fox_prompt;
+    }
+    public void set_foxPrompt(boolean b){
+        this.fox_prompt = b;
+    }
+    public boolean ifPromptRequired(){
+        return need_prompt;
+    }
+    public void set_foxKarteGezogen(boolean b){
+        this.fox_karte_gezogen = b;
+    }
+    public boolean get_foxKarteGezogen(){
+        return fox_karte_gezogen;
+    }
+    public void setPromptRequired(boolean b){
+
+        this.need_prompt = b;
     }
 
     public void finishGame() {
@@ -152,5 +192,26 @@ public class GameRoom {
         if (o == null || getClass() != o.getClass()) return false;
         GameRoom gameRoom = (GameRoom) o;
         return Objects.equals(gameName, gameRoom.gameName);
+    }
+
+    public String get_victim() {
+        return victim;
+    }
+    public void set_victim(String victim) {
+        this.victim= victim;
+    }
+    public String get_stealer() {
+        return stealer;
+    }
+    public void set_stealer(String stealer) {
+        this.stealer= stealer;
+    }
+
+    public boolean getGezogen() {
+        return gezogen;
+    }
+
+    public void setGezogen(boolean gezogen) {
+        this.gezogen = gezogen;
     }
 }

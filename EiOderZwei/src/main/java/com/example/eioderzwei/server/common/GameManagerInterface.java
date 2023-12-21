@@ -34,6 +34,7 @@ public interface GameManagerInterface extends Remote {
     String showTopCardAblage(String currentRoomName)throws RemoteException, RoomDoesNotExistException;
 
     int getNumberOfPlayers(String currentRoomName) throws RemoteException, RoomDoesNotExistException;
+    int getPlayersIndex(String roomname, String name)throws RemoteException, RoomDoesNotExistException;
 
     int getRequiredNumberOfPlayers(String currentRoomName) throws RemoteException, RoomDoesNotExistException;
 
@@ -55,9 +56,22 @@ public interface GameManagerInterface extends Remote {
 
     boolean want_rooster_card(String playerId, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
 
-    void steal_card(String stealerId, String victimId, Card cardToSteal, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
+    void steal_card(String cardToSteal, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
 
     List<String> getAvailablePlayersToSteal(String chooserId, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
 
-    List<Card> getAvailableCardsToSteal(String stealerId, String victimId, String currentRoomName) throws RemoteException, RoomDoesNotExistException;
+    String get_victim(String currentRoomName) throws RemoteException, RoomDoesNotExistException;
+    String get_stealer(String currentRoomName)throws RemoteException, RoomDoesNotExistException;
+    void steal_all_cards_except_one(String roomname, String cardNotToSteal)throws RemoteException, RoomDoesNotExistException;
+
+    void set_victim(String currentRoomName, String victim)throws RemoteException, RoomDoesNotExistException;
+    void set_stealer(String currentRoomName, String stealer) throws RemoteException, RoomDoesNotExistException;
+    boolean get_fox_prompt(String currentRoomName)throws RemoteException, RoomDoesNotExistException;
+    void set_fox_prompt(String currentRoomName, boolean b)throws RemoteException, RoomDoesNotExistException;
+    boolean get_prompt_required(String currentRoomName)throws RemoteException, RoomDoesNotExistException;
+    void set_prompt_required(String currentRoomName, boolean b)throws RemoteException, RoomDoesNotExistException;
+    boolean get_fox_karte_gezogen(String currentRoomName)throws RemoteException, RoomDoesNotExistException;
+    void set_fox_karte_gezogen(String currentRoomName, boolean b)throws RemoteException, RoomDoesNotExistException;
+    boolean getGezogen(String roomname)throws RemoteException, RoomDoesNotExistException;
+    void setGezogen(String roomname, boolean gezogen)throws RoomDoesNotExistException, RemoteException;
 }

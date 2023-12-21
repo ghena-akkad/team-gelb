@@ -8,6 +8,7 @@ import java.rmi.RemoteException;
 
 
 public class Server {
+    static Registry registry;
     public Server() {
         try {
             ComImpl com = new ComImpl();
@@ -29,7 +30,7 @@ public class Server {
 
             PasswordUtilInterface stub5 = (PasswordUtilInterface) UnicastRemoteObject.exportObject(ps, 0);
 
-            Registry registry = LocateRegistry.createRegistry(1099);
+            registry = LocateRegistry.createRegistry(1099);
 
             registry.rebind("server", stub);
 
@@ -58,5 +59,6 @@ public class Server {
         new Server();
     }
 }
+
 
 

@@ -20,6 +20,7 @@ public class DrawPile {
      * Methode zum Erstellen eines neuen Ziehstapels und Hinzufügen von Karten gemäß den Spielregeln.
      */
     public void create() {
+       
         addCards(CardType.TWONORMAL, 10);
         addCards(CardType.THREENORMAL, 10);
         addCards(CardType.FOURNORMAL, 10);

@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
-import com.example.eioderzwei.client.Client;
 import com.example.eioderzwei.server.common.*;
 import java.rmi.RemoteException;
 import java.security.NoSuchAlgorithmException;

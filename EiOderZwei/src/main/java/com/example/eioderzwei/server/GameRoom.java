@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
 import com.example.eioderzwei.server.Player;
 /* TODO: rankList als Map/Hashmap, initialize im Konstruktor,
     1) methode für update von rankList
@@ -35,9 +37,11 @@ public class GameRoom {
     private boolean fox_prompt;
     private boolean need_prompt;
     private boolean fox_karte_gezogen;
+    private HashMap<String, Integer> rankList;
 
     public GameRoom(String gameName, int botNumber, int requiredNumberOfPlayers) {
 
+        rankList = new HashMap<>();
         this.gameName = gameName;
         this.botNumber = botNumber;
         this.requiredNumberOfPlayers = requiredNumberOfPlayers;
@@ -214,4 +218,18 @@ public class GameRoom {
     public void setGezogen(boolean gezogen) {
         this.gezogen = gezogen;
     }
+    public List<Map.Entry<String, Integer>> getRankList() {
+        return rankList.entrySet().stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .collect(Collectors.toList());
+    }
+    public void updateRankList() {
+        rankList.clear();
+        for (String playerId : playerIds) {
+            Player player = playerMap.get(playerId);
+            rankList.put(playerId, player.getScore());
+        }
+    }
+
+
 }

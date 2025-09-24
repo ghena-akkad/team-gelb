@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="814.0" prefWidth="1557.0" xmlns="http://javafx.com/javafx/18.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.client.gameRoomController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="814.0" prefWidth="1557.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.eioderzwei.client.gameRoomController">
   <children>
     <BorderPane layoutY="92.0" prefHeight="714.0" prefWidth="1555.0">
       <center>
@@ -52,7 +52,7 @@
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image></ImageView>
 
-                  <ImageView fx:id="Karte14" fitHeight="100.0" fitWidth="75.0" layoutX="33.0" layoutY="336.0" onMouseClicked="#chooseCardToSteal"  pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="Karte14" fitHeight="100.0" fitWidth="75.0" layoutX="33.0" layoutY="336.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image></ImageView>
@@ -93,30 +93,30 @@
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image></ImageView>
-                  <ImageView fx:id="Karte39" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal"  pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte39" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
                          <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />                     </image></ImageView>
-                  <ImageView fx:id="Karte37" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal"  layoutY="56.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte37" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" layoutY="56.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image></ImageView>
-                  <ImageView fx:id="Karte35" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal"  layoutY="112.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte35" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" layoutY="112.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image></ImageView>
-                  <ImageView fx:id="Karte33" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal"  layoutY="168.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte33" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" layoutY="168.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image></ImageView>
-                  <ImageView fx:id="Karte31" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal"  layoutY="224.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte31" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" layoutY="224.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image></ImageView>
-                  <ImageView fx:id="Karte32" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal"  layoutY="280.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte32" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" layoutY="280.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image></ImageView>
-                  <ImageView fx:id="Karte34" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal"  layoutY="336.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte34" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" layoutY="336.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image></ImageView>
@@ -127,17 +127,17 @@
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="Karte36" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal"  layoutY="392.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte36" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" layoutY="392.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="Karte38" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal"  layoutY="448.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte38" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" layoutY="448.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="Karte40" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" onMouseClicked="#chooseCardToSteal"  layoutY="504.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                  <ImageView fx:id="Karte40" fitHeight="100.0" fitWidth="75.0" layoutX="1143.0" layoutY="504.0" onMouseClicked="#chooseCardToSteal" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
                         <Image url="@../../../../java/com/example/eioderzwei/image/egg.png" />
                      </image>
@@ -238,6 +238,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <Label fx:id="playerScoreLabelNorth" layoutX="161.0" layoutY="15.0" />
                </children></Pane>
       </top>
       <left>
@@ -257,6 +258,7 @@
                      <font>
                         <Font size="24.0" />
                      </font></Label>
+                  <Label fx:id="playerScoreLabelWest" layoutX="11.0" layoutY="71.0" />
                </children></Pane>
       </left>
         <bottom>
@@ -284,6 +286,7 @@
                               <Font size="24.0" />
                           </font>
                       </Label>
+                        <Label fx:id="playerScoreLabelSouth" layoutX="133.0" layoutY="15.0" />
                      </children>
                   </Pane>
             </children>
@@ -327,6 +330,7 @@
                                 <Font size="24.0" />
                             </font>
                         </Label>
+                     <Label fx:id="playerScoreLabelEast" layoutX="15.0" layoutY="297.0" text="+" />
                     </children>
                 </Pane>
             </VBox>

@@ -10,6 +10,7 @@ import java.util.Random;
  */
 
 public class Player {
+    private int score;
     public  final String userName;
     private String hashedPassword;
     private ArrayList<Card> hand;
@@ -23,6 +24,7 @@ public class Player {
         turn = false;
         hand = new ArrayList<>();
         eggCount = 0;
+        score = 0;
     }
     public boolean validatePassword(String inputPasswordHash) {
         return this.hashedPassword.equals(inputPasswordHash);
@@ -115,6 +117,12 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(userName);
+    }
+    public int getScore() {
+        return score;
+    }
+    public void setScore(int score) {
+            this.score = score;
     }
 }
 

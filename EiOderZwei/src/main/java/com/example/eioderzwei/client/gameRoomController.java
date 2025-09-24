@@ -112,6 +112,14 @@ public class gameRoomController implements Initializable {
     private Button confirmButton;
     @FXML
     private Button confirmButton2;
+    @FXML
+    private Label playerScoreLabelNorth;
+    @FXML
+    private Label playerScoreLabelSouth;
+    @FXML
+    private Label playerScoreLabelEast;
+    @FXML
+    private Label playerScoreLabelWest;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -471,11 +479,6 @@ public class gameRoomController implements Initializable {
 
         }
     }
-
-
-
-
-
 
 
     public void chooseCard(MouseEvent actionEvent) throws RoomDoesNotExistException, RemoteException {
@@ -939,4 +942,17 @@ public class gameRoomController implements Initializable {
 
 
     }
+    public void updateScoreAndRankList() throws RemoteException {
+        // Assuming gameman can give you the current player's score
+        int score = gameman.getPlayerScore(username);
+        playerScoreLabel.setText("Score: " + score);
+
+        // Assuming gameman can give you the rank list
+        List<String> rankList = gameman.getRankList();
+        rankListView.getItems().clear();
+        rankListView.getItems().addAll(rankList.stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .collect(Collectors.toList()));
+    }
+
 }
